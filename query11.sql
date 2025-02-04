@@ -7,8 +7,8 @@
 -- Enter your SQL query here
 
 select
-    round(avg(cast(public.st_distance(
+    round(avg(public.st_distance(
         public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326),
         geog
-    ) as numeric)) / 1000, 0) as avg_distance_km
+    )) / 1000) as avg_distance_km
 from indego.station_statuses;
