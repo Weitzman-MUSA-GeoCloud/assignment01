@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** This is the answer
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
