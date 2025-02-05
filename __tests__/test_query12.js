@@ -6,8 +6,7 @@ describe('Query 12', () => {
     await expect('../query12.sql')
       .toReturnRecords([
         'expected_results/query12.csv',
-        'expected_results/query12alt1.csv',
-        'expected_results/query12alt2.csv',
+        'expected_results/query12_alt.csv',
       ]);
   });
 });
