@@ -9,7 +9,13 @@
     Remember you can do calculations in the select clause.
 */
 
--- Enter your SQL query here
+SELECT 
+    100.0 * ( 
+        (SELECT COUNT(*) FROM indego.trips_2022_q3) - 
+        (SELECT COUNT(*) FROM indego.trips_2021_q3)
+    ) / (SELECT COUNT(*) FROM indego.trips_2021_q3) AS PercentDiff;
+
+Result: 3.98%
 
 
 
