@@ -5,3 +5,17 @@
 */
 
 -- Enter your SQL query here
+WITH station_dist AS (
+    SELECT
+        id AS station_id,
+        geog AS station_geog,
+        ROUND(
+            public.ST_DISTANCE(
+                geog,
+                public.ST_MAKEPOINT(-75.192584, 39.952415)
+            ) / 50
+        ) * 50 AS distance
+    FROM indego.indego_station_statuses
+)
+SELECT ROUND(AVG(distance) / 1000) AS avg_distance_km
+FROM station_dist;

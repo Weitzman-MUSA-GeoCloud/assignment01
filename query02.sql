@@ -10,8 +10,20 @@
 */
 
 -- Enter your SQL query here
-
-
+WITH t21 AS (
+    SELECT COUNT(*) AS trips
+    FROM indego.trips_2021_q3
+),
+t22 AS (
+    SELECT COUNT(*) AS trips
+    FROM indego.trips_2022_q3
+)
+-- Use * 1.0 to convert to float to keep decimal places
+-- Round to 2 dp for readability
+-- Convert to text and concatenate a '%'
+SELECT ROUND((((t22.trips - t21.trips) / (t21.trips * 1.0)) * 100), 2)::text || '%' AS perc_change
+FROM t21
+CROSS JOIN t22;
 
 /*
     If you want to get fancier here, you can cast the result to a string and

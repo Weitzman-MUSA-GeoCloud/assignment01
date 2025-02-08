@@ -8,3 +8,14 @@
 */
 
 -- Enter your SQL query here
+-- Appending public. in front of functions because the PostGIS extension uses public schema
+SELECT
+    id AS station_id,
+    geog AS station_geog,
+    ROUND(
+        public.ST_DISTANCE(
+            geog,
+            public.ST_MAKEPOINT(-75.192584, 39.952415)
+        ) / 50
+    ) * 50 AS distance
+FROM indego.indego_station_statuses;
