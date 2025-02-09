@@ -12,19 +12,21 @@
 WITH combi AS (
     SELECT
         start_station,
-        start_lat
+        start_lat,
+        start_lon
     FROM indego.trips_2021_q3
     WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
     UNION ALL
     SELECT
         start_station,
-        start_lat
+        start_lat,
+        start_lon
     FROM indego.trips_2022_q3
     WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
 )
 SELECT
     start_station AS station_id,
-    start_lat AS station_geog,
+    public.ST_MAKEPOINT(start_lat, start_lon)::public.geography AS station_geog,
     COUNT(*) AS num_trips
 FROM combi
 GROUP BY station_id, station_geog
