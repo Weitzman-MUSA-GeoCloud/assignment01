@@ -14,7 +14,7 @@ services:
     build: .
     volumes:
       - .:/workspace/assignment01
-    entrypoint: ["/workspace/assignment01/__entrypoints__/run_linter.sh"]
+    command: ["/workspace/assignment01/__entrypoints__/run_linter.sh", "."]
 
   run-tests:
     build: .
@@ -29,4 +29,4 @@ services:
       POSTGRES_NAME: postgres
     volumes:
       - .:/workspace/assignment01
-    entrypoint: ["/workspace/assignment01/__entrypoints__/run_tests.sh"]
+    command: ["/workspace/assignment01/__entrypoints__/run_tests.sh"]
