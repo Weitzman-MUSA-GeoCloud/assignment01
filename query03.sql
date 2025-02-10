@@ -6,8 +6,8 @@
 */
 
 SELECT 
-    AVG(duration)
+    AVG(duration) AS avg_duration
 FROM 
-    indego.trips_2021_q3 AS avg_duration;
+    indego.trips_2021_q3;
 
 Result: 18.86 minutes
