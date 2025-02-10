@@ -15,10 +15,16 @@ SELECT
     ss.geog AS station_geog,
     COUNT(*) AS num_trips
 FROM (
-    SELECT start_station, start_time FROM indego.trips_2021_q3
+    SELECT
+        start_station,
+        start_time
+    FROM indego.trips_2021_q3
     WHERE EXTRACT(HOUR FROM start_time) IN (7, 8, 9)
     UNION ALL
-    SELECT start_station, start_time FROM indego.trips_2022_q3
+    SELECT
+        start_station,
+        start_time
+    FROM indego.trips_2022_q3
     WHERE EXTRACT(HOUR FROM start_time) IN (7, 8, 9)
 ) AS combined_trips
 INNER JOIN indego.station_statuses AS ss

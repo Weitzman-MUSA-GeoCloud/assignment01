@@ -10,7 +10,7 @@
 -- Enter your SQL query here
 SELECT
     station_statuses.id AS station_id,
-    station_statuses.geog AS station_geog,
+    station_statuses.name AS station_name,
     ROUND(
         public.ST_Distance(
             public.ST_Transform(station_statuses.geog, 32129),

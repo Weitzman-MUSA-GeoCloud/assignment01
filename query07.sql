@@ -8,10 +8,18 @@
 -- Result: 2301 overnight trips for Q3 2021; 2060 overnight trips for Q3 2022; total 4361 overnight trips
 -- Enter your SQL query here
 SELECT
-    (SELECT COUNT(*) FROM indego.trips_2021_q3 WHERE DATE(start_time) <> DATE(end_time)) AS overnight_2021,
-    (SELECT COUNT(*) FROM indego.trips_2022_q3 WHERE DATE(start_time) <> DATE(end_time)) AS overnight_2022,
-    (SELECT COUNT(*) FROM indego.trips_2021_q3 WHERE DATE(start_time) <> DATE(end_time))
-    + (SELECT COUNT(*) FROM indego.trips_2022_q3 WHERE DATE(start_time) <> DATE(end_time)) AS total;
+    2021 AS trip_year,
+    3 AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE DATE(start_time) <> DATE(end_time)
+UNION ALL
+SELECT
+    2022 AS trip_year,
+    3 AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE DATE(start_time) <> DATE(end_time);
 
 /*
 

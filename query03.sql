@@ -6,5 +6,5 @@
 */
 -- Result: 18.86 minutes
 -- Enter your SQL query here
-SELECT CONCAT(CAST(ROUND(AVG(duration), 2) AS TEXT), ' minutes') AS avg_duration
+SELECT CAST(ROUND(AVG(duration), 2) AS TEXT) AS avg_duration
 FROM indego.trips_2021_q3;

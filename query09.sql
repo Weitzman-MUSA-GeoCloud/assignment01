@@ -8,7 +8,9 @@
 
 -- Result: 441,856 Indego30; 109,251 Indego365, 61,659 Day Pass
 -- Enter your SQL query here
-SELECT passholder_type, COUNT(*) AS num_trips
+SELECT
+    passholder_type,
+    COUNT(*) AS num_trips
 FROM (
     SELECT passholder_type
     FROM indego.trips_2021_q3

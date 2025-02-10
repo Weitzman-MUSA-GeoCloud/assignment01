@@ -8,5 +8,15 @@
 -- Result: 2021 Q3: 124528 trips; 2022 Q3: 137372 trips
 -- Enter your SQL query here
 SELECT
-    (SELECT COUNT(*) FROM indego.trips_2021_q3 WHERE duration < 10) AS short_trips_21q3,
-    (SELECT COUNT(*) FROM indego.trips_2022_q3 WHERE duration < 10) AS short_trips_22q3;
+    2021 AS trip_year,
+    3 AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE duration < 10
+UNION ALL
+SELECT
+    2022 AS trip_year,
+    3 AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE duration < 10;
