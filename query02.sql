@@ -9,9 +9,12 @@
     Remember you can do calculations in the select clause.
 */
 
+-- Result: +3.98%
 -- Enter your SQL query here
-
-
+SELECT CONCAT(CAST(ROUND(((t2022.num_trips - t2021.num_trips) * 100.0 / t2021.num_trips), 2) AS TEXT), '%') AS percentage_change
+FROM
+    (SELECT COUNT(*) AS num_trips FROM indego.trips_2021_q3) AS t2021,
+    (SELECT COUNT(*) AS num_trips FROM indego.trips_2022_q3) AS t2022;
 
 /*
     If you want to get fancier here, you can cast the result to a string and
