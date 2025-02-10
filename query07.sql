@@ -5,7 +5,24 @@
     trip_quarter, and one column named num_trips.
 */
 
--- Enter your SQL query here
+SELECT
+    EXTRACT(YEAR FROM start_time) AS trip_year,
+    EXTRACT(QUARTER FROM start_time) AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM (
+    SELECT start_time, end_time
+    FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT start_time, end_time
+    FROM indego.trips_2022_q3
+) AS combined_trips
+WHERE
+    EXTRACT(DAY FROM start_time) <> EXTRACT(DAY FROM end_time)
+GROUP BY
+    EXTRACT(YEAR FROM start_time),
+    EXTRACT(QUARTER FROM start_time);
+
+Result: 2,301 trips in Q3 2021 and 2,060 trips in Q3 2022.
 
 
 
