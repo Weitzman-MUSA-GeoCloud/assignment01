@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
 
 ENTRYPOINTDIR=$(readlink -f $(dirname $0))
 
@@ -15,7 +14,8 @@ psql \
     -h ${POSTGRES_HOST} \
     -p ${POSTGRES_PORT} \
     -U ${POSTGRES_USER} \
-    -d ${POSTGRES_NAME}
+    -d ${POSTGRES_NAME} \
+    -q
 
 # Create a configuration file for the database connection
 cat << EOF > .env
@@ -27,5 +27,5 @@ POSTGRES_PASS=${POSTGRES_PASS}
 EOF
 
 # Run the tests, passing in any additional arguments from the command line
-cd ${ENTRYPOINTDIR}/..
+cd /workspace
 npm run test "$@"

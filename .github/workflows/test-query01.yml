@@ -14,6 +14,18 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    container:
+      # Hardcoding the image name here. Would rather use ${{ github.repository }},
+      # but there may not be any uppercase characters in the name.
+      image: ghcr.io/weitzman-musa-geocloud/assignment01:main
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASS: postgres
+        POSTGRES_HOST: db
+        POSTGRES_PORT: 5432
+        POSTGRES_NAME: postgres
+      volumes:
+        - ${{ github.workspace }}:/workspace/assignment01
 
     # Use the postgis image to start a postgres service
     #
@@ -22,7 +34,7 @@ jobs:
     # https://docs.github.com/en/actions/guides/about-service-containers
     # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
     services:
-      postgres:
+      db:
         image: postgis/postgis
         env:
           POSTGRES_PASSWORD: postgres
@@ -39,22 +51,7 @@ jobs:
     - name: Check out the code
       uses: actions/checkout@v3
 
-    - name: Lowercase the Repository Name
-      id: reponame
-      run: INPUT=${{ github.repository }} bash -c 'echo "lowercase=${INPUT@L}"' >> "$GITHUB_OUTPUT"
-
     - name: Run the test(s)
-      uses: addnab/docker-run-action@v3
-      with:
-        image: ghcr.io/${{ steps.reponame.outputs.lowercase }}:main
-        options: >-
-          -v ${{ github.workspace }}:/workspace/assignment01
-          -e
-            POSTGRES_USER=postgres
-            POSTGRES_PASS=postgres
-            POSTGRES_HOST=db
-            POSTGRES_PORT=5432
-            POSTGRES_NAME=postgres
-        run: >-
-          /workspace/assignment01/__entrypoints__/run_tests.sh
-          __tests__/test_query01.js
+      run: |
+        __entrypoints__/run_tests.sh \
+          ${{ github.workspace }}/__tests__/test_query01.js

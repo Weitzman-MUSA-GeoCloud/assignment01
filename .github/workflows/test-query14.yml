@@ -20,7 +20,7 @@ jobs:
     # https://docs.github.com/en/actions/guides/about-service-containers
     # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
     services:
-      postgres:
+      db:
         image: postgis/postgis
         env:
           POSTGRES_PASSWORD: postgres
@@ -34,18 +34,48 @@ jobs:
           - 5432:5432
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Node.js 16.x
-      uses: actions/setup-node@v2
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Lowercase the Repository Name
+      id: reponame
+      run: INPUT=${{ github.repository }} bash -c 'echo "lowercase=${INPUT@L}"' >> "$GITHUB_OUTPUT"
+
+    - name: Restore the existing Docker image from cache
+      id: image-restore
+      uses: actions/cache/restore@v4
       with:
-        node-version: 16.x
-        cache: 'npm'
-    - name: Install JS dependencies
-      run: npm install
-    - name: Install GDAL (for ogr2ogr)
-      run: sudo apt install gdal-bin -y
-    - name: Load test data
-      run: __scripts__/load_data.sh
-    - name: Run tests
+        path: assignment01-image.tar
+        key: ${{ runner.os }}-assignment01-image-${{ steps.reponame.outputs.lowercase }}
+
+    - name: Load the Docker image from cache
       run: |
-        npm test __tests__/test_query14.js
+        docker load -i assignment01-image.tar || \
+        echo "No cache found, building from scratch"
+
+    - name: Pull the lint and test Docker image (in case update is needed)
+      run: |
+        docker pull ghcr.io/${{ steps.reponame.outputs.lowercase }}:main && \
+        docker save ghcr.io/${{ steps.reponame.outputs.lowercase }}:main > assignment01-image.tar
+
+    - name: Save the latest Docker image to cache
+      id: image-save
+      uses: actions/cache/save@v4
+      with:
+        path: assignment01-image.tar
+        key: ${{ runner.os }}-assignment01-image-${{ steps.reponame.outputs.lowercase }}
+
+    - name: Run the test(s)
+      run: >-
+        docker run \
+          -v ${{ github.workspace }}:/workspace/assignment01 \
+          -e POSTGRES_USER=postgres \
+          -e POSTGRES_PASS=postgres \
+          -e POSTGRES_HOST=db \
+          -e POSTGRES_PORT=5432 \
+          -e POSTGRES_NAME=postgres \
+          \
+          ghcr.io/${{ steps.reponame.outputs.lowercase }}:main \
+          \
+          /workspace/assignment01/__entrypoints__/run_tests.sh \
+            __tests__/test_query14.js
