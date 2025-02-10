@@ -6,7 +6,7 @@
 */
 
 SELECT 
-    AVG(duration) AS avg_trip_duration_2021
+    AVG(duration)
 FROM 
     indego.trips_2021_q3;
 
