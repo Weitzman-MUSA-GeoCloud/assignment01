@@ -1,7 +1,14 @@
+# Docker container method borrowed from https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/
+
 name: Test Query 01
 on:
   push:
     branches: [ main ]
+    paths:
+      - 'query01.sql'
+      - '__tests__/test_query01.js'
+      - '__tests__/expected_results/query01*'
+      - '.github/workflows/test-query01.yml'
 
 jobs:
   build:
@@ -29,18 +36,21 @@ jobs:
           - 5432:5432
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Node.js 16.x
-      uses: actions/setup-node@v2
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Lowercase the Repository Name
+      id: reponame
+      run: INPUT=${{ github.repository }} echo "lowercase=${INPUT,,}" >> "$GITHUB_OUTPUT"
+
+    - name: Run the test(s)
+      uses: addnab/docker-run-action@v3
       with:
-        node-version: 16.x
-        cache: 'npm'
-    - name: Install JS dependencies
-      run: npm install
-    - name: Install GDAL (for ogr2ogr)
-      run: sudo apt install gdal-bin -y
-    - name: Load test data
-      run: __scripts__/load_data.sh
-    - name: Run tests
-      run: |
-        npm test __tests__/test_query01.js
+        registry: gcr.io
+        image: ${{ steps.reponame.outputs.lowercase }}:latest
+        options: >-
+          -v ${{ github.workspace }}:/workspace/assignment01
+          -e POSTGRES_USER=postgres POSTGRES_PASS=postgres POSTGRES_HOST=db POSTGRES_PORT=5432 POSTGRES_NAME=postgres
+        run: >-
+          /workspace/assignment01/__entrypoints__/run_tests.sh
+          __tests__/test_query01.js

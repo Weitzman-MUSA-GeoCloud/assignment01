@@ -1,22 +1,52 @@
+# Docker container method borrowed from https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/
+
 name: Lint SQL files
 on:
   push:
     branches: [ main ]
+    paths:
+      - '*.sql'
+      - '.sqlfluff'
+      - '.github/workflows/lint-sql.yml'
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
+    # Use the postgis image to start a postgres service
+    #
+    # See the following links for more information:
+    # https://hub.docker.com/_/postgis
+    # https://docs.github.com/en/actions/guides/about-service-containers
+    # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
+    services:
+      postgres:
+        image: postgis/postgis
+        env:
+          POSTGRES_PASSWORD: postgres
+        # Set health checks to wait until postgres has started
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v4
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Lowercase the Repository Name
+      id: reponame
+      run: INPUT=${{ github.repository }} echo "lowercase=${INPUT,,}" >> "$GITHUB_OUTPUT"
+
+    - name: Run the test(s)
+      uses: addnab/docker-run-action@v3
       with:
-        python-version: "3.10"
-        cache: 'pip'
-    - name: Install Python dependencies
-      run: pip install sqlfluff
-    - name: Run linter
-      run: |
-        sqlfluff lint --dialect postgres .
+        registry: gcr.io
+        image: ${{ steps.reponame.outputs.lowercase }}:latest
+        options: >-
+          -v ${{ github.workspace }}:/workspace/assignment01
+        run: /workspace/assignment01/__entrypoints__/run_linter.sh .

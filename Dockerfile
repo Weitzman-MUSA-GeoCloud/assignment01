@@ -2,14 +2,10 @@
 FROM ubuntu:24.04
 
 # Install the necessary system packages
-RUN apt update
-RUN apt install -y curl
-RUN apt install -y csvkit
-RUN apt install -y postgresql-client
-RUN apt install -y nodejs npm
-RUN apt install -y python3 python3-pip python3-venv
-RUN apt install -y gdal-bin
-RUN apt install -y unzip
+RUN apt update && apt install -y \
+    postgresql-client \
+    nodejs npm \
+    python3 python3-pip python3-venv
 
 # Clean up the package manager cache
 RUN apt clean
