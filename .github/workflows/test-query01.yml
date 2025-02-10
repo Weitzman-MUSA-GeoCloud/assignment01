@@ -1,14 +1,14 @@
 # Docker container method borrowed from https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/
 
 name: Test Query 01
+
 on:
+  pull_request:
+    branches: [ main ]
+    paths: [ '**01**' ]
   push:
     branches: [ main ]
-    paths:
-      - 'query01.sql'
-      - '__tests__/test_query01.js'
-      - '__tests__/expected_results/query01*'
-      - '.github/workflows/test-query01.yml'
+    paths: [ '**01**' ]
 
 jobs:
   build:
@@ -46,11 +46,15 @@ jobs:
     - name: Run the test(s)
       uses: addnab/docker-run-action@v3
       with:
-        registry: ghcr.io
-        image: ${{ steps.reponame.outputs.lowercase }}:latest
+        image: ghcr.io/${{ steps.reponame.outputs.lowercase }}:main
         options: >-
           -v ${{ github.workspace }}:/workspace/assignment01
-          -e POSTGRES_USER=postgres POSTGRES_PASS=postgres POSTGRES_HOST=db POSTGRES_PORT=5432 POSTGRES_NAME=postgres
+          -e
+            POSTGRES_USER=postgres
+            POSTGRES_PASS=postgres
+            POSTGRES_HOST=db
+            POSTGRES_PORT=5432
+            POSTGRES_NAME=postgres
         run: >-
           /workspace/assignment01/__entrypoints__/run_tests.sh
           __tests__/test_query01.js

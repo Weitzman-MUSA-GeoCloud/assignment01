@@ -1,13 +1,14 @@
 # Docker container method borrowed from https://aschmelyun.com/blog/using-docker-run-inside-of-github-actions/
 
 name: Lint SQL files
+
 on:
+  pull_request:
+    branches: [ main ]
+    paths: [ '**sql**' ]
   push:
     branches: [ main ]
-    paths:
-      - '*.sql'
-      - '.sqlfluff'
-      - '.github/workflows/lint-sql.yml'
+    paths: [ '**sql**' ]
 
 jobs:
   build:
@@ -45,8 +46,7 @@ jobs:
     - name: Run the test(s)
       uses: addnab/docker-run-action@v3
       with:
-        registry: ghcr.io
-        image: ${{ steps.reponame.outputs.lowercase }}:latest
+        image: ghcr.io/${{ steps.reponame.outputs.lowercase }}:main
         options: >-
           -v ${{ github.workspace }}:/workspace/assignment01
         run: /workspace/assignment01/__entrypoints__/run_linter.sh .

@@ -1,7 +1,12 @@
 name: Test Query 06
+
 on:
+  pull_request:
+    branches: [ main ]
+    paths: [ '**06**' ]
   push:
     branches: [ main ]
+    paths: [ '**06**' ]
 
 jobs:
   build:
