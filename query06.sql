@@ -6,4 +6,23 @@
     the number of trips (named `num_trips`).
 */
 
--- Enter your SQL query here
+SELECT 
+    '2021' AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM 
+    indego.trips_2021_q3
+WHERE 
+    duration < 10
+UNION ALL
+SELECT 
+    '2022' AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM 
+    indego.trips_2022_q3
+WHERE 
+    duration < 10;
+
+Result: 124,528 trips in 2021 and 137,372 trips in 2022.
+
