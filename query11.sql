@@ -5,3 +5,14 @@
 */
 
 -- Enter your SQL query here
+select
+    round(
+        avg(
+            st_distance(
+                st_geogfromtext('SRID=4326;POINT(-75.192584 39.952415)'),
+                geog
+            )::numeric / 1000
+        )::numeric,
+        0
+    ) as avg_distance_km
+from indego.station_statuses
