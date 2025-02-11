@@ -6,3 +6,5 @@
 */
 
 -- Enter your SQL query here
+SELECT ROUND(AVG(duration), 2)
+FROM trips_2021_q3;

@@ -4,4 +4,17 @@
     Your result should have a single row with a single column named max_duration.
 */
 
--- Enter your SQL query here
+SELECT MAX(duration)
+FROM (
+    SELECT
+        duration,
+        trip_id
+    FROM trips_2021_q3
+
+    UNION ALL
+    SELECT
+        duration,
+        trip_id
+    FROM trips_2022_q3
+)
+AS max_duration;
