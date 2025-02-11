@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
 
 ENTRYPOINTDIR=$(readlink -f $(dirname $0))
 
@@ -16,7 +15,7 @@ psql \
     -p ${POSTGRES_PORT} \
     -U ${POSTGRES_USER} \
     -d ${POSTGRES_NAME} \
-    -q
+    > /dev/null
 
 # Create a configuration file for the database connection
 cat << EOF > /workspace/.env
