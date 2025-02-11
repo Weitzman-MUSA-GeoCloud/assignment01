@@ -22,3 +22,16 @@
     This uses the type casting (number to string) and string concatenation
     operator (`||`, double pipes) that's essentially a `+` for strings.
 */
+
+SELECT 
+  ( ROUND(
+         ( (t2.total_trips - t1.total_trips)::DECIMAL 
+            / t1.total_trips * 100
+         ), 
+         2
+       )::TEXT || '%'
+    ) AS perc_change
+FROM 
+    (SELECT COUNT(*) AS total_trips FROM indego.trips_2021_q3) t1,
+    (SELECT COUNT(*) AS total_trips FROM indego.trips_2022_q3) t2;
+
