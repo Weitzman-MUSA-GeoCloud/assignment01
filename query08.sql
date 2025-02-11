@@ -14,28 +14,31 @@ with stations as (
         id::text as station_id,
         geog as station_geog
     from indego.station_statuses
+),
+
+all_trips as (
+    select
+        start_station as station_id,
+        start_time
+    from indego.trips_2021_q3
+    union all
+    select
+        start_station as station_id,
+        start_time
+    from indego.trips_2022_q3
 )
 
 select
-    station_id,
-    station_geog,
+    stations.station_id,
+    stations.station_geog,
     count(*) as num_trips
-from (
-    select start_station as station_id
-    from indego.trips_2021_q3
-    where
-        extract(hour from start_time) >= 7
-        and extract(hour from start_time) < 10
-    union all
-    select start_station as station_id
-    from indego.trips_2022_q3
-    where
-        extract(hour from start_time) >= 7
-        and extract(hour from start_time) < 10
-) as all_trips
+from all_trips
 inner join stations
     using (station_id)
-group by station_id, station_geog
+where
+    extract(hour from all_trips.start_time) >= 7
+    and extract(hour from all_trips.start_time) < 10
+group by stations.station_id, stations.station_geog
 order by num_trips desc
 limit 5
 
