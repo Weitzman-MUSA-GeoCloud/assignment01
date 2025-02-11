@@ -1,22 +1,24 @@
 name: Lint SQL files
+
 on:
+  pull_request:
+    branches: [ main ]
   push:
     branches: [ main ]
+    paths: [ '**/run_linter.sh', '**sql**' ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    container:
+      # Hardcoding the image name here. Would rather use ${{ github.repository }},
+      # but there may not be any uppercase characters in the name.
+      image: ghcr.io/weitzman-musa-geocloud/assignment01:main
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python 3.10
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
-        cache: 'pip'
-    - name: Install Python dependencies
-      run: pip install sqlfluff
-    - name: Run linter
-      run: |
-        sqlfluff lint --dialect postgres .
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Lint the SQL files
+      run: __entrypoints__/run_linter.sh ${GITHUB_WORKSPACE}
