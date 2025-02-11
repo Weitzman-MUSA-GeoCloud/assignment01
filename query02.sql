@@ -13,10 +13,10 @@
 select
     round(
         100 * (
-            (select count(*) from indego.trips_2022_q3) -
-            (select count(*) from indego.trips_2021_q3)
-        )::numeric /
-        (select count(*) from indego.trips_2021_q3),
+            (select count(*) from indego.trips_2022_q3)
+            - (select count(*) from indego.trips_2021_q3)
+        )::numeric
+        / (select count(*) from indego.trips_2021_q3),
         2
     ) as perc_change
 

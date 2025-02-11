@@ -16,7 +16,7 @@ select
             geog
         )::numeric / 50
     ) * 50
-     as distance
+    as distance
 from indego.station_statuses
 order by distance
 limit 1
