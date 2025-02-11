@@ -24,8 +24,6 @@ jobs:
         POSTGRES_HOST: db
         POSTGRES_PORT: 5432
         POSTGRES_NAME: postgres
-      volumes:
-        - ${{ github.workspace }}:/workspace/assignment01
 
     # Use the postgis image to start a postgres service
     #
@@ -53,5 +51,5 @@ jobs:
 
     - name: Run the test(s)
       run: |
-        __entrypoints__/run_tests.sh \
-          ${{ github.workspace }}/__tests__/test_query01.js
+        __entrypoints__/run_tests.sh -- \
+          --testMatch ${GITHUB_WORKSPACE}/__tests__/test_query01.js
