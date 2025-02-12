@@ -20,15 +20,5 @@ SELECT
         / NULLIF(COUNT(indego.trips_2021_q3.trip_id), 0), 
     2)::TEXT || '%' AS perc_change
 FROM indego.trips_2021_q3
-FULL OUTER JOIN indego.trips_2022_q3 ON indego.trips_2021_q3.trip_id = indego.trips_2022_q3.trip_id;
-
-
-
-    If you want to get fancier here, you can cast the result to a string and
-    concatenate a '%' to the end. For example:
-
-        (10 + 3.2)::text || '%' AS perc_change
-
-    This uses the type casting (number to string) and string concatenation
-    operator (`||`, double pipes) that's essentially a `+` for strings.
-*/
+FULL OUTER JOIN indego.trips_2022_q3 
+ON indego.trips_2021_q3.trip_id = indego.trips_2022_q3.trip_id;
