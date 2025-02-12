@@ -9,7 +9,7 @@
 */
 SELECT 
     start_station AS station_id,  
-    ST_SetSRID(ST_MakePoint(start_lon, start_lat), 4326) AS station_geog, 
+    ST_AsText(ST_SetSRID(ST_MakePoint(start_lon, start_lat), 4326)) AS station_geog, 
     COUNT(*) AS num_trips
 FROM (
     SELECT start_station, start_lon, start_lat, start_time FROM indego.trips_2022_q3
