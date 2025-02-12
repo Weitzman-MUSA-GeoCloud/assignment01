@@ -10,14 +10,22 @@
 
 -- Enter your SQL query here
 
-SELECT 
-    s.id AS station_id,
-    COUNT(t.trip_id) AS num_trips
-FROM indego.trips_2021_q3 t
-JOIN indego.station_statuses s
-ON t.start_station::INTEGER = s.id
-WHERE EXTRACT(HOUR FROM t.start_time) BETWEEN 7 AND 9
-GROUP BY s.id
+SELECT
+    trips.start_station AS station_id,
+    station_status.geog AS station_geog,
+    COUNT(*) AS num_trips
+FROM (
+    -- Combine trips from both years
+    SELECT start_station, start_time FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT start_station, start_time FROM indego.trips_2022_q3
+) AS trips
+-- Ensure proper station match
+LEFT JOIN indego.station_statuses AS station_status
+    ON station_status.id = trips.start_station::INTEGER
+-- Filter for trips between 7 AM and 9:59 AM
+WHERE EXTRACT(HOUR FROM trips.start_time) BETWEEN 7 AND 9
+GROUP BY trips.start_station, station_status.geog
 ORDER BY num_trips DESC
 LIMIT 5;
 /*
