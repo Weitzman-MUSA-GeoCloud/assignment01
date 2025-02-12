@@ -13,4 +13,3 @@ FROM
         SELECT duration FROM indego.trips_2022_q3
     );
 
-Result: 1,440 minutes
