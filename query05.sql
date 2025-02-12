@@ -15,5 +15,6 @@ WITH trip_durations AS (
         FROM indego.trips_2022_q3
     )
 )
+
 SELECT MAX(duration) AS max_duration
 FROM trip_durations;

@@ -5,8 +5,9 @@
 */
 
 -- Enter your SQL query here
-SELECT 
-	ROUND(AVG(ST_Distance(
+SELECT
+    ROUND(AVG(ST_DISTANCE(
         geog,
-        ST_MakePoint(-75.192584, 39.952415)) / 1000)) AS avg_distance_km
+        ST_MAKEPOINT(-75.192584, 39.952415)
+    ) / 1000)) AS avg_distance_km
 FROM indego.station_statuses;
