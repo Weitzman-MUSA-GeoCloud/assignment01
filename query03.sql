@@ -6,6 +6,7 @@
 */
 
 SELECT 
+    ROUND(
     AVG(duration) AS avg_duration
 FROM 
-    indego.trips_2021_q3;
+    indego.trips_2021_q3, 2);
