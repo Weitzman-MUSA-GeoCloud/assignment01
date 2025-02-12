@@ -3,13 +3,12 @@
 
     Your result should have a single row with a single column named max_duration.
 */
-
 SELECT 
     MAX(duration) AS max_duration
 FROM 
-    (
-        SELECT duration FROM indego.trips_2021_q3
-        UNION ALL
-        SELECT duration FROM indego.trips_2022_q3
-    );
+    indego.trips_2021_q3 t
+JOIN 
+    indego.trips_2022_q3 t2
+ON
+    t.duration = t2.duration;
 
