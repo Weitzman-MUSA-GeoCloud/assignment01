@@ -6,22 +6,21 @@
 */
 
 -- Enter your SQL query here
+select
+    2021 as trip_year,
+    3 as trip_quarter,
+    COUNT(*) as num_trips
+from indego.trips_2021_q3
+where extract(DOY from start_time) != extract(DOY from end_time)
 
-SELECT
-    2021 AS trip_year,
-    3 AS trip_quarter,
-    COUNT(*) AS num_trips
-FROM indego.trips_2021_q3
-WHERE EXTRACT(DOY FROM start_time) != EXTRACT(DOY FROM end_time)
+union
 
-UNION
-
-SELECT
-    2022 AS trip_year,
-    3 AS trip_quarter,
-    COUNT(*) AS num_trips
-FROM indego.trips_2022_q3
-WHERE EXTRACT(DOY FROM start_time) != EXTRACT(DOY FROM end_time);
+select
+    2022 as trip_year,
+    3 as trip_quarter,
+    count(*) as num_trips
+from indego.trips_2022_q3
+where extract(DOY from start_time) != extract(DOY from end_time);
 
 
 /*

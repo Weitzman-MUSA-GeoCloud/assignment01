@@ -7,15 +7,14 @@
 */
 
 -- Enter your SQL query here
-
-SELECT 
+select 
     passholder_type,
-    COUNT(*) AS num_trips
-FROM (
-    SELECT passholder_type
-    FROM indego.trips_2021_q3
-    UNION ALL
-    SELECT passholder_type
-    FROM indego.trips_2022_q3
-) AS combined_trips
-GROUP BY passholder_type;
+    count(*) as num_trips
+from (
+    select passholder_type
+    from indego.trips_2021_q3
+    union all
+    select passholder_type
+    from indego.trips_2022_q3
+) as combined_trips
+group by passholder_type;

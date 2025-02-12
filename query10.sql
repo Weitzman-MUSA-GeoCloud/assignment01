@@ -8,10 +8,9 @@
 */
 
 -- Enter your SQL query here
-
-SELECT
-    id AS station_id,
-    geog AS station_geog,
-    ROUND(ST_DISTANCE(geog, 'POINT(-75.192584 39.952415)'::geography) / 50) * 50 AS distance
-FROM
+select
+    id as station_id,
+    geog as station_geog,
+    round(st_distance(geog, 'POINT(-75.192584 39.952415)'::geography) / 50) * 50 as distance
+from
     indego.station_statuses;

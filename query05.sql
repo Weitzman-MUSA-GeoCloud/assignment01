@@ -5,10 +5,9 @@
 */
 
 -- Enter your SQL query here
-
-SELECT 
-    MAX(duration) AS max_duration
-FROM 
-    (SELECT duration FROM indego.trips_2021_q3
-     UNION ALL
-     SELECT duration FROM indego.trips_2021_q3) AS combined;
+select 
+    max(duration) as max_duration
+from 
+    (select duration from indego.trips_2021_q3
+     union all
+     select duration from indego.trips_2021_q3) as combined;

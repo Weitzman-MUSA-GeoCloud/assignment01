@@ -6,7 +6,6 @@
 */
 
 -- Enter your SQL query here
-
-SELECT 
-    ROUND(AVG(duration), 2) AS avg_duration
-FROM indego.trips_2021_q3;
+select 
+    round(avg(duration), 2) as avg_duration
+from indego.trips_2021_q3;
