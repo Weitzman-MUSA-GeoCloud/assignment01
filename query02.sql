@@ -10,6 +10,13 @@
 */
 
 -- Enter your SQL query here
+SELECT 
+    ROUND(
+        ((COUNT(t2.trip_id) - COUNT(t1.trip_id)) * 100.0 / COUNT(t1.trip_id)), 
+        2
+    )::text || '%' AS perc_change
+FROM indego.trips_2021_q3 t1
+FULL JOIN indego.trips_2022_q3 t2 ON 1=1;
 
 
 
