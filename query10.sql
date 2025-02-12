@@ -14,5 +14,4 @@ SELECT
 	ROUND(ST_Distance(
         geog,
         ST_MakePoint(-75.192584, 39.952415)) / 50) * 50 AS distance
-FROM indego.station_statuses
-ORDER BY distance;
+FROM indego.station_statuses;
