@@ -9,5 +9,3 @@ SELECT
     AVG(duration) AS avg_duration
 FROM 
     indego.trips_2021_q3;
-
-Result: 18.86 minutes
