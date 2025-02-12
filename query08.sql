@@ -15,16 +15,16 @@ SELECT
     COUNT(*) AS num_trips
 FROM (
     SELECT
-	start_station,
-	start_time
+        start_station,
+        start_time
     FROM indego.trips_2021_q3
     UNION ALL
     SELECT
-	start_station,
-	start_time
+        start_station,
+        start_time
     FROM indego.trips_2022_q3
 ) AS trips
-JOIN indego.station_statuses AS station_status 
+JOIN indego.station_statuses AS station_status
     ON station_status.id::TEXT = trips.start_station
 WHERE EXTRACT(HOUR FROM trips.start_time) BETWEEN 7 AND 9
 GROUP BY
