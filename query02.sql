@@ -10,8 +10,23 @@
 */
 
 -- Enter your SQL query here
-
-
+with trip_dif as (
+    select
+        bike_id,
+        count(*) as count21
+    from indego.trips_2021_q3
+    group by bike_id
+), bike_22 as (
+    select
+        bike_id,
+        count(*) as count22
+    from indego.trips_2022_q3
+    group by bike_id
+)
+select
+    round((sum((twtwo.count22 - tr_d.count21)) * 100 / sum(tr_d.count21)),2) as perc_change
+    from bike_22 as twtwo
+    join trip_dif as tr_d on tr_d.bike_id = twtwo.bike_id
 
 /*
     If you want to get fancier here, you can cast the result to a string and
