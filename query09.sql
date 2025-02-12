@@ -6,4 +6,16 @@
     two columns: `passholder_type` and `num_trips`.
 */
 
--- Enter your SQL query here
+WITH temporary_21_22 AS (
+    SELECT *
+    FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT *
+    FROM indego.trips_2022_q3
+)
+
+SELECT
+    passholder_type,
+    COUNT(*) AS num_trips
+FROM temporary_21_22
+GROUP BY passholder_type;

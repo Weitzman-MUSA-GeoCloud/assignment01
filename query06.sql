@@ -6,4 +6,21 @@
     the number of trips (named `num_trips`).
 */
 
--- Enter your SQL query here
+WITH temporary_trips AS (
+    SELECT
+        COUNT(*) AS num_trips,
+        2021 AS trip_year,
+        '3' AS trip_quarter
+    FROM indego.trips_2021_q3
+    WHERE duration < 10
+    UNION
+    SELECT
+        COUNT(*) AS num_trips,
+        2022 AS trip_year,
+        '3' AS trip_quarter
+    FROM indego.trips_2022_q3
+    WHERE duration < 10
+)
+
+SELECT *
+FROM temporary_trips
