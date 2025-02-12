@@ -15,7 +15,7 @@ SELECT
     COUNT(t.trip_id) AS num_trips
 FROM indego.trips_2021_q3 t
 JOIN indego.station_statuses s
-ON t.start_station::INTEGER = s.id  -- Cast `start_station` to INTEGER
+ON t.start_station::INTEGER = s.id
 WHERE EXTRACT(HOUR FROM t.start_time) BETWEEN 7 AND 9
 GROUP BY s.id
 ORDER BY num_trips DESC

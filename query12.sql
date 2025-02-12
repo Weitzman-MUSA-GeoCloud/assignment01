@@ -14,6 +14,5 @@ WHERE
     ST_Distance(
         geog::geography,
         ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
-    ) <= 1000;  -- 1km = 1000 meters
-
+    ) <= 1000;
 

@@ -9,5 +9,3 @@ from indego.trips_2021_q3
 
 SELECT COUNT(*) AS num_trips
 FROM indego.trips_2021_q3;
-
-# Result: 300,432

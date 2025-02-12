@@ -15,7 +15,7 @@ SELECT
             geog::geography,
             ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
         ) / 50
-    ) * 50 AS distance  -- Rounds to the nearest 50 meters
+    ) * 50 AS distance
 FROM indego.station_statuses
 WHERE geog IS NOT NULL
 ORDER BY distance DESC
