@@ -9,7 +9,24 @@
 */
 
 -- Enter your SQL query here
-
+SELECT
+    t.start_station as station_id,
+	ss.geog as station_geog,
+	COUNT(*) as num_trips
+FROM(
+    SELECT start_station, start_time 
+	FROM indego.trips_2021_q3
+	UNION ALL
+	SELECT start_station, start_time 
+	FROM indego.trips_2022_q3
+)t
+JOIN indego.station_statuses ss on ss.id::text = t.start_station
+WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
+GROUP BY 
+    t.start_station,
+	ss.geog
+ORDER BY num_trips DESC
+LIMIT 5;
 
 /*
     Hint: Use the `EXTRACT` function to get the hour of the day from the
