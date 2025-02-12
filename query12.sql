@@ -11,6 +11,7 @@ WITH temporary_table AS (
         (ST_DISTANCE(geog, ST_MAKEPOINT(-75.192584, 39.952415)::geography)) AS distance
     FROM indego.station_statuses
 )
+
 SELECT COUNT(*)
 FROM temporary_table
 WHERE distance < 1000;
