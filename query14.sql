@@ -6,12 +6,17 @@
     Meyerson Hall, rounded to the nearest 50 meters.
 */
 
-WITH temporary_table AS(
+WITH temporary_table AS (
+    SELECT
+        id AS station_id,
+        name AS station_name,
+        ROUND((ST_DISTANCE(geog, ST_MAKEPOINT(-75.192584, 39.952415)::geography)) / 50) * 50 AS distance
+    FROM indego.stations_geo
+)
+
 SELECT
-	id AS station_id,
-	name AS station_name,
-	ROUND((ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography))/50)*50 AS distance
-FROM indego.stations_geo)
-SELECT station_id, station_name, distance
+    station_id,
+    station_name,
+    distance
 FROM temporary_table
-WHERE distance= (SELECT MIN(distance) FROM temporary_table)
+WHERE distance = (SELECT MIN(distance) FROM temporary_table)

@@ -5,18 +5,23 @@
     trip_quarter, and one column named num_trips.
 */
 WITH temporary_21_22 AS (
-SELECT EXTRACT(DOY FROM trips_2021_q3.end_time) - EXTRACT(DOY FROM trips_2021_q3.start_time) AS day_change,
-2021 AS trip_year,
-'q3' AS trip_quarter
-FROM indego.trips_2021_q3
-UNION ALL
-SELECT EXTRACT(DOY FROM trips_2022_q3.end_time) - EXTRACT(DOY FROM trips_2022_q3.start_time) AS day_change,
-2022 AS trip_year,
-'q3' AS trip_quarter
-FROM indego.trips_2022_q3)
-SELECT COUNT(*) AS num_trips,
-trip_year,
-trip_quarter
+    SELECT
+        EXTRACT(DOY FROM trips_2021_q3.end_time) - EXTRACT(DOY FROM trips_2021_q3.start_time) AS day_change,
+        2021 AS trip_year,
+        '3' AS trip_quarter
+    FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT
+        EXTRACT(DOY FROM trips_2022_q3.end_time) - EXTRACT(DOY FROM trips_2022_q3.start_time) AS day_change,
+        2022 AS trip_year,
+        '3' AS trip_quarter
+    FROM indego.trips_2022_q3
+)
+
+SELECT
+    trip_year,
+    trip_quarter,
+    COUNT(*) AS num_trips
 FROM temporary_21_22
 WHERE day_change > 0
 GROUP BY trip_year, trip_quarter;

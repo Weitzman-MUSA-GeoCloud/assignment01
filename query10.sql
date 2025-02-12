@@ -8,7 +8,7 @@
 */
 
 SELECT
-	id AS station_id,
-	geog AS station_geog,
-	ROUND(ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography)/50)*50 AS distance
-from indego.stations_geo;
+    id AS station_id,
+    geog AS station_geog,
+    ROUND(ST_DISTANCE(geog, ST_MAKEPOINT(-75.192584, 39.952415)::geography) / 50) * 50 AS distance
+FROM indego.stations_geo;
