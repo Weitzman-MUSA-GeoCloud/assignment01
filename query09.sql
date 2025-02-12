@@ -18,5 +18,4 @@ select
     passholder_type,
     count(*) as num_trips
 from combined
-group by passholder_type
-order by num_trips desc;
+group by passholder_type;
