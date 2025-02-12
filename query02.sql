@@ -11,7 +11,19 @@
 
 -- Enter your SQL query here
 
+with y1 as (
+    select count(*)::NUMERIC as count_2021
+    from indego.trips_2021_q3
+),
 
+y2 as (
+    select count(*)::NUMERIC as count_2022
+    from indego.trips_2022_q3
+)
+
+select round(((y2.count_2022 - y1.count_2021) / y1.count_2021 * 100), 2)::TEXT || '%' as perc_change
+from y1
+cross join y2;
 
 /*
     If you want to get fancier here, you can cast the result to a string and

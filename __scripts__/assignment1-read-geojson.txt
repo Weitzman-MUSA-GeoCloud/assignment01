@@ -1,0 +1,1 @@
+ogr2ogr -f "PostgreSQL" PG:"dbname=assignment1 user=postgres password=Password1" "C:\Users\seank\Downloads\stationstatus.geojson" -nln indego.station_statuses -append

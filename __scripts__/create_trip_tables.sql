@@ -1,3 +1,4 @@
+-- Active: 1738783895209@@127.0.0.1@5432@assignment1
 create schema if not exists indego;
 
 drop table if exists indego.trips_2021_q3;
@@ -41,3 +42,9 @@ create table indego.trips_2022_q3 (
 );
 
 create extension if not exists postgis;
+
+alter table indego.station_statuses
+add geog geography
+
+update indego.station_statuses
+set geog = wkb_geometry::geography

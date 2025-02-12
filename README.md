@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** The max duration trip found was 1440 minutes, which is 24 hours. Indego caps trip lengths at 24 hours so this represents all trips that were ended early by Indego. 
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
