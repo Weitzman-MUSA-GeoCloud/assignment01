@@ -7,3 +7,15 @@
 */
 
 -- Enter your SQL query here
+WITH combined_trips AS (
+	SELECT *
+    FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT *
+    FROM indego.trips_2022_q3
+)
+SELECT 
+	TRIM(passholder_type),
+	COUNT(*) AS num_trips
+FROM combined_trips
+GROUP BY TRIM(passholder_type);

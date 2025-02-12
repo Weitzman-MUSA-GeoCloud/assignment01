@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** The longest duration trip across the two quarters is 1440, measured in minutes, which corresponds to exactly 24 hours. It is likely that the records in this column are capped at 1440 minutes even if the difference between `end_time` and `start_time`, i.e., the actual duration, is more than 1 day.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 

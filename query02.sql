@@ -10,7 +10,17 @@
 */
 
 -- Enter your SQL query here
-
+WITH bike_trips_2021 AS (
+    SELECT COUNT(*) AS num_trips_2021
+    FROM indego.trips_2021_q3
+),
+bike_trips_2022 AS (
+    SELECT COUNT(*) AS num_trips_2022
+    FROM indego.trips_2022_q3
+)
+SELECT	
+	ROUND(((bike_trips_2022.num_trips_2022::decimal - bike_trips_2021.num_trips_2021::decimal) / bike_trips_2021.num_trips_2021::decimal) * 100, 2)::text || '%' AS perc_change
+FROM bike_trips_2021, bike_trips_2022;
 
 
 /*
