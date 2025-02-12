@@ -1,4 +1,5 @@
 node_modules/
 __data__/
+__pgdata__/
 .env
-data/
+
