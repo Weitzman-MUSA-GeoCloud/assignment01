@@ -1,0 +1,30 @@
+{
+  "extends": ["eslint:recommended"],
+  "ignorePatterns": ["site/data/*.js"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "globals": {
+    "console": "readonly",
+    "CustomEvent": "readonly",
+    "document": "readonly",
+    "fetch": "readonly",
+    "L": "readonly",
+    "mapboxgl": "readonly",
+    "maplibregl": "readonly",
+    "ol": "readonly",
+    "Set": "readonly",
+    "window": "readonly"
+  },
+  "rules": {
+    "camelcase": ["error"],
+    "comma-dangle": ["error", "always-multiline"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "no-trailing-spaces": ["error"],
+    "no-use-before-define": ["error", { "allowNamedExports": true }],
+    "no-var": ["error"],
+    "object-curly-spacing": ["error", "always"],
+    "semi": ["error", "always", { "omitLastInOneLineBlock": true }]
+  }
+}
