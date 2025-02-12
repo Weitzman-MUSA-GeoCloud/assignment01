@@ -23,8 +23,6 @@ SELECT
     )::TEXT || '%' AS perc_change
 FROM trip_counts;
 
-
-
 /*
     If you want to get fancier here, you can cast the result to a string and
     concatenate a '%' to the end. For example:

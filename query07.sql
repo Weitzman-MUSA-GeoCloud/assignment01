@@ -7,25 +7,23 @@
 
 -- Enter your SQL query here
 SELECT
-    EXTRACT(YEAR FROM start_time)::integer AS trip_year,
-	EXTRACT(QUARTER FROM start_time)::integer AS trip_quarter,
-	COUNT(*) AS num_trips
+    EXTRACT(YEAR FROM start_time)::INTEGER AS trip_year,
+    EXTRACT(QUARTER FROM start_time)::INTEGER AS trip_quarter,
+    COUNT(*) AS num_trips
 FROM (
     SELECT start_time, end_time
-	FROM indego.trips_2021_q3
-	WHERE DATE(start_time) != DATE(end_time)
-	UNION ALL
-	SELECT start_time, end_time
-	FROM indego.trips_2022_q3
-	WHERE DATE(start_time) !=DATE(end_time)
-	)t
+    FROM indego.trips_2021_q3
+    WHERE DATE(start_time) != DATE(end_time)
+    UNION ALL
+    SELECT start_time, end_time
+    FROM indego.trips_2022_q3
+    WHERE DATE(start_time) != DATE(end_time)
+) AS combined_trips
 GROUP BY
     trip_year,
-	trip_quarter
+    trip_quarter
 ORDER BY
     trip_year;
-
-
 /*
 
     Hint 1: when you cast a TIMESTAMP to a DATE the time component of the value is simply stripped off
