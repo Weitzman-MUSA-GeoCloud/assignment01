@@ -27,7 +27,6 @@ ORDER BY
     num_trips DESC
 LIMIT 5;
 
-Result: Station IDs 3032, 3102, 3012, 3066, 3007
 
 
 /*
