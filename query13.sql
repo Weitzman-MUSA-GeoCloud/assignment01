@@ -7,3 +7,18 @@
 */
 
 -- Enter your SQL query here
+SELECT 
+    id AS station_id,
+    name AS station_name,
+    ROUND(
+        ST_Distance(
+            geog::geography,
+            ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+        ) / 50
+    ) * 50 AS distance  -- Rounds to the nearest 50 meters
+FROM indego.station_statuses
+WHERE geog IS NOT NULL
+ORDER BY distance DESC
+LIMIT 1;
+
+# The farthest station from Meyerson Hall is 15th and Kitty Hawk.

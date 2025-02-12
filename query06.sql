@@ -7,3 +7,18 @@
 */
 
 -- Enter your SQL query here
+
+SELECT 
+    EXTRACT(YEAR FROM start_time) AS trip_year,
+    3 AS trip_quarter,  -- Since both datasets are for Q3
+    COUNT(*) AS num_trips
+FROM (
+    SELECT start_time, duration FROM indego.trips_2021_q3
+    WHERE duration < 10
+    UNION ALL
+    SELECT start_time, duration FROM indego.trips_2022_q3
+    WHERE duration < 10
+) AS combined_trips
+GROUP BY trip_year
+ORDER BY trip_year;
+

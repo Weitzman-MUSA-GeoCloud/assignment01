@@ -1,3 +1,0 @@
-[sqlfluff]
-dialect = postgres
-exclude_rules = layout.long_lines,aliasing.forbid,structure.using,references.quoting

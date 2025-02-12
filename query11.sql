@@ -5,3 +5,15 @@
 */
 
 -- Enter your SQL query here
+SELECT 
+    ROUND(
+        AVG(
+            ST_Distance(
+                geog::geography,
+                ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+            ) / 1000  -- Convert meters to kilometers
+        )
+    ) AS avg_distance_km
+FROM indego.station_statuses;
+
+# The average distance of all stations from Meyerson Hall is about 3 km. 
