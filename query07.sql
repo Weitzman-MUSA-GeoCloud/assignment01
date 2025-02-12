@@ -5,7 +5,27 @@
     trip_quarter, and one column named num_trips.
 */
 
--- Enter your SQL query here
+with
+combined as (
+    select
+        duration,
+        start_time,
+        end_time
+    from indego.trips_2022_q3
+    union all
+    select
+        duration,
+        start_time,
+        end_time
+    from indego.trips_2021_q3
+)
+select
+    extract(year from start_time) as trip_year,
+    extract(quarter from start_time) as trip_quarter,
+    count(*) as num_trips
+from combined
+where extract(day from start_time) != extract(day from end_time)
+group by trip_year, trip_quarter;
 
 
 
