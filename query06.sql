@@ -24,5 +24,3 @@ FROM
 WHERE 
     duration < 10;
 
-Result: 124,528 trips in 2021 and 137,372 trips in 2022.
-
