@@ -6,3 +6,9 @@
 */
 
 -- Enter your SQL query here
+select count(*) as num_stations
+from indego.station_statuses
+where st_distance(
+    st_geogfromtext('SRID=4326;POINT(-75.192584 39.952415)'),
+    geog
+) < 1000
