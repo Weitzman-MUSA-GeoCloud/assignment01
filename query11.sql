@@ -16,4 +16,4 @@ SELECT
     ) AS avg_distance_km
 FROM indego.station_statuses;
 
-# The average distance of all stations from Meyerson Hall is about 3 km. 
+

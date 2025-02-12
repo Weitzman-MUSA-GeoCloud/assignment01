@@ -22,7 +22,6 @@ SELECT
 FROM indego.trips_2021_q3
 FULL OUTER JOIN indego.trips_2022_q3 ON indego.trips_2021_q3.trip_id = indego.trips_2022_q3.trip_id;
 
-# Answer is 3.98% 
 
 
     If you want to get fancier here, you can cast the result to a string and

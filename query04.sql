@@ -10,4 +10,3 @@ SELECT
     ROUND(AVG(duration), 2) AS avg_duration
 FROM indego.trips_2022_q3;
 
-# Answer is 17.88

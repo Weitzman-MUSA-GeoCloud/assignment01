@@ -21,4 +21,3 @@ WHERE geog IS NOT NULL
 ORDER BY distance ASC
 LIMIT 1;
 
-# The closest station to Meyerson Hall is 34th and Spruce.

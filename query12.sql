@@ -17,4 +17,3 @@ WHERE
     ) <= 1000;  -- 1km = 1000 meters
 
 
-# There are 15 stations within 1km of Meyerson Hall.

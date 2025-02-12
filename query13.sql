@@ -21,4 +21,3 @@ WHERE geog IS NOT NULL
 ORDER BY distance DESC
 LIMIT 1;
 
-# The farthest station from Meyerson Hall is 15th and Kitty Hawk.

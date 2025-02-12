@@ -14,4 +14,3 @@ FROM (
     SELECT duration FROM indego.trips_2022_q3
 ) AS combined_trips;
 
-# Answer is 1440 
