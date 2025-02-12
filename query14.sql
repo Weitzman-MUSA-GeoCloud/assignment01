@@ -15,6 +15,3 @@ FROM
 ORDER BY 
     distance ASC
 LIMIT 1;
-
-Result: 34th and Spruce (200 meters away)
-
