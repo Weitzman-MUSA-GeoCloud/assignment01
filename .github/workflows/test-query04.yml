@@ -1,12 +1,26 @@
 name: Test Query 04
+
 on:
+  pull_request:
+    branches: [ main ]
   push:
     branches: [ main ]
+    paths: [ '**/run_tests.sh', '**04**' ]
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
+    container:
+      # Hardcoding the image name here. Would rather use ${{ github.repository }},
+      # but there may not be any uppercase characters in the name.
+      image: ghcr.io/weitzman-musa-geocloud/assignment01:main
+      env:
+        POSTGRES_USER: postgres
+        POSTGRES_PASS: postgres
+        POSTGRES_HOST: db
+        POSTGRES_PORT: 5432
+        POSTGRES_NAME: postgres
 
     # Use the postgis image to start a postgres service
     #
@@ -15,7 +29,7 @@ jobs:
     # https://docs.github.com/en/actions/guides/about-service-containers
     # https://docs.github.com/en/actions/guides/creating-postgresql-service-containers
     services:
-      postgres:
+      db:
         image: postgis/postgis
         env:
           POSTGRES_PASSWORD: postgres
@@ -29,18 +43,14 @@ jobs:
           - 5432:5432
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Node.js 16.x
-      uses: actions/setup-node@v2
-      with:
-        node-version: 16.x
-        cache: 'npm'
-    - name: Install JS dependencies
+    - name: Check out the code
+      uses: actions/checkout@v3
+
+    - name: Install dependencies
       run: npm install
-    - name: Install GDAL (for ogr2ogr)
-      run: sudo apt install gdal-bin -y
-    - name: Load test data
-      run: __scripts__/load_data.sh
-    - name: Run tests
+
+    - name: Run the test(s)
       run: |
-        npm test __tests__/test_query04.js
+        __entrypoints__/run_tests.sh -- \
+          --rootDir ${GITHUB_WORKSPACE} \
+          __tests__/test_query04.js

@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
-set -x
 
 ENTRYPOINTDIR=$(readlink -f $(dirname $0))
 
@@ -9,5 +8,5 @@ ENTRYPOINTDIR=$(readlink -f $(dirname $0))
 source /workspace/env/bin/activate
 
 # Run the linter
-cd ${ENTRYPOINTDIR}/..
+cd /workspace
 npm run lint "$@"
