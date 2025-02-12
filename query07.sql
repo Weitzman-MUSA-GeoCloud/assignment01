@@ -16,7 +16,7 @@ where not (start_time::date = end_time::date)
 union
 select
     2022 as trip_year,
-    'q3'::text as trip_quarter,
+    3 as trip_quarter,
     count(*) as num_trips
 from indego.trips_2022_q3
 where not (start_time::date = end_time::date)
