@@ -9,8 +9,7 @@
     Remember you can do calculations in the select clause.
 */
 SELECT 
-    ROUND(
-        100.0 * ( 
+    ROUND(100.0 * ( 
             (SELECT COUNT(*) FROM indego.trips_2022_q3) - 
             (SELECT COUNT(*) FROM indego.trips_2021_q3)
         ) / (SELECT COUNT(*) FROM indego.trips_2021_q3), 2
