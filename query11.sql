@@ -17,5 +17,6 @@ WITH station_dist AS (
         ) * 50 AS distance
     FROM indego.station_statuses
 )
+
 SELECT ROUND(AVG(distance) / 1000) AS avg_distance_km
 FROM station_dist;

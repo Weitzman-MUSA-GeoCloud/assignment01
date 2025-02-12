@@ -14,6 +14,7 @@ WITH combi AS (
     SELECT passholder_type
     FROM indego.trips_2022_q3
 )
+
 SELECT
     passholder_type,
     COUNT(*) AS num_trips

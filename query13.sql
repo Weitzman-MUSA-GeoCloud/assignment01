@@ -20,6 +20,7 @@ WITH station_dist AS (
         ) * 50 AS distance
     FROM indego.station_statuses
 )
+
 SELECT
     station_id,
     station_name,

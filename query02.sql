@@ -18,6 +18,7 @@ t22 AS (
     SELECT COUNT(*) AS trips
     FROM indego.trips_2022_q3
 )
+
 -- Use * 1.0 to convert to float to keep decimal places
 -- Round to 2 dp for readability
 -- Convert to text and concatenate a '%'

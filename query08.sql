@@ -24,6 +24,7 @@ WITH combi AS (
     FROM indego.trips_2022_q3
     WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
 )
+
 SELECT
     start_station AS station_id,
     public.ST_MAKEPOINT(start_lon, start_lat)::public.geography AS station_geog,

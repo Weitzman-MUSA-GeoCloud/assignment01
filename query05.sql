@@ -12,5 +12,6 @@ WITH combi AS (
     SELECT MAX(duration) AS duration
     FROM indego.trips_2022_q3
 )
+
 SELECT MAX(duration) AS max_duration -- not needed here because the max is 1440 for both, but just in case
 FROM combi;
