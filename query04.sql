@@ -9,5 +9,3 @@ SELECT
     AVG(duration) AS avg_duration
 FROM 
     indego.trips_2022_q3;
-
-Result: 17.88 minutes
