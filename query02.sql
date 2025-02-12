@@ -1,3 +1,4 @@
+-- Active: 1738783914188@@localhost@5432@assignment01
 /*
     What is the percent change in trips in Q3 2022 as compared to Q3 2021?
 
@@ -24,9 +25,9 @@ with trip_dif as (
     group by bike_id
 )
 select
-    round((sum((twtwo.count22 - tr_d.count21)) * 100 / sum(tr_d.count21)),2) as perc_change
-    from bike_22 as twtwo
-    join trip_dif as tr_d on tr_d.bike_id = twtwo.bike_id
+    round((sum((twtwo.count22 - tr_d.count21)) * 100 / sum(tr_d.count21)), 2) as perc_change
+from bike_22 as twtwo
+join trip_dif as tr_d on tr_d.bike_id = twtwo.bike_id
 
 /*
     If you want to get fancier here, you can cast the result to a string and
