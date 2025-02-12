@@ -7,3 +7,19 @@
 */
 
 -- Enter your SQL query here
+
+SET search_path TO phl, public;
+
+SELECT 
+    id AS station_id, 
+    name AS station_name, 
+    ROUND(ST_Distance(
+        phlstations.geog, 
+        ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+    ) / 50) * 50 AS distance
+FROM phlstations
+ORDER BY ST_Distance(
+    phlstations.geog, 
+    ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+) ASC
+LIMIT 1;
