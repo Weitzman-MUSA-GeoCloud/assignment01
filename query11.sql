@@ -16,5 +16,6 @@ select
 from station_statuses
 order by distance
 )
+
 select round(avg(distance) /1000) as avg_distance_km
 from merged_trips
