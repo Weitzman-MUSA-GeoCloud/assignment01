@@ -9,6 +9,16 @@
 */
 
 -- Enter your SQL query here
+SELECT 
+    start_station AS station_id, 
+    start_lon AS station_geog, 
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE 
+    EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
+GROUP BY start_station, start_lon
+ORDER BY num_trips DESC
+LIMIT 5;
 
 
 /*
