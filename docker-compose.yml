@@ -14,14 +14,17 @@ services:
       timeout: 5s
       retries: 5
 
-  # run-linter:
-  #   build: .
-  #   volumes:
-  #     - .:/workspace/assignment01
-  #   command: ["/workspace/assignment01/__entrypoints__/run_linter.sh", "."]
+  run-linter:
+    image: ghcr.io/weitzman-musa-geocloud/assignment01:main
+    volumes:
+      - .:/assignment01
+    command: [
+      "bash", "-c",
+      "cd /assignment01 && __entrypoints__/run_linter.sh -- ."
+    ]
 
   run-tests:
-    build: .
+    image: ghcr.io/weitzman-musa-geocloud/assignment01:main
     depends_on:
       db:
         condition: service_healthy
@@ -34,7 +37,6 @@ services:
     volumes:
       - .:/assignment01
     command: [
-      "/assignment01/__entrypoints__/run_tests.sh",
-      "--",
-      "--rootDir", "/assignment01",
-      "__tests__/test_query01.js"]
+      "bash", "-c",
+      "cd /assignment01 && npm install > /dev/null && __entrypoints__/run_tests.sh -- --rootDir /assignment01"
+    ]
