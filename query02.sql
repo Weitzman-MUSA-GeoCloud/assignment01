@@ -14,6 +14,7 @@ WITH t21 AS (
     SELECT COUNT(*) AS trips
     FROM indego.trips_2021_q3
 ),
+
 t22 AS (
     SELECT COUNT(*) AS trips
     FROM indego.trips_2022_q3
