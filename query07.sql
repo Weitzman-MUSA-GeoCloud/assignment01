@@ -7,9 +7,9 @@
 
 -- Enter your SQL query here
 SELECT
-    EXTRACT(YEAR FROM start_time)::integer as trip_year,
-	EXTRACT(QUARTER FROM start_time)::integer as trip_quarter,
-	COUNT(*) as num_trips
+    EXTRACT(YEAR FROM start_time)::integer AS trip_year,
+	EXTRACT(QUARTER FROM start_time)::integer AS trip_quarter,
+	COUNT(*) AS num_trips
 FROM (
     SELECT start_time, end_time
 	FROM indego.trips_2021_q3
