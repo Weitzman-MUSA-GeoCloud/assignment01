@@ -5,4 +5,5 @@
     `avg_duration`. Round to two decimal places.
 */
 
--- Enter your SQL query here
+SELECT ROUND(AVG(duration),2) AS avg_duration
+FROM indego.trips_2022_q3;

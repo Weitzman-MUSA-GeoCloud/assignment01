@@ -8,7 +8,55 @@
     station (named `num_trips`).
 */
 
--- Enter your SQL query here
+WITH temporary_2021 AS(
+	SELECT *,
+	ST_MakePoint(trips_2021_q3.start_lon,trips_2021_q3.start_lat),
+	EXTRACT(HOUR FROM trips_2021_q3.start_time) AS day_hour
+	FROM indego.trips_2021_q3 AS trips_2021_q3
+)
+SELECT COUNT(*) AS num_trips,
+start_station AS station_id,
+st_makepoint AS station_geog
+FROM temporary_2021
+WHERE day_hour BETWEEN 7 AND 9
+GROUP BY station_id, station_geog
+ORDER by num_trips DESC
+LIMIT 5;
+
+WITH temporary_2022 AS(
+	SELECT *,
+	ST_MakePoint(trips_2022_q3.start_lon,trips_2022_q3.start_lat),
+	EXTRACT(HOUR FROM trips_2022_q3.start_time) AS day_hour
+	FROM indego.trips_2022_q3 AS trips_2022_q3
+)
+SELECT COUNT(*) AS num_trips,
+start_station AS station_id,
+st_makepoint AS station_geog
+FROM temporary_2022
+WHERE day_hour BETWEEN 7 AND 9
+GROUP BY station_id, station_geog
+ORDER by num_trips DESC
+LIMIT 5;
+
+WITH temporary_21_22 AS(
+	SELECT *,
+	ST_MakePoint(trips_2021_q3.start_lon,trips_2021_q3.start_lat),
+	EXTRACT(HOUR FROM trips_2021_q3.start_time) AS day_hour
+	FROM indego.trips_2021_q3 AS trips_2021_q3
+	UNION ALL
+	SELECT *,
+	ST_MakePoint(trips_2022_q3.start_lon,trips_2022_q3.start_lat),
+	EXTRACT(HOUR FROM trips_2022_q3.start_time) AS day_hour
+	FROM indego.trips_2022_q3 AS trips_2022_q3
+)
+SELECT COUNT(*) AS num_trips,
+start_station AS station_id,
+st_makepoint AS station_geog
+FROM temporary_21_22
+WHERE day_hour BETWEEN 7 AND 9
+GROUP BY station_id, station_geog
+ORDER by num_trips DESC
+LIMIT 5;
 
 
 /*

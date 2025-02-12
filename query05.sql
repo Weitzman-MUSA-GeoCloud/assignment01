@@ -4,4 +4,12 @@
     Your result should have a single row with a single column named max_duration.
 */
 
--- Enter your SQL query here
+WITH all_duration AS (
+	SELECT duration
+	FROM indego.trips_2022_q3
+	UNION
+	SELECT duration
+	FROM indego.trips_2021_q3
+)
+SELECT max(duration) AS max_duration
+FROM all_duration;
