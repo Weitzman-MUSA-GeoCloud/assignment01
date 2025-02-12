@@ -15,5 +15,5 @@ SELECT
         geog,
         ST_MakePoint(-75.192584, 39.952415)) / 50) * 50 AS distance
 FROM indego.station_statuses
-ORDER BY distance DESC
+ORDER BY distance
 LIMIT 5;

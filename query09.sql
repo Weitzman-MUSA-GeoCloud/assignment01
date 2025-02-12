@@ -15,7 +15,7 @@ WITH combined_trips AS (
     FROM indego.trips_2022_q3
 )
 SELECT 
-	TRIM(passholder_type),
+	TRIM(passholder_type) AS passholder_type,
 	COUNT(*) AS num_trips
 FROM combined_trips
-GROUP BY TRIM(passholder_type);
+GROUP BY passholder_type;
