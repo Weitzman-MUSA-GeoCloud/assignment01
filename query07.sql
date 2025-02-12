@@ -11,11 +11,15 @@ SELECT
     EXTRACT(QUARTER FROM start_time)::INTEGER AS trip_quarter,
     COUNT(*) AS num_trips
 FROM (
-    SELECT start_time, end_time
+    SELECT
+	start_time,
+	end_time
     FROM indego.trips_2021_q3
     WHERE DATE(start_time) != DATE(end_time)
     UNION ALL
-    SELECT start_time, end_time
+    SELECT
+	start_time,
+	end_time
     FROM indego.trips_2022_q3
     WHERE DATE(start_time) != DATE(end_time)
 ) AS combined_trips

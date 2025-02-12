@@ -11,12 +11,12 @@
 
 -- Enter your SQL query here
 WITH trip_counts AS (
-    SELECT 
+    SELECT
         (SELECT COUNT(*) FROM indego.trips_2021_q3) AS count_2021,
         (SELECT COUNT(*) FROM indego.trips_2022_q3) AS count_2022
 )
 
-SELECT 
+SELECT
     ROUND(
         ((count_2022::FLOAT - count_2021::FLOAT) / count_2021::FLOAT * 100)::NUMERIC,
         2
