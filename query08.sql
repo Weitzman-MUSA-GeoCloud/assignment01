@@ -6,15 +6,14 @@
     (named `station_id`), one for the point geography of the station (named
     `station_geog`), and one for the number of trips that started at that
     station (named `num_trips`).
-*/
-SELECT 
+*/SELECT 
     start_station AS station_id,  
-    ST_AsText(ST_SetSRID(ST_MakePoint(start_lon, start_lat), 4326)) AS station_geog, 
+    ST_SetSRID(ST_MakePoint(start_lon, start_lat), 4326) AS station_geog, 
     COUNT(*) AS num_trips
 FROM (
-    SELECT start_station, start_lon, start_lat, start_time FROM indego.trips_2022_q3
-    UNION ALL
     SELECT start_station, start_lon, start_lat, start_time FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT start_station, start_lon, start_lat, start_time FROM indego.trips_2022_q3
 ) AS combined_trips
 WHERE 
     EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
