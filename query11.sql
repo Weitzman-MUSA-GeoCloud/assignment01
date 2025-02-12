@@ -33,5 +33,5 @@ station_distances as (
     cross join mey_hall
 )
 
-select round(avg(distance)::numeric, -3) as avg_distance_km
+select round(avg(distance)::numeric / 1000) as avg_distance_km
 from station_distances
