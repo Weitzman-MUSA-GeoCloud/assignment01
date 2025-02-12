@@ -77,8 +77,9 @@ WITH station_coords AS (
         start_lat,
         start_lon
     FROM indego.trips_2021_q3
-    WHERE start_lat IS NOT NULL
-    AND start_lon IS NOT NULL
+    WHERE
+	start_lat IS NOT NULL
+        AND start_lon IS NOT NULL
 )
 
 UPDATE indego.station_statuses AS station_status
