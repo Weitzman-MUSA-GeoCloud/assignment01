@@ -5,6 +5,7 @@
 */
 
 SELECT MAX(duration)
+AS max_duration
 FROM (
     SELECT
         duration,
@@ -17,4 +18,4 @@ FROM (
         trip_id
     FROM indego.trips_2022_q3
 )
-AS max_duration;
+;
