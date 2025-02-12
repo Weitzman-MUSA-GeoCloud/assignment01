@@ -11,7 +11,7 @@
 
 SELECT
     station_statuses.id AS station_id,
-    ST_ASTEXT(station_statuses.geog) AS station_geog,
+    station_statuses.geog AS station_geog,
     ROUND(
         ST_DISTANCE(
             indego.station_statuses.geog,

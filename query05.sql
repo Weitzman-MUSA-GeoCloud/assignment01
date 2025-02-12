@@ -4,8 +4,9 @@
     Your result should have a single row with a single column named max_duration.
 */
 
-SELECT MAX(duration)
-AS max_duration
+SELECT
+    MAX(duration)
+    AS max_duration
 FROM (
     SELECT
         duration,
@@ -17,5 +18,4 @@ FROM (
         duration,
         trip_id
     FROM indego.trips_2022_q3
-)
-;
+);

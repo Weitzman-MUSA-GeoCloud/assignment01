@@ -10,7 +10,7 @@
 -- Enter your SQL query here
 SELECT
     indego.station_statuses.id AS station_id,
-    ST_ASEWKB(indego.station_statuses.geog) AS station_geog,
+    indego.station_statuses.geog AS station_geog,
     COUNT(*) AS num_trips
 FROM (
     SELECT * FROM indego.trips_2021_q3
