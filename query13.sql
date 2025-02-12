@@ -15,5 +15,3 @@ FROM
 ORDER BY 
     distance DESC
 LIMIT 1;
-
-Result: Manayunk Bridge (8,900 meters away)
