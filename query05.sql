@@ -5,7 +5,7 @@
 */
 
 -- Enter your SQL query here
-select max(duration)
+select max(duration) as max_duration
 from (
     select duration
     from indego.trips_2021_q3

@@ -9,7 +9,7 @@
 -- Enter your SQL query here
 select
     2021 as trip_year,
-    'q3'::text as trip_quarter,
+    3 as trip_quarter,
     count(*) as num_trips
 from indego.trips_2021_q3
 where duration < 10
