@@ -7,3 +7,25 @@
 */
 
 -- Enter your SQL query here
+with both_trips as (
+    select
+        extract(year from start_time) as trip_year,
+        count(*) as num_trips,
+        'Q3' as trip_quarter
+    from indego.trips_2021_q3
+    where duration < 10
+    group by trip_year
+    union all
+    select
+        extract(year from start_time) as trip_year,
+        count(*) as num_trips,
+        'Q3' as trip_quarter
+    from indego.trips_2022_q3
+    where duration < 10
+    group by trip_year
+)
+select
+    trip_year,
+    trip_quarter,
+    num_trips
+from both_trips
