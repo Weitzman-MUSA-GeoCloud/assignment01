@@ -82,6 +82,7 @@ WITH station_coords AS (
         AND start_lon IS NOT NULL
 )
 
+
 UPDATE indego.station_statuses AS station_status
 SET
     latitude = station_coords.start_lat,
