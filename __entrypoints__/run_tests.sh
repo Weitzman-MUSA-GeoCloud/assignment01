@@ -15,10 +15,10 @@ psql \
     -p ${POSTGRES_PORT} \
     -U ${POSTGRES_USER} \
     -d ${POSTGRES_NAME} \
-    -q
+    > /dev/null
 
 # Create a configuration file for the database connection
-cat << EOF > .env
+cat << EOF > /workspace/.env
 POSTGRES_HOST=${POSTGRES_HOST}
 POSTGRES_PORT=${POSTGRES_PORT}
 POSTGRES_NAME=${POSTGRES_NAME}
