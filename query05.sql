@@ -9,12 +9,12 @@ FROM (
     SELECT
         duration,
         trip_id
-    FROM trips_2021_q3
+    FROM indego.trips_2021_q3
 
     UNION ALL
     SELECT
         duration,
         trip_id
-    FROM trips_2022_q3
+    FROM indego.trips_2022_q3
 )
 AS max_duration;
