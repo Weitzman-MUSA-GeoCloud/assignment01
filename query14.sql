@@ -18,7 +18,7 @@ WITH station_dist AS (
                 public.ST_MAKEPOINT(-75.192584, 39.952415)
             ) / 50
         ) * 50 AS distance
-    FROM indego.indego_station_statuses
+    FROM indego.station_statuses
 )
 SELECT
     station_id,

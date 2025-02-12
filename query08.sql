@@ -26,7 +26,7 @@ WITH combi AS (
 )
 SELECT
     start_station AS station_id,
-    public.ST_MAKEPOINT(start_lat, start_lon)::public.geography AS station_geog,
+    public.ST_MAKEPOINT(start_lon, start_lat)::public.geography AS station_geog,
     COUNT(*) AS num_trips
 FROM combi
 GROUP BY station_id, station_geog
