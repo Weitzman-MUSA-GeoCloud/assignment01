@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** The longest duration is 1440 minutes, which is 24 hours. The duration of all trips that exceed 1 day is capped at 24 hours. 
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
