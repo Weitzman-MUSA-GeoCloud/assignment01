@@ -24,7 +24,7 @@ FROM (
         start_time
     FROM indego.trips_2022_q3
 ) AS trips
-JOIN indego.station_statuses AS station_status
+INNER JOIN indego.station_statuses AS station_status
     ON station_status.id::TEXT = trips.start_station
 WHERE EXTRACT(HOUR FROM trips.start_time) BETWEEN 7 AND 9
 GROUP BY
