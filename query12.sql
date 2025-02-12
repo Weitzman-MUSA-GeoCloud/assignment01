@@ -5,4 +5,15 @@
     of stations (num_stations).
 */
 
--- Enter your SQL query here
+with
+meyerson as (
+    select
+        st_setsrid(
+            st_makepoint(-75.192584, 39.952415),
+            4326
+        ) as meyerson_geog
+)
+select
+    count(*) as num_stations
+from indego.station_statuses, meyerson
+where st_distance(station_statuses.geog, meyerson.meyerson_geog) < 1000

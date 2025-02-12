@@ -6,4 +6,22 @@
     the number of trips (named `num_trips`).
 */
 
--- Enter your SQL query here
+with
+combined as (
+    select
+        duration,
+        start_time
+    from indego.trips_2022_q3
+    union all
+    select
+        duration,
+        start_time
+    from indego.trips_2021_q3
+)
+select
+    extract(year from start_time) as trip_year,
+    extract(quarter from start_time) as trip_quarter,
+    count(*) as num_trips
+from combined
+where duration < 10
+group by trip_year, trip_quarter;
