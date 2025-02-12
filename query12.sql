@@ -8,7 +8,7 @@
 WITH temporary_table AS(
 SELECT
 	id as station_id,
-	(ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415))) AS distance
+	(ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography)) AS distance
 FROM indego.stations_geo)
 SELECT COUNT(*)
 FROM temporary_table

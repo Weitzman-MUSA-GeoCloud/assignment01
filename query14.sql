@@ -10,7 +10,7 @@ WITH temporary_table AS(
 SELECT
 	id AS station_id,
 	name AS station_name,
-	ROUND((ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)))/50)*50 AS distance
+	ROUND((ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography))/50)*50 AS distance
 FROM indego.stations_geo)
 SELECT station_id, station_name, distance
 FROM temporary_table

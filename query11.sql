@@ -5,5 +5,5 @@
 */
 
 SELECT
-	ROUND(AVG(ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)))/1000) AS avg_distance_km
+	ROUND(AVG(ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography))/1000) AS avg_distance_km
 from indego.stations_geo;

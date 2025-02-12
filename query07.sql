@@ -4,27 +4,6 @@
     Your result should have one column named trip_year, one column named
     trip_quarter, and one column named num_trips.
 */
-
-WITH temporary_2021 AS (
-	SELECT EXTRACT(DOY FROM trips_2021_q3.end_time) - EXTRACT(DOY FROM trips_2021_q3.start_time) AS day_change
-	FROM indego.trips_2021_q3
-)
-SELECT COUNT(*),
-2021 AS trip_year,
-'q3' AS trip_quarter
-FROM temporary_2021
-WHERE day_change>0;
-
-WITH temporary_2022 AS (
-	SELECT EXTRACT(DOY FROM trips_2022_q3.end_time) - EXTRACT(DOY FROM trips_2022_q3.start_time) AS day_change
-	FROM indego.trips_2022_q3
-)
-SELECT COUNT(*),
-2022 AS trip_year,
-'q3' AS trip_quarter
-FROM temporary_2022
-WHERE day_change>0;
-
 WITH temporary_21_22 AS (
 SELECT EXTRACT(DOY FROM trips_2021_q3.end_time) - EXTRACT(DOY FROM trips_2021_q3.start_time) AS day_change,
 2021 AS trip_year,
