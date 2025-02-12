@@ -8,7 +8,7 @@
     station (named `num_trips`).
 */
 SELECT 
-    start_station, 
+    start_station AS station_id,  
     ST_SetSRID(ST_MakePoint(start_lon, start_lat), 4326) AS station_geog, 
     COUNT(*) AS num_trips
 FROM (
