@@ -7,5 +7,6 @@
 
 
 -- Enter your SQL query here
+
 select count(*) as num_trips
 from indego.trips_2021_q3

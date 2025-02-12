@@ -49,3 +49,4 @@ COPY indego.trips_2022_q3 FROM '/Users/emmawit/Downloads/indego-trips-2022-q3.cs
 SELECT * FROM indego.trips_2022_q3
 
 create extension if not exists postgis;
+
