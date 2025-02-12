@@ -28,9 +28,9 @@ stations as (
 
 station_distances as (
     select
-        station_id,
-        station_geog,
-        st_distance(mey_hall.geom, station_geom) as distance
+        stations.station_id,
+        stations.station_geog,
+        st_distance(mey_hall.geom, stations.station_geom) as distance
     from stations
     cross join mey_hall
 )

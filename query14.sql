@@ -18,6 +18,7 @@ with mey_hall as (
             32129
         ) as geom --cast to 32129
 ),
+
 stations as (
     select
         id as station_id,
@@ -26,22 +27,25 @@ stations as (
         st_transform(geog::geometry, 32129) as station_geom
     from indego.station_statuses
 ),
+
 station_distances as (
     select
-        station_id,
-        station_geog,
-        station_name,
-        st_distance(mey_hall.geom, station_geom) as distance
+        stations.station_id,
+        stations.station_geog,
+        stations.station_name,
+        st_distance(mey_hall.geom, stations.station_geom) as distance
     from stations
     cross join mey_hall
 ),
+
 min_distance as (
     select min(distance) as distance
     from station_distances
 )
+
 select
-    station_id,
-    station_name,
+    station_distances.station_id,
+    station_distances.station_name,
     round(min_distance.distance / 50) * 50 as distance
 from min_distance
 left join station_distances on min_distance.distance = station_distances.distance;

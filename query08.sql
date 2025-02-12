@@ -17,16 +17,16 @@ select
 from
     (
         select
-            start_station,
-            trip_id
-        from indego.trips_2021_q3
-        where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
+            y1.start_station,
+            y1.trip_id
+        from indego.trips_2021_q3 as y1
+        where extract(hour from y1.start_time) >= 7 and extract(hour from y1.start_time) < 10
         union
         select
-            start_station,
-            trip_id
-        from indego.trips_2022_q3
-        where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
+            y2.start_station,
+            y2.trip_id
+        from indego.trips_2022_q3 as y2
+        where extract(hour from y2.start_time) >= 7 and extract(hour from y2.start_time) < 10
     ) as trips
 left join indego.station_statuses as stations on stations.id::text = trips.start_station
 group by stations.id, stations.geog

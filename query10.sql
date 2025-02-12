@@ -28,8 +28,8 @@ stations as (
 )
 
 select
-    station_id,
-    station_geog,
-    round(st_distance(mey_hall.geom, station_geom) / 50) * 50 as distance
+    stations.station_id,
+    stations.station_geog,
+    round(st_distance(mey_hall.geom, stations.station_geom) / 50) * 50 as distance
 from stations
 cross join mey_hall

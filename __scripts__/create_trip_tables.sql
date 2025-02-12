@@ -42,9 +42,3 @@ create table indego.trips_2022_q3 (
 );
 
 create extension if not exists postgis;
-
-alter table indego.station_statuses
-add geog geography
-
-update indego.station_statuses
-set geog = wkb_geometry::geography

@@ -44,8 +44,8 @@ max_distance as (
 )
 
 select
-    station_id,
-    station_name,
+    station_distances.station_id,
+    station_distances.station_name,
     round(max_distance.distance / 50) * 50 as distance
 from max_distance
 left join station_distances on max_distance.distance = station_distances.distance;
