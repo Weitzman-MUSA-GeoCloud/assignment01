@@ -1,3 +1,4 @@
+-- Active: 1738783895209@@127.0.0.1@5432@assignment1
 create schema if not exists indego;
 
 drop table if exists indego.trips_2021_q3;
