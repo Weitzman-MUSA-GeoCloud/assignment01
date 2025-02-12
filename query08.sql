@@ -9,7 +9,33 @@
 */
 
 -- Enter your SQL query here
+with merged_trips as (
+    select 
+        start_station, 
+        start_lat, 
+        start_lon,
+        trip_id
+    from indego.trips_2021_q3
+    where extract(hour from start_time) between 7 and 9
 
+    union all
+
+    select 
+        start_station, 
+        start_lat, 
+        start_lon,
+        trip_id
+    from indego.trips_2022_q3
+    where extract(hour from start_time) between 7 and 9
+)
+select 
+    start_station as station_id,
+    st_setsrid(st_nakepoint(start_lon, start_lat), 4326)::geography as station_geog,
+    count(trip_id) as num_trips
+from merged_trips
+group by start_station, station_geog
+order by num_trips desc
+limit 5;
 
 /*
     Hint: Use the `EXTRACT` function to get the hour of the day from the

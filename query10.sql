@@ -8,3 +8,14 @@
 */
 
 -- Enter your SQL query here
+
+select 
+    id as station_id,
+    geog as station_geog,
+    round(st_distance(
+        geog,
+        st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)
+    ) /50 ) * 50 as distance
+from station_statuses
+order by distance
+limit 5;
