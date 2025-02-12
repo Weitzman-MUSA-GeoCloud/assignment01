@@ -72,10 +72,11 @@ WITH CSV HEADER;
 
 -- Update station coordinates from trips data
 WITH station_coords AS (
-    SELECT DISTINCT
-        start_station,
-        start_lat,
-        start_lon
+        SELECT DISTINCT
+                start_station,
+                start_lat,
+                start_lon
+
     FROM indego.trips_2021_q3
     WHERE start_lat IS NOT NULL
         AND start_lon IS NOT NULL
