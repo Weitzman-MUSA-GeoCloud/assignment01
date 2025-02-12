@@ -7,3 +7,25 @@
 */
 
 -- Enter your SQL query here
+
+with all_trips as (
+    select
+        passholder_type,
+        count(*) as num_trips
+    from indego.trips_2021_q3
+    group by passholder_type
+
+    union
+
+    select
+        passholder_type,
+        count(*) as num_trips
+    from indego.trips_2022_q3
+    group by passholder_type
+)
+
+select
+    passholder_type,
+    sum(num_trips) as num_trips
+from all_trips
+group by passholder_type;

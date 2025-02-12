@@ -78,6 +78,8 @@ Write a query to answer each of the questions below.
 
     **Answer:**
 
+    The value 1440 minutes represents a full day and should be the default value for the duration column. Specifically, if the time interval between the start time and end time of a trip exceeds one day, the duration in the table will be automatically recorded as 1440 minutes.
+
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
 7. [How many trips started on one day and ended on a different day?](query07.sql)
