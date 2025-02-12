@@ -10,9 +10,9 @@
 
 -- Enter your SQL query here
 SELECT
-    t.start_station as station_id,
-	ss.geog as station_geog,
-	COUNT(*) as num_trips
+    t.start_station AS station_id,
+	ss.geog AS station_geog,
+	COUNT(*) AS num_trips
 FROM(
     SELECT start_station, start_time 
 	FROM indego.trips_2021_q3
@@ -20,7 +20,7 @@ FROM(
 	SELECT start_station, start_time 
 	FROM indego.trips_2022_q3
 )t
-JOIN indego.station_statuses ss on ss.id::text = t.start_station
+JOIN indego.station_statuses ss ON ss.id::text = t.start_station
 WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
 GROUP BY 
     t.start_station,
