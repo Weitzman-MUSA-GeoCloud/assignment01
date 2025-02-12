@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer: 1,440 minutes is equal to 24 hours; when durations are logged, either a manixum may have been set a priori, or perhaps trips are divided across midnight.**
+    **Answer: 1,440 minutes is equal to 24 hours; when durations are logged, a maximum may have been set a priori.**
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
