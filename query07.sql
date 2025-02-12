@@ -22,8 +22,6 @@ GROUP BY
     EXTRACT(YEAR FROM start_time),
     EXTRACT(QUARTER FROM start_time);
 
-Result: 2,301 trips in Q3 2021 and 2,060 trips in Q3 2022.
-
 
 
 /*
