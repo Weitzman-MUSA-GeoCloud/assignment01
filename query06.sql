@@ -7,3 +7,22 @@
 */
 
 -- Enter your SQL query here
+with trips21 as (
+    select
+        2021 as trip_year,
+        3 as trip_quarter,
+        count(case when duration < 10 then duration end) as num_trips
+    from trips_2021_q3
+),
+trips22 as (
+    select
+        2022 as trip_year,
+        3 as trip_quarter,
+        count(case when duration < 10 then duration end) as num_trips
+    from trips_2022_q3
+)
+select *
+from trips21
+union all
+select *
+from trips22;
