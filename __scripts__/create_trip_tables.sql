@@ -91,16 +91,3 @@ WHERE ss.id::text = sc.start_station;
 UPDATE indego.station_statuses
 SET geog = ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)::geography
 WHERE latitude IS NOT NULL AND longitude IS NOT NULL;
-
-
--- Verify the data
-SELECT 
-    id,
-    name,
-    latitude,
-    longitude,
-    geog::text
-FROM indego.station_statuses
-WHERE latitude IS NOT NULL
-ORDER BY id
-LIMIT 5;
