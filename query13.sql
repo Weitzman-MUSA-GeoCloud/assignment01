@@ -20,4 +20,4 @@ SELECT
     station_name,
     distance
 FROM temporary_table
-WHERE distance = (SELECT MAX(temporary_table.distance) FROM temporary_table)
+WHERE distance = (SELECT MAX(tt.distance) FROM temporary_table tt)
