@@ -5,10 +5,6 @@
     (station_id), station name (station_name), and distance (distance) from
     Meyerson Hall, rounded to the nearest 50 meters.
 */
-<<<<<<< HEAD
-
-=======
->>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 SELECT
     station_statuses.id AS station_id,
     station_statuses.name AS station_name,

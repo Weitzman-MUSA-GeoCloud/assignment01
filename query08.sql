@@ -7,10 +7,6 @@
     `station_geog`), and one for the number of trips that started at that
     station (named `num_trips`).
 */
-<<<<<<< HEAD
-
-=======
->>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 SELECT
     start_station AS station_id,
     ST_SETSRID(ST_MAKEPOINT(start_lat, start_lon), 4326) AS station_geog,
