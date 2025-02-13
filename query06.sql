@@ -17,8 +17,8 @@ WHERE duration < 10
 UNION ALL
 
 SELECT
-    2022,
-    3,
-    COUNT(*)
+    2022 AS trip_year,
+    3 AS trip_quarter,
+    COUNT(*) AS num_trips
 FROM indego.trips_2022_q3
 WHERE duration < 10;

@@ -81,7 +81,8 @@ Write a query to answer each of the questions below.
         ) AS perc_change
     FROM
         (SELECT COUNT(*) AS count_2021 FROM indego.trips_2021_q3) AS c2021,
-        (SELECT COUNT(*) AS count_2022 FROM indego.trips_2022_q3) AS c2022;    ```
+        (SELECT COUNT(*) AS count_2022 FROM indego.trips_2022_q3) AS c2022;    
+    ```
 
     **Result:** 3.98%
 
