@@ -7,3 +7,21 @@
 */
 
 -- Enter your SQL query here
+with passholders as (
+    select
+        passholder_type,
+        count(*) as num_trips
+    from trips_2021_q3
+    group by passholder_type
+    union
+    select
+        passholder_type,
+        count(*) as num_trips
+    from trips_2022_q3
+    group by passholder_type
+)
+select
+    passholder_type,
+    sum(num_trips) as num_trips
+from passholders
+group by passholder_type
