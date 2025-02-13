@@ -10,7 +10,19 @@
 */
 
 -- Enter your SQL query here
-
+select
+    (
+        round(
+            (
+                (t2.total_trips - t1.total_trips)::DECIMAL
+                / t1.total_trips * 100
+            ),
+            2
+        )::TEXT || '%'
+    ) as perc_change
+from
+    (select count(*) as total_trips from indego.trips_2021_q3) as t1,
+    (select count(*) as total_trips from indego.trips_2022_q3) as t2;
 
 
 /*
