@@ -3,7 +3,6 @@
     from Meyerson Hall? Your result should have a single record with a single
     column named avg_distance_km.
 */
-
 SELECT
     id AS station_id,
     geog AS station_geog,
