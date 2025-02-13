@@ -12,6 +12,6 @@ WITH temporary_table AS (
     FROM indego.station_statuses
 )
 
-SELECT COUNT(*)
+SELECT COUNT(*) AS num_stations
 FROM temporary_table
 WHERE distance < 1000;
