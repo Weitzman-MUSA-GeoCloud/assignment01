@@ -5,13 +5,19 @@
     (station_id), station name (station_name), and distance (distance) from
     Meyerson Hall, rounded to the nearest 50 meters.
 */
-
-SELECT 
+SELECT
     station_statuses.id AS station_id,
     station_statuses.name AS station_name,
-    ROUND(ST_Distance(station_statuses.geog, ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)) / 50) * 50 AS distance
-FROM 
+    ROUND(
+        ST_DISTANCE(
+            station_statuses.geog,
+            ST_SETSRID(ST_MAKEPOINT(-75.192584, 39.952415), 4326)
+        )
+        / 50
+    )
+    * 50 AS distance
+FROM
     indego.station_statuses
-ORDER BY 
+ORDER BY
     distance ASC
 LIMIT 1;
