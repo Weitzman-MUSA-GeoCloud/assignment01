@@ -69,17 +69,17 @@ Write a query to answer each of the questions below.
 2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
 
     ```SQL
-SELECT 
-    ( ROUND(
-         ( (c2022.count_2022 - c2021.count_2021)::DECIMAL 
-            / c2021.count_2021 * 100
-         ), 
-         2
-       )::TEXT || '%'
-    ) AS perc_change
-FROM
-  (SELECT COUNT(*) AS count_2021 FROM indego.trips_2021_q3) c2021,
-  (SELECT COUNT(*) AS count_2022 FROM indego.trips_2022_q3) c2022;
+    SELECT 
+        ( ROUND(
+             ( (c2022.count_2022 - c2021.count_2021)::DECIMAL 
+                / c2021.count_2021 * 100
+             ), 
+             2
+           )::TEXT || '%'
+        ) AS perc_change
+    FROM
+      (SELECT COUNT(*) AS count_2021 FROM indego.trips_2021_q3) c2021,
+      (SELECT COUNT(*) AS count_2022 FROM indego.trips_2022_q3) c2022;
     ```
 
     **Result:** 3.98%
