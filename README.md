@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **There are so many trips of 1,440 minutes because there are 1,440 minutes in a day. This indicates that a trip of this length means someone did not return their bike properly, thereby dragging out the duration inaccurately over a full day.**
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
