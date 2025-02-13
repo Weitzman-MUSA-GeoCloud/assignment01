@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   push:
     branches: [ main ]
-    paths: [ '**sql**' ]
+    paths: [ '**/run_linter.sh', '**sql**' ]
 
 jobs:
   build:
