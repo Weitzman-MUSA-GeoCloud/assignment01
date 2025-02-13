@@ -9,20 +9,21 @@
 -- Enter your SQL query here
 
 with merged_trips as (
-    select 
-        passholder_type, 
+    select
+        passholder_type,
         trip_id
     from indego.trips_2021_q3
 
     union all
 
-    select 
+    select
         passholder_type,
         trip_id
     from indego.trips_2022_q3
 )
-select 
-    distinct(passholder_type) as passholder_type,
+
+select distinct
+    passholder_type,
     count(*) as num_trips
 from merged_trips
 group by passholder_type;

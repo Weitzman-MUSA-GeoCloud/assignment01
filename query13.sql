@@ -9,21 +9,22 @@
 -- Enter your SQL query here
 
 with merged_trips as (
-select 
-    id as station_id,
-    name as station_name,
-    round(
-        st_distance(
-            geog,
-            st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)::geography 
-        ) / 50.0 
-    )* 50 as distance
-from station_statuses
+    select
+        id as station_id,
+        name as station_name,
+        round(
+            public.st_distance(
+                geog,
+                public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
+            ) / 50.0
+        ) * 50 as distance
+    from public.station_statuses
 )
-select 
+
+select
     station_id,
     station_name,
     distance
 from merged_trips
-order by distance desc 
+order by distance desc
 limit 1;

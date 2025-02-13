@@ -6,15 +6,16 @@
 
 -- Enter your SQL query here
 with merged_trips as (
-select 
-    id as station_id,
-    geog as station_geog,
-    round(st_distance(
-        geog,
-        st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)
-    ) /50 ) * 50 as distance
-from station_statuses
-order by distance
+    select
+        id as station_id,
+        geog as station_geog,
+        round(public.st_distance(
+            geog,
+            public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
+        ) / 50) * 50 as distance
+    from public.station_statuses
+    order by distance
 )
-select round(avg(distance) /1000) as avg_distance_km
+
+select round(avg(distance) / 1000) as avg_distance_km
 from merged_trips

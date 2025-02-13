@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:** Trip lengths for Indego are capped at 24 hours which is equivalent to 1440 minutes. This could account for stolen Indego bikes or Indego bikes that were returned after 24 hours.
+    **Answer:** Trip lengths for Indego are capped at 24 hours which is equivalent to 1440 minutes. There are a few trips with 1440 minutes that have a NULL value in the end_station column which could be accounting for stolen or broken Indego bikes that have not been returned to any docking station and its usage is discontinued. There are also a few trips that are longer than 24 hours but they will be recorded as a trip of duration 1440 minutes due to the cap.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
