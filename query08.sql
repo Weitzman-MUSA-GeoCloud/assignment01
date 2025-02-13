@@ -9,14 +9,14 @@
 */
 
 -- Enter your SQL query here
-select 
+select
     station_id,
     station_geog::geography,
     sum(num_trips) as num_trips
 from (
-    select 
+    select
         start_station as station_id,
-        ST_MAKEPOINT(start_lon, start_lat)::geography as station_geog,
+        st_makepoint(start_lon, start_lat)::geography as station_geog,
         count(*) as num_trips
     from indego.trips_2021_q3
     where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
@@ -24,14 +24,15 @@ from (
 
     union all
 
-    select 
+    select
         start_station as station_id,
-        ST_MAKEPOINT(start_lon, start_lat)::geography as station_geog,
+        st_makepoint(start_lon, start_lat)::geography as station_geog,
         count(*) as num_trips
     from indego.trips_2022_q3
     where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
     group by start_station, start_lon, start_lat
-) group by station_id, station_geog
+)
+group by station_id, station_geog
 order by num_trips desc
 limit 5;
 
@@ -39,4 +40,3 @@ limit 5;
     Hint: Use the `EXTRACT` function to get the hour of the day from the
     timestamp.
 */
-
