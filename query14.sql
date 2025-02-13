@@ -8,10 +8,10 @@
 
 WITH temporary_table AS (
     SELECT
-        id AS station_id,
-        name AS station_name,
+        ss.id AS station_id,
+        ss.name AS station_name,
         ROUND((ST_DISTANCE(geog, ST_MAKEPOINT(-75.192584, 39.952415)::geography)) / 50) * 50 AS distance
-    FROM indego.station_statuses
+    FROM indego.station_statuses as ss
 )
 
 SELECT
@@ -19,4 +19,4 @@ SELECT
     station_name,
     distance
 FROM temporary_table
-WHERE distance = (SELECT MIN(tt.distance) FROM temporary_table tt)
+WHERE distance = (SELECT MIN(temporary_table.distance) FROM temporary_table)
