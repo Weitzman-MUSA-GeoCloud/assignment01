@@ -19,4 +19,4 @@ SELECT
     station_name,
     distance
 FROM temporary_table
-WHERE distance = (SELECT MIN(distance) FROM temporary_table)
+WHERE distance = (SELECT MIN(temporary_table.distance) FROM temporary_table)

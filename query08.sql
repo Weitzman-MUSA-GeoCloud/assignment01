@@ -10,23 +10,23 @@
 WITH temporary_21_22 AS (
     SELECT
         *,
-        ST_MAKEPOINT(trips_2021_q3.start_lon, trips_2021_q3.start_lat)::geography,
-        EXTRACT(HOUR FROM trips_2021_q3.start_time) AS day_hour
-    FROM indego.trips_2021_q3 AS trips_2021_q3
+        ST_MAKEPOINT(start_lon, start_lat)::geography AS geom_point,
+        EXTRACT(HOUR FROM start_time) AS day_hour_
+    FROM indego.trips_2021_q3
     UNION ALL
     SELECT
         *,
-        ST_MAKEPOINT(trips_2022_q3.start_lon, trips_2022_q3.start_lat)::geography,
-        EXTRACT(HOUR FROM trips_2022_q3.start_time) AS day_hour
-    FROM indego.trips_2022_q3 AS trips_2022_q3
+        ST_MAKEPOINT(start_lon, start_lat)::geography AS geom_point,
+        EXTRACT(HOUR FROM start_time) AS day_hour_
+    FROM indego.trips_2022_q3
 )
 
 SELECT
     start_station AS station_id,
-    st_makepoint AS station_geog,
+    geom_point AS station_geog,
     COUNT(*) AS num_trips
 FROM temporary_21_22
-WHERE day_hour BETWEEN 7 AND 9
+WHERE day_hour_ BETWEEN 7 AND 9
 GROUP BY station_id, station_geog
 ORDER BY num_trips DESC
 LIMIT 5;
