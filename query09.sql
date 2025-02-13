@@ -5,7 +5,10 @@
     and the number of trips taken by `passholder_type`. Your results should have
     two columns: `passholder_type` and `num_trips`.
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 SELECT
     passholder_type,
     COUNT(*) AS num_trips

@@ -4,6 +4,9 @@
     Your results should have a single record with a single field named
     `avg_duration`. Round to two decimal places.
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 SELECT ROUND(AVG(duration), 2) AS avg_duration
 FROM indego.trips_2021_q3;

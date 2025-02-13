@@ -24,8 +24,11 @@ WHERE
 GROUP BY
     EXTRACT(YEAR FROM start_time),
     EXTRACT(QUARTER FROM start_time);
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 
 /*
 

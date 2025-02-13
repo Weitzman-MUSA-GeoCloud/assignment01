@@ -1,0 +1,42 @@
+# Create a postgis service using the postgis/postgis image.
+services:
+  db:
+    image: postgis/postgis
+    environment:
+      POSTGRES_PASSWORD: postgres
+    healthcheck:
+      # test: ["CMD-SHELL", "pg_isready -U postgres"]
+      test: [
+          "CMD-SHELL",
+          'psql -U postgres -d postgres -c "SELECT ST_Buffer( ST_SetSRID(''POINT(0 0)''::GEOMETRY, 4326), 1) AS geom ;"',
+        ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  run-linter:
+    image: ghcr.io/weitzman-musa-geocloud/assignment01:main
+    volumes:
+      - .:/assignment01
+    command: [
+      "bash", "-c",
+      "cd /assignment01 && __entrypoints__/run_linter.sh -- ."
+    ]
+
+  run-tests:
+    image: ghcr.io/weitzman-musa-geocloud/assignment01:main
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASS: postgres
+      POSTGRES_HOST: db
+      POSTGRES_PORT: 5432
+      POSTGRES_NAME: postgres
+    volumes:
+      - .:/assignment01
+    command: [
+      "bash", "-c",
+      "cd /assignment01 && npm install > /dev/null && __entrypoints__/run_tests.sh -- --rootDir /assignment01"
+    ]

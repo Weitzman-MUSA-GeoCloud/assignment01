@@ -6,7 +6,10 @@
     Your results should have three columns: station_id, station_geog, and
     distance. Round to the nearest fifty meters.
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 SELECT
     id AS station_id,
     geog AS station_geog,

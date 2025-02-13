@@ -5,7 +5,10 @@
     (named `trip_year`), one for the quarter (named `trip_quarter`), and one for
     the number of trips (named `num_trips`).
 */
+<<<<<<< HEAD
 
+=======
+>>>>>>> ecb232b9506762c67f221864e43782df964a27bc
 SELECT
     '2021' AS trip_year,
     '3' AS trip_quarter,
