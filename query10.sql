@@ -17,5 +17,4 @@ select
         public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
     ) / 50) * 50 as distance
 from indego.station_statuses
-order by distance, station_id
-limit 5;
+order by distance, station_id;

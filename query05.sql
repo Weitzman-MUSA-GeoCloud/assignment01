@@ -6,7 +6,7 @@
 
 -- Enter your SQL query here
 
-select max(trips_2021_q3.duration) as max_duration
+select max(coalesce(trips_2022_q3.duration, trips_2021_q3.duration)) as max_duration
 from indego.trips_2021_q3
 full join indego.trips_2022_q3
     on indego.trips_2022_q3.trip_id = indego.trips_2021_q3.trip_id

@@ -22,7 +22,7 @@ with merged_trips as (
     from indego.trips_2022_q3
 )
 
-select distinct
+select
     passholder_type,
     count(*) as num_trips
 from merged_trips
