@@ -6,14 +6,15 @@
     Your results should have three columns: station_id, station_geog, and
     distance. Round to the nearest fifty meters.
 */
-
-SELECT 
+SELECT
     id AS station_id,
     geog AS station_geog,
-    ROUND(ST_Distance(geog, ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)) / 50) * 50 AS distance
-FROM 
+    ROUND(
+        ST_DISTANCE(geog, ST_SETSRID(ST_MAKEPOINT(-75.192584, 39.952415), 4326))
+        / 50
+    )
+    * 50 AS distance
+FROM
     indego.station_statuses
-ORDER BY 
+ORDER BY
     distance;
-
-
