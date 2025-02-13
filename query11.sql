@@ -13,7 +13,7 @@ with merged_trips as (
             geog,
             public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
         ) / 50) * 50 as distance
-    from public.station_statuses
+    from station_statuses
     order by distance
 )
 
