@@ -10,17 +10,19 @@
 */
 
 -- Enter your SQL query here
-SELECT 
-    ( ROUND(
-         ( (c2022.count_2022 - c2021.count_2021)::DECIMAL 
-            / c2021.count_2021 * 100
-         ), 
-         2
-       )::TEXT || '%'
+SELECT
+    (
+        ROUND(
+            (
+                (c2022.count_2022 - c2021.count_2021)::DECIMAL
+                / c2021.count_2021 * 100
+            ),
+            2
+        )::TEXT || '%'
     ) AS perc_change
 FROM
-  (SELECT COUNT(*) AS count_2021 FROM indego.trips_2021_q3) c2021,
-  (SELECT COUNT(*) AS count_2022 FROM indego.trips_2022_q3) c2022;
+    (SELECT COUNT(*) AS count_2021 FROM indego.trips_2021_q3) AS c2021,
+    (SELECT COUNT(*) AS count_2022 FROM indego.trips_2022_q3) AS c2022;
 
 
 /*

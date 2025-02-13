@@ -6,7 +6,7 @@
 */
 
 -- Enter your SQL query here
-SELECT  
+SELECT
     2021 AS trip_year,
     3 AS trip_quarter,
     COUNT(*) AS num_trips

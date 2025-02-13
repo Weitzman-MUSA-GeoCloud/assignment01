@@ -7,7 +7,7 @@
 */
 
 -- Enter your SQL query here
-SELECT 
+SELECT
     passholder_type,
     COUNT(*) AS num_trips
 FROM (

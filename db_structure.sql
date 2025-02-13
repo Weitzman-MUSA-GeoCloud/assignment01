@@ -38,10 +38,10 @@ CREATE TABLE indego.trips_2022_q3 (
 );
 
 
-\copy indego.trips_2021_q3 
-FROM '/data/trips_2021_q3.csv' 
-WITH (FORMAT CSV, HEADER TRUE);
+COPY indego.trips_2021_q3
+FROM '/data/trips_2021_q3.csv'
+WITH (FORMAT csv, HEADER TRUE);
 
-\copy indego.trips_2022_q3 
-FROM '/data/trips_2022_q3.csv' 
-WITH (FORMAT CSV, HEADER TRUE);
+COPY indego.trips_2022_q3
+FROM '/data/trips_2022_q3.csv'
+WITH (FORMAT csv, HEADER TRUE);

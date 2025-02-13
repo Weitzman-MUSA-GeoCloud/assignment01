@@ -7,16 +7,16 @@
 */
 
 -- Enter your SQL query here
-SELECT 
+SELECT
     2021 AS trip_year,
-    3     AS trip_quarter,
+    3 AS trip_quarter,
     COUNT(*) AS num_trips
 FROM indego.trips_2021_q3
 WHERE duration < 10
 
 UNION ALL
 
-SELECT 
+SELECT
     2022,
     3,
     COUNT(*)
