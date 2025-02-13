@@ -14,7 +14,7 @@ with merged_trips as (
             geog,
             public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
         ) as distance
-    from station_statuses
+    from indego.station_statuses
 )
 
 select count(*) as num_stations

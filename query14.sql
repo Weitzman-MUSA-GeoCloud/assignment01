@@ -18,7 +18,7 @@ with merged_trips as (
                 public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
             ) / 50.0
         ) * 50 as distance
-    from station_statuses
+    from indego.station_statuses
 )
 
 select
