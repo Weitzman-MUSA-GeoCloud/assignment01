@@ -1,3 +1,7 @@
+/*
+  i didn't end up using this anymore because the station_geogs were not matching up correctly, but i wanted to keep this useful code
+*/
+
 -- add station geography to trip data
 alter table indego.trips_2021_q3
 add column station_geog geography(point, 4326);

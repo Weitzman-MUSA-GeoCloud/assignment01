@@ -1,6 +1,6 @@
 -- here is the code for loading data on pgAdmin 4
-drop table if exists indego.q3_2021_trips;
-create table indego.q3_2021_trips
+drop table if exists indego.trips_2021_q3;
+create table indego.trips_2021_q3
 (
 	trip_id TEXT,
 	duration INTEGER,
@@ -19,13 +19,13 @@ create table indego.q3_2021_trips
 	bike_type TEXT
 );
 
-copy indego.q3_2021_trips
+copy indego.trips_2021_q3
 from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment01/data/indego-trips-2021-q3.csv'
 with (format csv, header true);
 
 -- same thing but for 2022 data
-drop table if exists indego.q3_2022_trips;
-create table indego.q3_2022_trips
+drop table if exists indego.trips_2022_q3;
+create table indego.trips_2022_q3
 (
 	trip_id TEXT,
 	duration INTEGER,
@@ -44,6 +44,6 @@ create table indego.q3_2022_trips
 	bike_type TEXT
 );
 
-copy indego.q3_2022_trips
+copy indego.trips_2022_q3
 from '/Users/akiradisandro/Documents/MUSA/Spring25/MUSA_CloudComputing/assignment01/data/indego-trips-2022-q3.csv'
 with (format csv, header true);
