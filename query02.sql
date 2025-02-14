@@ -11,6 +11,11 @@
 
 -- Enter your SQL query here
 
+SELECT 
+    ROUND(100 * (t22.total_count - t21.total_count) / t21.total_count, 2)::text || '%' AS perc_change
+FROM 
+    (SELECT COUNT(*) AS total_count FROM indego.trips_2021_q3) AS t21,
+    (SELECT COUNT(*) AS total_count FROM indego.trips_2022_q3) AS t22;
 
 
 /*
