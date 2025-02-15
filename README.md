@@ -76,7 +76,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** These 1440-minute (24-hour) trips could be outliers in the dataset. They might indicate situations where the system was unable to track the trip properly, or a user accidentally left the bike overnight.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 

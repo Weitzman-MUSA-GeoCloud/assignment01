@@ -7,3 +7,18 @@
 */
 
 -- Enter your SQL query here
+SELECT
+    EXTRACT(YEAR FROM start_time) AS trip_year,
+    EXTRACT(QUARTER FROM start_time) AS trip_quarter,
+    SUM(CASE WHEN duration < 10 THEN 1 ELSE 0 END) AS num_trips
+FROM indego.trips_2021_q3
+GROUP BY trip_year, trip_quarter
+
+UNION ALL
+
+SELECT
+    EXTRACT(YEAR FROM start_time) AS trip_year,
+    EXTRACT(QUARTER FROM start_time) AS trip_quarter,
+    SUM(CASE WHEN duration < 10 THEN 1 ELSE 0 END) AS num_trips
+FROM indego.trips_2022_q3
+GROUP BY trip_year, trip_quarter;
