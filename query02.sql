@@ -10,7 +10,6 @@
 */
 
 -- Enter your SQL query here
-
 SELECT 
     ROUND(100 * (t22.total_count - t21.total_count) / t21.total_count, 2)::text || '%' AS perc_change
 FROM 
