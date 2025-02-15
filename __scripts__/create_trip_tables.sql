@@ -50,3 +50,10 @@ from 'C:\Users\19397\Documents\GitHub\MUSA_509\musa509_assignment01\data\indego-
 with (format csv, header true);
 
 create extension if not exists postgis;
+
+drop table if exists indego.station_statuses;
+show search_path;
+set search_path to public;
+
+SELECT *
+FROM indego.station_statuses;
