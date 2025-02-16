@@ -1,0 +1,8 @@
+ogr2ogr \
+  -f "PostgreSQL" \
+  -nln "station_statuses" \
+  -lco "GEOM_TYPE=geography" \
+  -lco "GEOMETRY_NAME=geog" \
+  -lco "OVERWRITE=yes" \
+  PG:"host=localhost port=5432 dbname=assignment01 user=postgres password=0092 active_schema=indego" \
+  "data/indego_station_statuses.geojson"

@@ -7,17 +7,26 @@
 */
 
 -- Enter your SQL query here
-with meyh_distances as (
+with meyh as (
     select
         id as station_id,
         name as station_name,
-        round(public.st_distance(
+        round((public.st_distance(
             geog,
             public.st_makepoint(-75.192584, 39.952415)
-        ) / 50) * 50 as distance
-    from indego.station_statuses
+        ) / 50::numeric)) * 50 as base_dist
+    from
+        indego.station_statuses
     group by station_id, station_name
 )
-select *
-from meyh_distances
-where distance = (select max(distance) from meyh_distances)
+select
+    station_id,
+    station_name,
+    base_dist as distance
+from (
+    select
+        *,
+        max(base_dist) over () as distance
+    from meyh
+) as meyh_d
+where base_dist = distance
