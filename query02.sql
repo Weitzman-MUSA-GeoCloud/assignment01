@@ -10,7 +10,20 @@
 */
 
 -- Enter your SQL query here
-
+with trips21 as (
+  select 
+    count(*) as num_trips_21
+  from trips_2021_q3
+),
+trips22 as (
+  select 
+    count(*) as num_trips_22
+  from trips_2022_q3
+)
+select
+  round(((num_trips_22 - num_trips_21)::float * 100 / num_trips_22)::numeric, 2)::text || '%' as perc_change
+from trips21
+cross join trips22;
 
 
 /*
