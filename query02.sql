@@ -12,13 +12,12 @@
 -- Enter your SQL query here
 
 
-SELECT 
+SELECT
     ROUND(
-        (COUNT(indego.trips_2022_q3.trip_id) - 
-         COUNT(indego.trips_2021_q3.trip_id)) 
-        * 100.0 
-        / NULLIF(COUNT(indego.trips_2021_q3.trip_id), 0), 
-    2)::TEXT || '%' AS perc_change
-FROM indego.trips_2021_q3
-FULL OUTER JOIN indego.trips_2022_q3 
-ON indego.trips_2021_q3.trip_id = indego.trips_2022_q3.trip_id;
+        (
+            (SELECT COUNT(*) FROM indego.trips_2022_q3)
+            - (SELECT COUNT(*) FROM indego.trips_2021_q3)
+        ) * 100.0
+        / NULLIF((SELECT COUNT(*) FROM indego.trips_2021_q3), 0),
+        2
+    )::TEXT || '%' AS perc_change;

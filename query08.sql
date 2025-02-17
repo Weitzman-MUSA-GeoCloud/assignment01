@@ -16,13 +16,13 @@ SELECT
 FROM (
 
     SELECT
-        t1.start_station AS start_station,
-        t1.start_time AS start_time
+        t1.start_station,
+        t1.start_time
     FROM indego.trips_2021_q3 AS t1
     UNION ALL
     SELECT
-        t2.start_station AS start_station,
-        t2.start_time AS start_time
+        t2.start_station,
+        t2.start_time
     FROM indego.trips_2022_q3 AS t2
 ) AS trips
 

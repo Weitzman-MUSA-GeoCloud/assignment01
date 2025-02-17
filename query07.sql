@@ -7,15 +7,21 @@
 
 -- Enter your SQL query here
 
-SELECT 
-    EXTRACT(YEAR FROM start_time) AS trip_year,
+SELECT
     3 AS trip_quarter,
+    EXTRACT(YEAR FROM start_time) AS trip_year,
     COUNT(*) AS num_trips
 FROM (
-    SELECT start_time, end_time FROM indego.trips_2021_q3
+    SELECT
+        start_time,
+        end_time
+    FROM indego.trips_2021_q3
     WHERE DATE(start_time) <> DATE(end_time)
     UNION ALL
-    SELECT start_time, end_time FROM indego.trips_2022_q3
+    SELECT
+        start_time,
+        end_time
+    FROM indego.trips_2022_q3
     WHERE DATE(start_time) <> DATE(end_time)
 ) AS combined_trips
 GROUP BY trip_year

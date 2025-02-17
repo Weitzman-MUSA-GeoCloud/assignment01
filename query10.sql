@@ -9,13 +9,13 @@
 
 -- Enter your SQL query here
 
-SELECT 
+SELECT
     id AS station_id,
     geog AS station_geog,
     FLOOR(
-        ST_Distance(
+        ST_DISTANCE(
             geog::geography,
-            ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+            ST_SETSRID(ST_MAKEPOINT(-75.192584, 39.952415), 4326)::geography
         ) / 50
     ) * 50 AS distance
 FROM indego.station_statuses
