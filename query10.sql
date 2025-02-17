@@ -16,5 +16,5 @@ select
         sta.geog
     )/50)*50 as distance
 from indego.stations_geo as sta
-order by distance DESC
-limit 5
+order by distance ASC
+limit 5；
