@@ -13,6 +13,6 @@ with both_durations as (
     select duration
     from indego.trips_2022_q3
 )
--- Newline
+
 select max(duration) as max_duration
 from both_durations
