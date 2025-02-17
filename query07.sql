@@ -23,6 +23,7 @@ with both_years as (
     where date(start_time) != date(end_time)
     group by trip_year, trip_quarter
 )
+-- Newline
 select
     trip_year,
     num_trips,
