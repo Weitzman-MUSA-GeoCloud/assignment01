@@ -10,19 +10,19 @@
 with both_trips as (
     select
         extract(year from start_time) as trip_year,
-        count(*) as num_trips,
-        3 as trip_quarter
+        extract(quarter from start_time) as trip_quarter,
+        count(*) as num_trips
     from indego.trips_2021_q3
     where duration < 10
-    group by trip_year
+    group by trip_year, trip_quarter
     union all
     select
         extract(year from start_time) as trip_year,
-        count(*) as num_trips,
-        3 as trip_quarter
+        extract(quarter from start_time) as trip_quarter,
+        count(*) as num_trips
     from indego.trips_2022_q3
     where duration < 10
-    group by trip_year
+    group by trip_year, trip_quarter
 )
 select
     trip_year,
