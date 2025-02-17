@@ -14,6 +14,7 @@ with station_dist as (
         ) / 1000 as distance
     from indego.station_statuses
 )
+
 select count(*) as num_stations
 from station_dist
 where distance <= 1

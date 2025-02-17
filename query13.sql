@@ -19,7 +19,7 @@ with meyh as (
         indego.station_statuses
     group by station_id, station_name
 )
--- Newline
+
 select
     station_id,
     station_name,

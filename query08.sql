@@ -26,6 +26,7 @@ with both_years as (
     from indego.trips_2022_q3
     group by station_id, hora, station_geog
 )
+
 select
     station_id,
     station_geog,

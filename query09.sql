@@ -20,7 +20,7 @@ with passholders as (
     from trips_2022_q3
     group by passholder_type
 )
--- Newline
+
 select
     passholder_type,
     sum(num_trips) as num_trips

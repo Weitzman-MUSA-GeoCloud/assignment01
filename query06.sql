@@ -24,7 +24,7 @@ with both_trips as (
     where duration < 10
     group by trip_year, trip_quarter
 )
--- Newline
+
 select
     trip_year,
     trip_quarter,
