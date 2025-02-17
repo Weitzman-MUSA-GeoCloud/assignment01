@@ -11,13 +11,13 @@ with passholders as (
     select
         passholder_type,
         count(*) as num_trips
-    from trips_2021_q3
+    from indego.trips_2021_q3
     group by passholder_type
     union
     select
         passholder_type,
         count(*) as num_trips
-    from trips_2022_q3
+    from indego.trips_2022_q3
     group by passholder_type
 )
 
