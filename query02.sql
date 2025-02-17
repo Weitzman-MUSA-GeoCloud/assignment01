@@ -1,3 +1,4 @@
+-- Active: 1738783914188@@localhost@5432@assignment01
 /*
     What is the percent change in trips in Q3 2022 as compared to Q3 2021?
 
@@ -10,8 +11,17 @@
 */
 
 -- Enter your SQL query here
-
-
+select
+    round(
+        (count2.trip22 - count1.trip21) * 100 / count1.trip21,
+        2) as perc_change from (
+    select count(*)::numeric as trip21
+    from indego.trips_2021_q3
+) as count1,
+    (
+        select count(*)::numeric as trip22
+        from indego.trips_2022_q3
+    ) as count2
 
 /*
     If you want to get fancier here, you can cast the result to a string and
