@@ -6,3 +6,17 @@
 */
 
 -- Enter your SQL query here
+
+with merged_trips as (
+    select
+        id as station_id,
+        public.st_distance(
+            geog,
+            public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)
+        ) as distance
+    from indego.station_statuses
+)
+
+select count(*) as num_stations
+from merged_trips
+where distance < 1000;
