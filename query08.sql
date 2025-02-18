@@ -31,7 +31,7 @@ with merged_trips as (
 
 select
     start_station as station_id,
-    public.st_setsrid(public.st_makepoint(start_lon, start_lat), 4326)::public.geography as station_geog,
+    public.st_makepoint(start_lon, start_lat)::public.geography as station_geog,
     count(trip_id) as num_trips
 from merged_trips
 group by start_station, station_geog
