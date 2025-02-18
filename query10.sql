@@ -7,4 +7,21 @@
     distance. Round to the nearest fifty meters.
 */
 
--- Enter your SQL query here
+with
+meyerson as (
+    select
+        st_setsrid(
+            st_makepoint(-75.192584, 39.952415),
+            4326
+        ) as meyerson_geog
+)
+
+select
+    stn.id as station_id,
+    stn.geog as station_geog,
+    round(
+        st_distance(stn.geog, meyerson.meyerson_geog)
+        / 50
+    ) * 50
+    as distance
+from indego.station_statuses as stn, meyerson
