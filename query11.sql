@@ -14,12 +14,13 @@ distances as (
                 4326
             ) as meyerson_geog
     )
+
     select
-        station_statuses.id as station_id,
-        station_statuses.geog as station_geog,
-        st_distance(station_statuses.geog, meyerson.meyerson_geog) as distance
-    from indego.station_statuses, meyerson
+        stn.id as station_id,
+        stn.geog as station_geog,
+        st_distance(stn.geog, meyerson.meyerson_geog) as distance
+    from indego.station_statuses as stn, meyerson
 )
-select 
-    round(avg(distance)::decimal / 1000, 0) as avg_distance_km
+
+select round(avg(distance)::decimal / 1000, 0) as avg_distance_km
 from distances;

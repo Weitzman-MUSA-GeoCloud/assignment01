@@ -10,6 +10,7 @@ durations as (
     union all
     select duration from indego.trips_2021_q3
 )
+
 select max(duration) as max_duration
 from durations;
 

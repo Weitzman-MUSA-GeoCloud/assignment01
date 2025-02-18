@@ -14,14 +14,15 @@ meyerson as (
             4326
         ) as meyerson_geog
 )
+
 select
-    id as station_id,
-    name as station_name,
+    stn.id as station_id,
+    stn.name as station_name,
     round(
-        st_distance(station_statuses.geog, meyerson.meyerson_geog)
+        st_distance(stn.geog, meyerson.meyerson_geog)
         / 50
     ) * 50
     as distance
-from indego.station_statuses, meyerson
+from indego.station_statuses as stn, meyerson
 order by distance
 limit 1;

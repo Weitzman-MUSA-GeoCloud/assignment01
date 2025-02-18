@@ -18,6 +18,7 @@ combined as (
         start_time
     from indego.trips_2021_q3
 )
+
 select
     extract(year from start_time) as trip_year,
     extract(quarter from start_time) as trip_quarter,

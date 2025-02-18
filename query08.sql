@@ -20,6 +20,7 @@ combined as (
         start_station
     from indego.trips_2021_q3
 )
+
 select
     combined.start_station as station_id,
     station_statuses.geog as station_geog,

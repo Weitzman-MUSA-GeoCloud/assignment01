@@ -13,7 +13,7 @@ meyerson as (
             4326
         ) as meyerson_geog
 )
-select
-    count(*) as num_stations
-from indego.station_statuses, meyerson
-where st_distance(station_statuses.geog, meyerson.meyerson_geog) < 1000
+
+select count(*) as num_stations
+from indego.station_statuses as stn, meyerson
+where st_distance(stn.geog, meyerson.meyerson_geog) < 1000

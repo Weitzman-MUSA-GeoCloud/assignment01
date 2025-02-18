@@ -14,12 +14,13 @@ trips_sum_2021 as (
     select count(*)::numeric as num_trips
     from indego.trips_2021_q3
 ),
+
 trips_sum_2022 as (
     select count(*)::numeric as num_trips
     from indego.trips_2022_q3
 )
-select 
-    round(((trips_sum_2022.num_trips / trips_sum_2021.num_trips) - 1) * 100, 2)::text || '%' as perc_change
+
+select round(((trips_sum_2022.num_trips / trips_sum_2021.num_trips) - 1) * 100, 2)::text || '%' as perc_change
 from trips_sum_2021, trips_sum_2022;
 
 
