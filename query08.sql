@@ -9,30 +9,35 @@
 */
 
 -- Enter your SQL query here
-select
-    station_id,
-    station_geog::geography,
-    sum(num_trips) as num_trips
-from (
+with stations as (
+    select
+        id::text as station_id,
+        geog as station_geog
+    from indego.station_statuses
+),
+
+all_trips as (
     select
         start_station as station_id,
-        st_makepoint(start_lon, start_lat)::geography as station_geog,
-        count(*) as num_trips
+        start_time
     from indego.trips_2021_q3
-    where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
-    group by start_station, start_lon, start_lat
-
     union all
-
     select
         start_station as station_id,
-        st_makepoint(start_lon, start_lat)::geography as station_geog,
-        count(*) as num_trips
+        start_time
     from indego.trips_2022_q3
-    where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
-    group by start_station, start_lon, start_lat
 )
-group by station_id, station_geog
+
+select
+    stations.station_id,
+    stations.station_geog,
+    count(*) as num_trips
+from all_trips
+inner join stations
+    using (station_id)
+where
+    extract(hour from all_trips.start_time) >= 7 and extract(hour from all_trips.start_time) < 10
+group by stations.station_id, stations.station_geog
 order by num_trips desc
 limit 5;
 
