@@ -5,6 +5,8 @@
 */
 
 -- Enter your SQL query here
+
+set search_path to public;
 select
     round(
         avg(

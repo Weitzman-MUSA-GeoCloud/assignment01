@@ -7,6 +7,8 @@
 */
 
 -- Enter your SQL query here
+
+set search_path to public;
 select
     sta.id as station_id,
     sta.name as station_name,

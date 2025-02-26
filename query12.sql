@@ -6,6 +6,8 @@
 */
 
 -- Enter your SQL query here
+
+set search_path to public;
 select count(*) as num_stations
 from indego.stations_geo as sta
 where st_dwithin(
