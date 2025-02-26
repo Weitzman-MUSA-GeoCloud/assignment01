@@ -12,10 +12,10 @@ select
     sta.name as station_name,
     round(
         st_distance(
-            st_setsrid(st_makepoint(-75.192584,39.952415),4326)::geography,
+            st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)::geography,
             sta.geog
-        )/50
-    )*50 as distance
+        ) / 50
+    ) * 50 as distance
 from indego.stations_geo as sta
-order by distance ASC
+order by distance asc
 limit 1;

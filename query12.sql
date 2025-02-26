@@ -6,9 +6,10 @@
 */
 
 -- Enter your SQL query here
-select
-    count(*) as num_stations
+select count(*) as num_stations
 from indego.stations_geo as sta
-where st_dwithin (st_setsrid(st_makepoint(-75.192584,39.952415),4326)::geography,
-                sta.geog,
-                1000);
+where st_dwithin(
+    st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)::geography,
+    sta.geog,
+    1000
+);

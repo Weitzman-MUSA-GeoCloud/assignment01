@@ -9,18 +9,24 @@
 */
 
 -- Enter your SQL query here
-select 
+select
     sta.id as station_id,
     sta.geog as station_geog,
     count(*) as num_trips
 from (
-    select start_time, start_station from indego.trips_2021_q3
-    union ALL
-    select start_time, start_station from indego.trips_2022_q3
+    select
+        start_time,
+        start_station
+    from indego.trips_2021_q3
+    union all
+    select
+        start_time,
+        start_station
+    from indego.trips_2022_q3
 ) as trips
 right join indego.stations_geo as sta
     on trips.start_station = cast(sta.id as text)
-where cast((extract(hour from start_time)) as INTEGER) between 7 and 9
+where cast((extract(hour from start_time)) as integer) between 7 and 9
 group by sta.id, sta.geog
 order by num_trips desc
 limit 5;

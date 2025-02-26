@@ -9,8 +9,10 @@ select
     round(
         avg(
             st_distance(
-                st_setsrid(st_makepoint(-75.192584,39.952415),4326)::geography,
+                st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)::geography,
                 sta.geog
-                ))
-        /1000) as avg_distance_km
+            )
+        )
+        / 1000
+    ) as avg_distance_km
 from indego.stations_geo as sta;

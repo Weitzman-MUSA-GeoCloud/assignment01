@@ -1,13 +1,13 @@
 -- 1. Just in case to set the environment
 set search_path to public
 
-select * from indego.trips_2021_q3
+select * from indego.trips_2021_q3;
 
-select * from indego.trips_2022_q3
+select * from indego.trips_2022_q3;
 
-select * from indego.stations_geo
+select * from indego.stations_geo;
 
-select * from indego.stations
+select * from indego.stations;
 
 -- 2.wraggling the data
 
@@ -266,12 +266,12 @@ DROP TABLE indego.trips_2022_q3;
 ALTER TABLE indego.trips_2022_q3_new RENAME TO indego.trips_2022_q3;
 
 -- 3. station_geo
-select * from stations_geo
+select * from stations_geo;
 
 alter table stations_geo
-alter column "name" type TEXT
+alter column "name" type TEXT;
 
 create table indego.stations as
-select "id", "name", geog from indego.stations_geo
+select "id", "name", geog from indego.stations_geo;
 
-select * from stations
+select * from stations;

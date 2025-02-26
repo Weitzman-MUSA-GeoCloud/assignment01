@@ -8,6 +8,6 @@
 select max(duration) as max_duration
 from (
     select duration from indego.trips_2021_q3
-    UNION ALL
+    union all
     select duration from indego.trips_2021_q3
 ) as duration_two_quarters;
