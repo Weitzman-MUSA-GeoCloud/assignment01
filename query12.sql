@@ -6,3 +6,10 @@
 */
 
 -- Enter your SQL query here
+select count(*) as station_count
+from indego.station_statuses
+where st_dwithin(
+    st_makepoint(-75.192584, 39.952415)::geography,
+    geog,
+    1000
+);
