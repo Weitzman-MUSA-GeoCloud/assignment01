@@ -8,7 +8,6 @@
 
 -- Enter your SQL query here
 with combined as (
-    
     select
         start_time,
         duration

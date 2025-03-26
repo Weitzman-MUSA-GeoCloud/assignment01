@@ -9,14 +9,14 @@
 
 with merged as (
     select
-        start_time, 
+        start_time,
         end_time
     from indego.trips_2021_q3
 
     union all
 
     select
-        start_time, 
+        start_time,
         end_time
     from indego.trips_2022_q3
 )
