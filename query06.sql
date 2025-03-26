@@ -13,9 +13,9 @@ with combined as (
     select start_time, duration from indego.trips_2022_q3
 )
 select
-    extract(year from start_time) as yr,
-    extract(quarter from start_time) as qtr,
-    count(*) as trips
+    extract(year from start_time) as trip_year,
+    extract(quarter from start_time) as trip_quarter,
+    count(*) as num_trips
 from combined
 where duration < 10
-group by yr, qtr;
+group by trip_year, trip_quarter;

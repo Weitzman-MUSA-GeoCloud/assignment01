@@ -9,5 +9,5 @@ select
     round(avg(st_distance(
         st_makepoint(-75.192584, 39.952415)::geography,
         geog
-    )) / 1000) as avg_dist_km
+    )) / 1000) as avg_distance_km
 from indego.station_statuses;
