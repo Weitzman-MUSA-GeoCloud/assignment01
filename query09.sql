@@ -8,13 +8,17 @@
 
 -- Enter your SQL query here
 with user_type_trips as (
-    select passholder_type as passholder_type, count(*) as trips
+    select 
+        passholder_type as passholder_type, 
+        count(*) as trips
     from indego.trips_2021_q3
     group by passholder_type
 
     union all
 
-    select passholder_type as passholder_type, count(*) as trips
+    select 
+        passholder_type, 
+        count(*) as trips
     from indego.trips_2022_q3
     group by passholder_type
 )
