@@ -8,13 +8,15 @@
 -- Enter your SQL query here
 
 with merged as (
-    select 
-        start_time, 
-        end_time from indego.trips_2021_q3
+    select
+        start_time, end_time 
+    from indego.trips_2021_q3
+
     union all
-    select 
-        start_time, 
-        end_time from indego.trips_2022_q3
+
+    select
+        start_time, end_time 
+    from indego.trips_2022_q3
 )
 
 select
