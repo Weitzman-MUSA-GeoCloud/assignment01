@@ -7,8 +7,6 @@
 
 -- Enter your SQL query here
 
-
-
 /*
 
     Hint 1: when you cast a TIMESTAMP to a DATE the time component of the value is simply stripped off
@@ -17,3 +15,18 @@
     [EXTRACT](https://www.postgresql.org/docs/12/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT)
     function.
 */
+SELECT
+    2021 AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE CAST(start_time AS DATE) <> CAST(end_time AS DATE)
+
+UNION ALL
+
+SELECT
+    2022 AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE CAST(start_time AS DATE) <> CAST(end_time AS DATE);

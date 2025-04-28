@@ -10,8 +10,12 @@
 */
 
 -- Enter your SQL query here
-
-
+SELECT
+    ROUND(
+        ((SELECT COUNT(*) FROM indego.trips_2022_q3) - (SELECT COUNT(*) FROM indego.trips_2021_q3))
+        * 100.0 / (SELECT COUNT(*) FROM indego.trips_2021_q3),
+        2
+    )::text || '%' AS perc_change;
 
 /*
     If you want to get fancier here, you can cast the result to a string and
