@@ -7,3 +7,19 @@
 */
 
 -- Enter your SQL query here
+WITH short_trip_counts AS (
+    SELECT 
+        2021 AS trip_year, 
+        3 AS trip_quarter, 
+        COUNT(*) AS num_trips
+    FROM indego.trips_2021_q3
+    WHERE duration < 10
+    UNION ALL
+    SELECT 
+        2022 AS trip_year, 
+        3 AS trip_quarter, 
+        COUNT(*) AS num_trips
+    FROM indego.trips_2022_q3
+    WHERE duration < 10
+)
+SELECT * FROM short_trip_counts;
