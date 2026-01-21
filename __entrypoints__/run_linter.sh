@@ -4,7 +4,7 @@ set -e
 
 ENTRYPOINTDIR=$(readlink -f $(dirname $0))
 
-# Activate the virtual environment that was created in the Dockerfile
+# Activate the virtual environment that was created in the Containerfile
 source /workspace/env/bin/activate
 
 # Run the linter
