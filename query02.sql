@@ -11,7 +11,21 @@
 
 -- Enter your SQL query here
 
+with counts as (
+    select
+        (select count(*)::numeric from indego.trips_2021_q3) as count_2021,
+        (select count(*)::numeric from indego.trips_2022_q3) as count_2022
+)
 
+select
+    to_char(
+        round(
+            (count_2022 - count_2021) / count_2021 * 100,
+            2
+        ),
+        'FM999999990.00'
+    ) || '%' as perc_change
+from counts;
 
 /*
     If you want to get fancier here, you can cast the result to a string and

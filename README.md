@@ -77,6 +77,7 @@ Write a query to answer each of the questions below.
     _Why are there so many trips of this duration?_
 
     **Answer:**
+    The duration column defaults to 1440 minutes, representing a full day. If a trip’s start and end times span more than 24 hours, the duration is automatically capped at this value.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
