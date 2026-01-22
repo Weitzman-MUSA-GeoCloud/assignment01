@@ -2,6 +2,13 @@
 
 **Complete by February 04, 2026**
 
+To complete this assigment you will need to do the following:
+1.  Fork this repository to your own account.
+2.  Clone your fork to your local machine.
+3.  Complete the assignment according to the instructions below.
+4.  Push your changes to your fork.
+5.  Submit a pull request to the original repository. Opening your pull request will be equivalent to you submitting your assignment. You will only need to open one pull request for this assignment. **If you make additional changes to your fork, they will automatically show up in the pull request you already opened.** Your pull request should have your name in the title (e.g. `Assignment 01 - Mjumbe Poe`).
+
 ## Datasets
 
 * Indego Bikeshare station status data
