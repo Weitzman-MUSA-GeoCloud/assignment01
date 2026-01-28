@@ -17,7 +17,7 @@ WITH counts AS (
     (SELECT COUNT(*) FROM indego.trips_2022_q3) AS n22
 )
 SELECT
-  ROUND((n22 - n21)::decimal / n21::decimal * 100, 2) AS perc_change
+  ROUND((n22 - n21) / n21 * 100, 2) AS perc_change
 FROM counts;
 
 
