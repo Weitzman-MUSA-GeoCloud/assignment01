@@ -11,24 +11,15 @@
 
 -- Enter your SQL query here
 
-select count(*) as num_trips_2021
-from indego.trips_2021_q3;
-select count(*) as num_trips_2022
-from indego.trips_2022_q3;
-select
-    round(
-        (
-            (
-                (select count(*) from indego.trips_2022_q3)::decimal
-                -
-                (select count(*) from indego.trips_2021_q3)::decimal
-            )
-            /
-            (select count(*) from indego.trips_2021_q3)::decimal
-        )
-        * 100,
-        2
-    ) AS perc_change;
+WITH counts AS (
+  SELECT
+    (SELECT COUNT(*) FROM indego.trips_2021_q3) AS n21,
+    (SELECT COUNT(*) FROM indego.trips_2022_q3) AS n22
+)
+SELECT
+  ROUND((n22 - n21)::decimal / n21::decimal * 100, 2) AS perc_change
+FROM counts;
+
 
 /*
     If you want to get fancier here, you can cast the result to a string and
