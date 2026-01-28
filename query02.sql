@@ -9,7 +9,12 @@
     Remember you can do calculations in the select clause.
 */
 
--- Enter your SQL query here
+
+SELECT ROUND(((t2022.num_trips - t2021.num_trips) / CAST(t2021.num_trips AS NUMERIC)) * 100, 2) AS perc_change
+FROM
+    (SELECT COUNT(DISTINCT trip_id) AS num_trips FROM indego.trips_2021_q3) AS t2021,
+    (SELECT COUNT(DISTINCT trip_id) AS num_trips FROM indego.trips_2022_q3) AS t2022;
+
 
 
 

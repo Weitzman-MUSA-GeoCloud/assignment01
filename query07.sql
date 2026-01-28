@@ -6,7 +6,24 @@
 */
 
 -- Enter your SQL query here
+SELECT
+    EXTRACT(YEAR FROM start_time) AS trip_year, -- dynamic query to get year from date
+    EXTRACT(QUARTER FROM start_time) AS trip_quarter,-- dynamic query to get quarter from date
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE CAST(start_time AS DATE) != CAST(end_time AS DATE)
+GROUP BY EXTRACT(YEAR FROM start_time), EXTRACT(QUARTER FROM start_time)
 
+
+UNION
+
+SELECT
+    EXTRACT(YEAR FROM start_time) AS trip_year, -- dynamic query to get year from date
+    EXTRACT(QUARTER FROM start_time) AS trip_quarter,-- dynamic query to get quarter from date
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE CAST(start_time AS DATE) != CAST(end_time AS DATE)
+GROUP BY EXTRACT(YEAR FROM start_time), EXTRACT(QUARTER FROM start_time);
 
 
 /*
