@@ -10,6 +10,25 @@
 */
 
 -- Enter your SQL query here
+WITH
+q3_2021 AS (
+    SELECT COUNT(*) AS trips_2021
+    FROM indego.trips_2021_q3
+),
+
+q3_2022 AS (
+    SELECT COUNT(*) AS trips_2022
+    FROM indego.trips_2022_q3
+)
+
+SELECT
+    ROUND(
+        (q3_2022.trips_2022 - q3_2021.trips_2021) * 100.0
+        / q3_2021.trips_2021,
+        2
+    ) AS perc_change
+FROM q3_2021
+CROSS JOIN q3_2022;
 
 
 

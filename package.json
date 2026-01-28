@@ -1,7 +1,7 @@
 {
   "name": "assignment01",
   "version": "1.0.0",
-  "description": "",
+  "description": "**Complete by February 12, 2025**",
   "main": "index.js",
   "type": "module",
   "scripts": {
@@ -17,6 +17,9 @@
     "pg": "^8.11.3"
   },
   "devDependencies": {
-    "eslint": "^8.33.0"
-  }
+    "@eslint/js": "^9.26.0",
+    "eslint": "^8.57.1",
+    "globals": "^16.1.0"
+  },
+  "keywords": []
 }

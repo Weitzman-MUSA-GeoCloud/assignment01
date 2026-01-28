@@ -6,6 +6,25 @@
 */
 
 -- Enter your SQL query here
+SELECT
+    EXTRACT(YEAR FROM start_time)::INT AS trip_year,
+    EXTRACT(QUARTER FROM start_time)::INT AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE start_time::DATE <> end_time::DATE
+GROUP BY trip_year, trip_quarter
+
+UNION ALL
+
+SELECT
+    EXTRACT(YEAR FROM start_time)::INT AS trip_year,
+    EXTRACT(QUARTER FROM start_time)::INT AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE start_time::DATE <> end_time::DATE
+GROUP BY trip_year, trip_quarter
+
+ORDER BY trip_year;
 
 
 

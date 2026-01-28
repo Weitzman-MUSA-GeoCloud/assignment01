@@ -1,9 +1,16 @@
-/*
-    List all the passholder types and number of trips for each across all years.
+WITH all_trips AS (
+    SELECT passholder_type
+    FROM indego.trips_2021_q3
 
-    In other words, in one query, give a list of all `passholder_type` options
-    and the number of trips taken by `passholder_type`. Your results should have
-    two columns: `passholder_type` and `num_trips`.
-*/
+    UNION ALL
 
--- Enter your SQL query here
+    SELECT passholder_type
+    FROM indego.trips_2022_q3
+)
+
+SELECT
+    passholder_type,
+    COUNT(*) AS num_trips
+FROM all_trips
+GROUP BY passholder_type
+ORDER BY num_trips DESC;
