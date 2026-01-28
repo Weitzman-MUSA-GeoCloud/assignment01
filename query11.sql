@@ -4,4 +4,9 @@
     column named avg_distance_km.
 */
 
--- Enter your SQL query here
+SELECT 
+    AVG(ST_Distance(geog, ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography)) AS avg_distance_meters
+FROM 
+    indego.station_statuses
+WHERE
+    geog IS NOT NULL;
