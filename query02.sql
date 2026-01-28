@@ -10,17 +10,15 @@
 */
 
 -- Enter your SQL query here
-
-WITH counts AS (
-  SELECT
-    (SELECT COUNT(*) FROM indego.trips_2021_q3) AS n21,
-    (SELECT COUNT(*) FROM indego.trips_2022_q3) AS n22
-)
-SELECT
-  ROUND((n22 - n21) / n21 * 100, 2) AS perc_change
-FROM counts;
-
-
+SELECT 
+    ROUND(
+        (
+            (SELECT COUNT(*) FROM indego.trips_2022_q3) - 
+            (SELECT COUNT(*) FROM indego.trips_2021_q3)
+        ) * 100.0 / 
+        (SELECT COUNT(*) FROM indego.trips_2021_q3), 
+        2
+    ) AS perc_change;
 /*
     If you want to get fancier here, you can cast the result to a string and
     concatenate a '%' to the end. For example:
