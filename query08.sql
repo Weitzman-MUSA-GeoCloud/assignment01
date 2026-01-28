@@ -8,7 +8,26 @@
     station (named `num_trips`).
 */
 
--- Enter your SQL query here
+with all_trips as (
+    select start_station
+    from indego.trips_2021_q3
+    where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
+    union all
+    select start_station
+    from indego.trips_2022_q3
+    where extract(hour from start_time) >= 7 and extract(hour from start_time) < 10
+)
+
+select
+    s.id as station_id,
+    s.geog as station_geog,
+    count(*) as num_trips
+from all_trips t
+join indego.station_statuses s
+    on t.start_station::integer = s.id
+group by s.id, s.geog
+order by num_trips desc
+limit 5
 
 
 /*
