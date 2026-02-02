@@ -73,34 +73,44 @@ Write a query to answer each of the questions below.
 
     **Result:** 300,432
 
-2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
-
+2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql) 
+Result: 3.98%
 3. [What is the average duration of a trip for 2021?](query03.sql)
-
+18.86 minutes
 4. [What is the average duration of a trip for 2022?](query04.sql)
-
+17.88 minutes
 5. [What is the longest duration trip across the two quarters?](query05.sql)
+1440mins
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **1440 minutes equals exactly 24 hours. This likely indicates bikes that were not returned on time or were checked out but not properly closed in the system. The system may have a default maximum duration of 24 hours for billing purposes, causing all overdue rentals to be capped at this duration. This could also represent data anomalies or system errors where bike checkouts were not properly recorded as completed.**
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
-
+Q3 2021: 27,121 trips
+Q3 2022: 28,122 trips
 7. [How many trips started on one day and ended on a different day?](query07.sql)
-
+Q3 2021: 2,301 trips
+Q3 2022: 2,060 trips
 8. [Give the five most popular starting stations across all years between 7am and 9:59am.](query08.sql)
-
-    _Hint: Use the `EXTRACT` function to get the hour of the day from the timestamp._
-
+Station 3032: 1,828 trips
+Station 3102: 1,689 trips
+Station 3012: 1,614 trips
+Station 3066: 1,529 trips
+Station 3007: 1,434 trips
 9. [List all the passholder types and number of trips for each across all years.](query09.sql)
-
+Indego30: 441,856 trips
+Indego365: 109,251 trips
+Day Pass: 61,659 trips
+NULL: 43 trips
+Walk-up: 2 trips
 10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
-
+All 293 stations with their distances from Meyerson Hall (in meters, rounded to nearest 50m)
 11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
-
+Result: 3 km (approximately 3,000 meters)
 12. [How many stations are within 1km of Meyerson Hall?](query12.sql)
-
+Result: 18 stations
 13. [Which station is furthest from Meyerson Hall?](query13.sql)
-
+Manayunk & Conarroe, Fairview Park (Station ID: 3432) - 9,000 meters (9 km away)
 14. [Which station is closest to Meyerson Hall?](query14.sql)
+34th & Spruce (Station ID: 3208)

@@ -25,10 +25,13 @@
 
 
 SELECT 
-    ROUND(
-        ((
-            (SELECT COUNT(*) FROM indego.trips_2022_q3) - 
-            (SELECT COUNT(*) FROM indego.trips_2021_q3)
-        ) / CAST((SELECT COUNT(*) FROM indego.trips_2021_q3) AS FLOAT)) * 100,
-        2
+    CAST(
+        ROUND(
+            CAST(
+                (((SELECT COUNT(*) FROM indego.trips_2022_q3) - (SELECT COUNT(*) FROM indego.trips_2021_q3)) / CAST((SELECT COUNT(*) FROM indego.trips_2021_q3) AS FLOAT)) * 100
+                AS NUMERIC
+            ),
+            2
+        )
+        AS FLOAT
     ) AS perc_change;
