@@ -10,13 +10,13 @@
 */
 
 -- Enter your SQL query here
-SELECT 
+SELECT
     ROUND(
         (
-            (SELECT COUNT(*) FROM indego.trips_2022_q3) - 
-            (SELECT COUNT(*) FROM indego.trips_2021_q3)
-        ) * 100.0 / 
-        (SELECT COUNT(*) FROM indego.trips_2021_q3), 
+            (SELECT COUNT(*) FROM indego.trips_2022_q3)
+            - (SELECT COUNT(*) FROM indego.trips_2021_q3)
+        ) * 100.0
+        / (SELECT COUNT(*) FROM indego.trips_2021_q3),
         2
     ) AS perc_change;
 /*
