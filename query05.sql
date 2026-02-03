@@ -5,3 +5,10 @@
 */
 
 -- Enter your SQL query here
+SELECT
+  MAX(duration) as max_duration
+FROM (
+  select duration from indego.trips_2021_q3
+  union all
+  select duration from indego.trips_2022_q3
+) t;

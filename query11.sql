@@ -5,3 +5,16 @@
 */
 
 -- Enter your SQL query here
+SELECT
+  ROUND(
+    AVG(
+      indego.ST_Distance(
+        geog,
+        indego.ST_SetSRID(
+          indego.ST_MakePoint(-75.192584, 39.952415),
+          4326
+        )::indego.geography
+      )
+    ) / 1000
+  ) AS avg_distance_km
+FROM indego.station_statuses;

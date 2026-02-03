@@ -11,6 +11,17 @@
 
 -- Enter your SQL query here
 
+SELECT
+  ROUND(
+    (
+      (count_2022::numeric - count_2021::numeric)
+      / count_2021::numeric
+    ) * 100,
+    2
+  ) as perc_change
+from
+  (select count(*) as count_2021 from indego.trips_2021_q3) t21,
+  (select count(*) as count_2022 from indego.trips_2022_q3) t22;
 
 
 /*
