@@ -10,25 +10,21 @@
 
 -- Enter your SQL query here
 SELECT
-    indego.stations_staues.id AS station_id,
-    indego.stations_staues.geog AS station_geog,
+    indego.station_statuses.id AS station_id,
+    indego.station_statuses.geog AS station_geog,
     COUNT(*) AS num_trips
 FROM (
-    SELECT *
-    FROM indego.trips_2021_q3
-    WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
-
+    SELECT * FROM indego.trips_2021_q3
     UNION ALL
+    SELECT * FROM indego.trips_2022_q3
+) AS full_trips
 
-    SELECT *
-    FROM indego.trips_2022_q3
-    WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
-)
-AS combined_trips
-INNER JOIN indego.stations_staues
-    ON combined_trips.start_station_id = indego.stations_staues.id
-GROUP BY station_id, station_geog
-ORDER BY num_trips DESC
+INNER JOIN indego.station_statuses
+    ON full_trips.start_station = indego.station_statuses.id::text
+
+WHERE EXTRACT(HOUR FROM full_trips.start_time) BETWEEN 7 AND 9
+GROUP BY indego.station_statuses.id, indego.station_statuses.geog
+ORDER BY COUNT(*) DESC
 LIMIT 5;
 
 /*
