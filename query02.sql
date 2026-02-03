@@ -10,6 +10,10 @@
 */
 
 -- Enter your SQL query here
+select (round ((cnt22.cnt - cnt21.cnt) * 100.0/cnt21.cnt, 2))::text || '%' as perc_change
+FROM
+    (select count(*) as cnt from indego.trips_2021_q3) as cnt21,
+    (select count(*) as cnt from indego.trips_2022_q3) as cnt22;
 
 
 
