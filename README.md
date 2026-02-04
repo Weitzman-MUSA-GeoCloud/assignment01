@@ -107,14 +107,26 @@ Write a query to answer each of the questions below.
 
     **Result:** 
 
-13. [List all the passholder types and number of trips for each across all years.](query09.sql)
+9. [List all the passholder types and number of trips for each across all years.](query09.sql)
 
-14. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
+    **Result:** 
 
-15. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
+10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
 
-16. [How many stations are within 1km of Meyerson Hall?](query12.sql)
+    **Result:** 
 
-17. [Which station is furthest from Meyerson Hall?](query13.sql)
+11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
 
-18. [Which station is closest to Meyerson Hall?](query14.sql)
+    **Result:** 
+
+12. [How many stations are within 1km of Meyerson Hall?](query12.sql)
+
+    **Result:** 
+
+13. [Which station is furthest from Meyerson Hall?](query13.sql)
+
+    **Result:** 
+
+14. [Which station is closest to Meyerson Hall?](query14.sql)
+
+    **Result:** 
