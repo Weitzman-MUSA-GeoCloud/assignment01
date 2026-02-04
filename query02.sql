@@ -9,7 +9,13 @@
     Remember you can do calculations in the select clause.
 */
 
--- Enter your SQL query here
+select 
+    round(
+        ((select count(*)::numeric from indego.trips_2022_q3) - 
+         (select count(*)::numeric from indego.trips_2021_q3)) * 100.0 / 
+        (select count(*)::numeric from indego.trips_2021_q3), 
+        2
+    ) as perc_change
 
 
 
