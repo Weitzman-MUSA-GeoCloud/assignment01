@@ -1,5 +1,3 @@
--- Create station_statuses table only (run in Assignment1 database)
--- Use this if you already have trips loaded and only need stations.
 
 CREATE SCHEMA IF NOT EXISTS indego;
 CREATE EXTENSION IF NOT EXISTS postgis;
@@ -12,4 +10,4 @@ CREATE TABLE indego.station_statuses (
     geog GEOGRAPHY(Point, 4326)
 );
 
--- Then run in terminal: node load_stations.js
+

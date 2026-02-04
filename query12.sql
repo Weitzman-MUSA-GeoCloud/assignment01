@@ -8,4 +8,4 @@
 select 
     count(*) as num_stations
 from indego.station_statuses
-where st_distance(geog, st_point(-75.192584, 39.952415)::geography) <= 1000
+where public.st_distance(geog, public.st_point(-75.192584, 39.952415)::public.geography) <= 1000

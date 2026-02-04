@@ -9,15 +9,14 @@
     Remember you can do calculations in the select clause.
 */
 
+
 select 
     round(
         ((select count(*)::numeric from indego.trips_2022_q3) - 
          (select count(*)::numeric from indego.trips_2021_q3)) * 100.0 / 
         (select count(*)::numeric from indego.trips_2021_q3), 
         2
-    ) as perc_change
-
-
+    )::text || '%' as perc_change
 
 /*
     If you want to get fancier here, you can cast the result to a string and
