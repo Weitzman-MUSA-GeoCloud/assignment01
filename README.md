@@ -83,50 +83,50 @@ Write a query to answer each of the questions below.
 
 4. [What is the average duration of a trip for 2022?](query04.sql)
 
-   **Result:** 
+   **Result:** 17.88 minutes
 
 5. [What is the longest duration trip across the two quarters?](query05.sql)
 
-   **Result:** 
+   **Result:** 1440 minutes
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** 1440 minutes is 24 hours. These likely represent trips that were not properly closed out and were capped at a full day's duration.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
-   **Result:** 
+   **Result:** 2021 Q3 - 124528 ; 2022 Q3 - 137372
 
 7. [How many trips started on one day and ended on a different day?](query07.sql)
 
-    **Result:** 
+    **Result:** 2021 Q3 - 2301 ; 2022 Q3 - 2060
 
 8. [Give the five most popular starting stations across all years between 7am and 9:59am.](query08.sql)
 
     _Hint: Use the `EXTRACT` function to get the hour of the day from the timestamp._
 
-    **Result:** 
+    **Result:** 3032, 3102, 3012, 3066, 3007
 
 9. [List all the passholder types and number of trips for each across all years.](query09.sql)
 
-    **Result:** 
+    **Result:** Indego30 - 441856, Indego365 - 109251, Day Pass - 61659, Walk-up - 2
 
 10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
 
-    **Result:** 
+    **Result:** Large Table
 
 11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
 
-    **Result:** 
+    **Result:** 3502 meters
 
 12. [How many stations are within 1km of Meyerson Hall?](query12.sql)
 
-    **Result:** 
+    **Result:** 18 stations
 
 13. [Which station is furthest from Meyerson Hall?](query13.sql)
 
-    **Result:** 
+    **Result:** Manayunk & Conarroe, Fairview Park Station; 9000 meters away
 
 14. [Which station is closest to Meyerson Hall?](query14.sql)
 
-    **Result:** 
+    **Result:** 34th & Spruce Station; 200 meters away
