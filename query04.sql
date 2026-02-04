@@ -6,3 +6,7 @@
 */
 
 -- Enter your SQL query here
+
+SELECT
+round (AVG(duration)::numeric, 2) AS avg_duration
+FROM indego.trips_2022_q3
