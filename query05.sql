@@ -11,3 +11,9 @@ from (
   union all
   select duration from indego.trips_2022_q3
 ) t;
+
+Why are there so many trips of this duration?
+    
+Many trips share the same maximum duration because extremely long or anomalous trips 
+can be capped or truncated by the system at an upper limit. When many records hit that cap, 
+they appear with the exact same maximum duration.
