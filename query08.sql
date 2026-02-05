@@ -9,7 +9,24 @@
 */
 
 -- Enter your SQL query here
-
+select
+    start_station as station_id,
+    st_makepoint(start_lon, start_lat)::public.geography as station_geog,
+    count(trip_id) as num_trips
+from (
+    select * from indego.trips_2021_q3
+    union all
+    select * from indego.trips_2022_q3
+) as all_trips
+where
+    extract(hour from start_time) >= 7
+    and extract(hour from start_time) < 10
+group by
+    start_station,
+    st_makepoint(start_lon, start_lat)::public.geography
+order by
+    num_trips desc
+limit 5;
 
 /*
     Hint: Use the `EXTRACT` function to get the hour of the day from the

@@ -7,3 +7,14 @@
 */
 
 -- Enter your SQL query here
+select
+    id as station_id,
+    name as station_name,
+    round(public.st_distance(
+        geog,
+        public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)::public.geography
+    ) / 50) * 50 as distance
+from indego.station_statuses
+where geog is not null
+order by distance
+limit 1;
