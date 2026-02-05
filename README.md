@@ -212,6 +212,7 @@ hint for next step plus link to documentation.
     ```
 
     **Result:**
+
 | station_id | station_geog | num_trips |
 |---|---|---|
 | 3032 | 0101000020E6100000E8305F5E80CB52C0B96DDFA3FEF84340 | 960 |
@@ -269,6 +270,7 @@ for next step plus link to documentation.
     ```
 
     **Result:**
+
 | station_id | station_geog | distance |
 |---|---|---|
 | 3023 | NULL | NULL |
