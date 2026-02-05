@@ -1,3 +1,4 @@
+-- Active: 1769627356538@@172.31.112.109@5432
 /*
     What is the average duration of a trip for 2021?
 
