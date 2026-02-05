@@ -75,19 +75,35 @@ Write a query to answer each of the questions below.
 
 2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
 
+**Result**: 3.98%
+
 3. [What is the average duration of a trip for 2021?](query03.sql)
 
+**Result**: 18.86 minutes
+
 4. [What is the average duration of a trip for 2022?](query04.sql)
+
+**Result**: 17.88 minutes
 
 5. [What is the longest duration trip across the two quarters?](query05.sql)
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:**: 1440 minutes = 24 hours. This could be a cap duration, a person not returning a bike, or a system error?
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
+| trip_year | trip_quarter | num_trips |
+|---------|----------|---------|
+| 2021  | Q3   | 124,528  |
+| 2022  | Q3   | 137,372  |
+
 7. [How many trips started on one day and ended on a different day?](query07.sql)
+
+| trip_year | trip_quarter | num_trips |
+|---------|----------|---------|
+| 2021  | Q3   | 2,301  |
+| 2022  | Q3   | 2,060 |
 
 8. [Give the five most popular starting stations across all years between 7am and 9:59am.](query08.sql)
 

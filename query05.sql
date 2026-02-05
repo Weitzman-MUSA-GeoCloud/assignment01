@@ -5,3 +5,9 @@
 */
 
 -- Enter your SQL query here
+SELECT MAX(duration) AS max_duration
+FROM (
+    SELECT duration FROM trips_2021_q3
+    UNION ALL
+    SELECT duration FROM trips_2022_q3
+) AS all_trips;
