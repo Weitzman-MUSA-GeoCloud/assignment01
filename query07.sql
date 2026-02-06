@@ -6,6 +6,18 @@
 */
 
 -- Enter your SQL query here
+SELECT
+    EXTRACT(YEAR FROM start_time)::int AS trip_year,
+    EXTRACT(QUARTER FROM start_time)::int AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM (
+    SELECT start_time, end_time FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT start_time, end_time FROM indego.trips_2022_q3
+) t
+WHERE (start_time::date) <> (end_time::date)
+GROUP BY 1, 2
+ORDER BY 1, 2;
 
 
 
@@ -17,3 +29,4 @@
     [EXTRACT](https://www.postgresql.org/docs/12/functions-datetime.html#FUNCTIONS-DATETIME-EXTRACT)
     function.
 */
+
