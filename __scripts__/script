@@ -6,4 +6,4 @@ ogr2ogr \
 -lco "GEOMETRY_NAME=geog" \
 -lco "OVERWRITE=yes" \
 PG:"host=localhost port=5432 dbname=assignment1 user=postgres password='P123i,./g456'" \
-"F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/station-status.json"
+"/f/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/station_status.json"

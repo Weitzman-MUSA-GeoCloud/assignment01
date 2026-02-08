@@ -52,18 +52,5 @@ copy indego.trips_2022_q3
 from 'F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/indego-trips-2022-q3.csv'
 with (format csv, header true);
 
-
-drop table if exists indego.station_statuses;
-
-create table indego.station_statuses (
-    id integer,
-    name text,
-    geog geography
-);
-
-
-copy indego.station_statuses
-from 'F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/station_status.json'
-with (format geojson);
 create extension if not exists postgis;
 
