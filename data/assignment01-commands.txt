@@ -1,0 +1,18 @@
+ogr2ogr \
+-if "GeoJSON" \
+-of "PostgreSQL" \
+-nln "station_statuses" \
+-lco "SCHEMA=indego" \
+-lco "GEOM_TYPE=geography" \
+-lco "GEOMETRY_NAME=geog" \
+-lco "OVERWRITE=yes" \
+-sql "
+    SELECT
+        id,
+        name,
+        latitude,
+        longitude
+    FROM indego_station_statuses
+" \
+PG:"host=localhost port=5432 dbname=assignment01 user=postgres password=postgres" \
+"/c/Users/Henry/Desktop/MUSA5090_Desktop/assignments/assignment01/musa5090_assignment01/data/indego_station_statuses.json"
