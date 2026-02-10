@@ -13,7 +13,7 @@
 select round(
     (count_2022 - count_2021) * 100.0 / count_2021, 
     2
-) as perc_change
+) ::text || '%' as perc_change
 from (
     select 
         (select count(*) from indego.trips_2021_q3) as count_2021,

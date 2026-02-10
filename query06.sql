@@ -12,7 +12,7 @@ select
     extract(quarter from start_time)::integer as trip_quarter,
     count(*) as num_trips
 from indego.trips_2021_q3
-where duration < 600
+where duration < 10
 group by trip_year, trip_quarter
 
 union all
@@ -22,5 +22,5 @@ select
     extract(quarter from start_time)::integer as trip_quarter,
     count(*) as num_trips
 from indego.trips_2022_q3
-where duration < 600
+where duration < 10
 group by trip_year, trip_quarter
