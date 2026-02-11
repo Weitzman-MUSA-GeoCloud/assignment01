@@ -16,6 +16,6 @@ SELECT
         (indego.ST_DISTANCE(
             geog,
             indego.ST_MAKEPOINT(-75.192584, 39.952415)::indego.GEOGRAPHY
-        ) / 50)::INTEGER, 0
+        ) / 50)
     ) * 50 AS distance
 FROM indego.station_statuses;
