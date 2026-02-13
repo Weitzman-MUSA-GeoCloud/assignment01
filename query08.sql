@@ -10,20 +10,21 @@
 
 -- Enter your SQL query here
 select
-    start_station as station_id,
-    st_makepoint(start_lon, start_lat)::public.geography as station_geog,
-    count(trip_id) as num_trips
+    all_trips.start_station as station_id,
+    indego.station_statuses.geog as station_geog,
+    count(*) as num_trips
 from (
-    select * from indego.trips_2021_q3
+    select start_station, start_time from indego.trips_2021_q3
     union all
-    select * from indego.trips_2022_q3
+    select start_station, start_time from indego.trips_2022_q3
 ) as all_trips
+join indego.station_statuses
+    on all_trips.start_station::integer = indego.station_statuses.id
 where
-    extract(hour from start_time) >= 7
-    and extract(hour from start_time) < 10
+    extract(hour from all_trips.start_time) between 7 and 9
 group by
-    start_station,
-    st_makepoint(start_lon, start_lat)::public.geography
+    all_trips.start_station,
+    indego.station_statuses.geog
 order by
     num_trips desc
 limit 5;
