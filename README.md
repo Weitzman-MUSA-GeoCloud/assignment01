@@ -63,15 +63,24 @@ Write a query to answer each of the questions below.
 
 
 1. [How many bike trips in Q3 2021?](query01.sql)
+
+    ```SQL
+    select count(*)
+    from indego.trips_2021_q3
+    ```
+    
     **Result:** 300,432
 
 2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
+
     **Result:** 3.98%
 
 3. [What is the average duration of a trip for 2021?](query03.sql)
+
     **Result:** 18.86
 
 4. [What is the average duration of a trip for 2022?](query04.sql)
+
     **Result:** 17.88
 
 5. [What is the longest duration trip across the two quarters?](query05.sql)
@@ -100,7 +109,6 @@ NULL: 43
 Walk-up: 2
 
 10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
-    **Result:** 
 
 11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
     **Result:** 4,000m
