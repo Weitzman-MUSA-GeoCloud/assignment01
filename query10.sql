@@ -18,5 +18,5 @@ SELECT
             public.ST_MakePoint(-75.192584, 39.952415)::public.geography
         ) / 50
     ) * 50 AS distance
-FROM indego.station_statuses_raw
+FROM indego.station_statuses
 ORDER BY station_id;

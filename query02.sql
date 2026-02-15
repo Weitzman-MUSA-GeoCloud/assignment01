@@ -11,13 +11,12 @@
 
 -- Enter your SQL query here
 WITH t21 AS (
-    SELECT COUNT(*) FROM trips_2021_q3
+    SELECT COUNT(*) FROM indego.trips_2021_q3
 ),
 
 t22 AS (
-    SELECT COUNT(*) FROM trips_2022_q3
+    SELECT COUNT(*) FROM indego.trips_2022_q3
 )
-
 SELECT
     ROUND(
         (t22.count - t21.count) * 100.0 / t21.count, 2

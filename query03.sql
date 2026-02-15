@@ -6,5 +6,5 @@
 */
 
 -- Enter your SQL query here
-SELECT ROUND(AVG(EXTRACT(EPOCH FROM (end_time - start_time)) / 60), 2) AS avg_duration
+SELECT ROUND(AVG(duration), 2) AS avg_duration
 FROM indego.trips_2021_q3;
