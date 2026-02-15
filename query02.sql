@@ -11,16 +11,18 @@
 
 -- Enter your SQL query here
 WITH t21 AS (
-  SELECT COUNT(*) FROM trips_2021_q3
+    SELECT COUNT(*) FROM trips_2021_q3
 ),
-t22 AS(
-  SELECT COUNT(*) FROM trips_2022_q3
+
+t22 AS (
+    SELECT COUNT(*) FROM trips_2022_q3
 )
+
 SELECT
-  ROUND(
-    (t22.count - t21.count)*100.0/t21.count, 2) AS perc_change
-    FROM t21 CROSS JOIN t22;
-  
+    ROUND(
+        (t22.count - t21.count) * 100.0 / t21.count, 2
+    ) AS perc_change
+FROM t21 CROSS JOIN t22;
 
 
 /*

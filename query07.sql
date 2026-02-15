@@ -6,22 +6,20 @@
 */
 
 SELECT
-2021 AS trip_year,
-'Q3' AS trip_quarter,
-COUNT(*) AS num_trips
+    2021 AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
 FROM indego.trips_2021_q3
-WHERE start_time::DATE<>end_time::DATE
+WHERE start_time::DATE <> end_time::DATE
 
 UNION ALL
 
 SELECT
-2022 AS trip_year,
-'Q3' AS trip_quarter,
-COUNT(*) AS num_trips
+    2022 AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
 FROM indego.trips_2022_q3
-WHERE start_time::DATE<>end_time::DATE;
-
-
+WHERE start_time::DATE <> end_time::DATE;
 
 
 /*
