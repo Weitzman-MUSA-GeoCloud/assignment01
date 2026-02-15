@@ -7,17 +7,23 @@
 
 -- Enter your SQL query here
 select
-extract (year from start_time) as trip_year,
-extract (quarter from start_time) as trip_quarter,
-count(*) as num_trips
+    extract(year from t.start_time) as trip_year,
+    extract(quarter from t.start_time) as trip_quarter,
+    count(*) as num_trips
 from
-(select start_time, end_time from indego.trips_2021_q3
-union all
-select start_time, end_time from indego.trips_2022_q3)
-as t
+    (
+        select
+            start_time,
+            end_time
+        from indego.trips_2021_q3
+        union all
+        select
+            start_time,
+            end_time
+        from indego.trips_2022_q3)
+        as t
 where t.start_time::date != t.end_time::date
 group by 1, 2;
-
 
 
 /*
