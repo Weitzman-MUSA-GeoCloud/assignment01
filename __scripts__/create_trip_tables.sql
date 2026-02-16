@@ -41,3 +41,4 @@ create table indego.trips_2022_q3 (
 );
 
 create extension if not exists postgis;
+
