@@ -9,7 +9,24 @@
     Remember you can do calculations in the select clause.
 */
 
--- Enter your SQL query here
+with trips_2021 as (
+    select count(*) as count_2021
+    from indego.trips_2021_q3
+),
+
+trips_2022 as (
+    select count(*) as count_2022
+    from indego.trips_2022_q3
+)
+
+select
+    round(
+        100.0 * (trips_2022.count_2022 - trips_2021.count_2021)
+        / trips_2021.count_2021,
+        2
+    )::text
+    || '%' as perc_change
+from trips_2021, trips_2022;
 
 
 
