@@ -7,7 +7,7 @@
 */
 
 -- Enter your SQL query here
-SELECT 
+SELECT
     2021 AS trip_year,
     'Q3' AS trip_quarter,
     COUNT(*) AS num_trips
@@ -16,7 +16,7 @@ WHERE duration < 10
 
 UNION ALL
 
-SELECT 
+SELECT
     2022 AS trip_year,
     'Q3' AS trip_quarter,
     COUNT(*) AS num_trips
