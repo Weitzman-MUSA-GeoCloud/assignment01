@@ -83,7 +83,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:**The longest duration is 1440 minutes (24 hours). Many trips have this duration because 1440 minutes is the maximum trip duration cap enforced by the Indego bikeshare system. Any trip exceeding 24 hours is recorded as 1440 minutes.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
