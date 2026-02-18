@@ -6,4 +6,13 @@
     two columns: `passholder_type` and `num_trips`.
 */
 
--- Enter your SQL query here
+select 
+    passholder_type,
+    count(*) as num_trips
+from (
+    select passholder_type from indego.trips_2021_q3
+    union all
+    select passholder_type from indego.trips_2022_q3
+) as all_trips
+group by passholder_type
+order by passholder_type
