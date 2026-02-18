@@ -21,7 +21,7 @@ create table indego.trips_2021_q3 (
     bike_type text
 );
 
-SET DateStyle = 'MDY';
+set DateStyle = 'MDY';
 copy indego.trips_2021_q3
 from 'F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/indego-trips-2021-q3.csv'
 with (format csv, header true);
@@ -47,10 +47,9 @@ create table indego.trips_2022_q3 (
     bike_type text
 );
 
-SET DateStyle = 'MDY';
+set DateStyle = 'MDY';
 copy indego.trips_2022_q3
 from 'F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/indego-trips-2022-q3.csv'
 with (format csv, header true);
 
 create extension if not exists postgis;
-

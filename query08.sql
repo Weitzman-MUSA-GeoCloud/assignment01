@@ -9,7 +9,7 @@
 */
 
 -- Enter your SQL query here
-select 
+select
     start_station as station_id,
     st_point(start_lon, start_lat)::geography as stations_geog,
     count(*) as num_trips

@@ -7,7 +7,7 @@
 */
 
 -- Enter your SQL query here
-select 
+select
     id as station_id,
     name as station_name,
     round(st_distance(geog, st_point(-75.192584, 39.952415)::geography) / 50) * 50 as distance

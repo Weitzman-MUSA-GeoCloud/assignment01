@@ -7,7 +7,7 @@
 */
 
 -- Enter your SQL query here
-select 
+select
     extract(year from start_time)::integer as trip_year,
     extract(quarter from start_time)::integer as trip_quarter,
     count(*) as num_trips
@@ -17,7 +17,7 @@ group by trip_year, trip_quarter
 
 union all
 
-select 
+select
     extract(year from start_time)::integer as trip_year,
     extract(quarter from start_time)::integer as trip_quarter,
     count(*) as num_trips

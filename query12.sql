@@ -6,7 +6,6 @@
 */
 
 -- Enter your SQL query here
-select 
-    count(*) as num_stations
+select count(*) as num_stations
 from indego.stations_geo
 where st_distance(geog, st_point(-75.192584, 39.952415)::geography) <= 1000
