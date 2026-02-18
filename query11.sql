@@ -9,9 +9,9 @@
 SELECT
     ROUND(
         (AVG(
-            indego.ST_DISTANCE(
+            ST_DISTANCE(
                 geog,
-                indego.ST_MAKEPOINT(-75.192584, 39.952415)::indego.GEOGRAPHY
+                ST_MAKEPOINT(-75.192584, 39.952415)::GEOGRAPHY
             )
         ) / 1000)::NUMERIC, 0
     ) AS avg_distance_km

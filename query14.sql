@@ -11,9 +11,9 @@ SELECT
     id AS station_id,
     name AS station_name,
     ROUND(
-        (indego.ST_DISTANCE(
+        (ST_DISTANCE(
             geog,
-            indego.ST_MAKEPOINT(-75.192584, 39.952415)::indego.GEOGRAPHY
+            ST_MAKEPOINT(-75.192584, 39.952415)::GEOGRAPHY
         ) / 50)::INTEGER, 0
     ) * 50 AS distance
 FROM indego.station_statuses

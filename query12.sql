@@ -8,8 +8,8 @@
 -- Enter your SQL query here
 SELECT COUNT(*) AS num_stations
 FROM indego.station_statuses
-WHERE indego.ST_DWITHIN(
+WHERE ST_DWITHIN(
     geog,
-    indego.ST_MAKEPOINT(-75.192584, 39.952415)::indego.GEOGRAPHY,
+    ST_MAKEPOINT(-75.192584, 39.952415)::GEOGRAPHY,
     1000
 );
