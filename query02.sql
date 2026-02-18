@@ -17,6 +17,7 @@ WITH t21 AS (
 t22 AS (
     SELECT COUNT(*) FROM indego.trips_2022_q3
 )
+
 SELECT
     ROUND(
         (t22.count - t21.count) * 100.0 / t21.count, 2

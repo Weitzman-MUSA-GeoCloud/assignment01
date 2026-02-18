@@ -7,8 +7,8 @@
 
 -- Enter your SQL query here
 SELECT COUNT(*) AS num_stations
-FROM indego.station_statuses
+FROM indego.station_statuses AS s
 WHERE public.ST_Distance(
-    geom::public.geography,
+    s.geom::public.geography,
     public.ST_MakePoint(-75.192584, 39.952415)::public.geography
 ) <= 1000;

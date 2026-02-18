@@ -23,8 +23,8 @@ FROM (
         start_time
     FROM indego.trips_2022_q3
 ) AS t
-JOIN indego.station_statuses AS s
-    ON t.start_station::integer = s.id  
+INNER JOIN indego.station_statuses AS s
+    ON t.start_station::integer = s.id
 WHERE EXTRACT(HOUR FROM t.start_time) BETWEEN 7 AND 9
 GROUP BY t.start_station, s.geog
 ORDER BY num_trips DESC

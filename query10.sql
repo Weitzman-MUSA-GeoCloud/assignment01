@@ -10,11 +10,11 @@
 -- Enter your SQL query here
 
 SELECT
-    id AS station_id,
-    geom AS station_geog,
+    station_statuses.id AS station_id,
+    indego.station_statuses.geom AS station_geog,
     ROUND(
         public.ST_Distance(
-            geom::public.geography,
+            indego.station_statuses.geom::public.geography,
             public.ST_MakePoint(-75.192584, 39.952415)::public.geography
         ) / 50
     ) * 50 AS distance

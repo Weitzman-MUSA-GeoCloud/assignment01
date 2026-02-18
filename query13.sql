@@ -8,18 +8,18 @@
 
 -- Enter your SQL query here
 SELECT
-    id AS station_id,
-    name AS station_name,
+    s.id AS station_id,
+    s.name AS station_name,
     ROUND(
         public.ST_Distance(
-            geom::public.geography,
+            s.geom::public.geography,
             public.ST_MakePoint(-75.192584, 39.952415)::public.geography
         ) / 50
     ) * 50 AS distance
-FROM indego.station_statuses
+FROM indego.station_statuses AS s
 ORDER BY
     public.ST_Distance(
-        geom::public.geography,
+        s.geom::public.geography,
         public.ST_MakePoint(-75.192584, 39.952415)::public.geography
     ) DESC
 LIMIT 1;
