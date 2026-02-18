@@ -11,17 +11,14 @@
 
 
 SELECT
-    s.id as station_id,
-    s.geog as station_geog,
+    s.id AS station_id,
+    s.geog AS station_geog,
     round(
         st_distance(
-        s.geog,
-        st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)::geography,
-        TRUE
-         )/50
-    )*50 AS distance
+            s.geog,
+            st_setsrid(st_makepoint(-75.192584, 39.952415), 4326)::geography,
+            TRUE
+        ) / 50
+    ) * 50 AS distance
 FROM indego.station_statuses AS s
 ORDER BY station_id;
-
-
-

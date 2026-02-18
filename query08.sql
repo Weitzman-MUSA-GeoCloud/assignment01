@@ -9,26 +9,28 @@
 */
 
 -- Enter your SQL query here
-select 
+select
     s.id as station_id,
     s.geog as station_geog,
     count(*) as num_trips
-FROM(
-    select start_station, start_time
+from (
+    select
+        start_station,
+        start_time
     from indego.trips_2021_q3
 
-    union ALL
-    select start_station, start_time
+    union all
+    select
+        start_station,
+        start_time
     from indego.trips_2022_q3
-)as t
-join indego.station_statuses as s
-on t.start_station = s.id::text
-where extract(hour from t.start_time) in (7,8,9)
+) as t
+inner join indego.station_statuses as s
+    on t.start_station = s.id::text
+where extract(hour from t.start_time) in (7, 8, 9)
 group by s.id, s.geog
-order by (num_trips) DESC
-LIMIT 5
-
-
+order by (num_trips) desc
+limit 5
 
 
 /*
