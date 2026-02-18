@@ -11,6 +11,15 @@
 
 -- Enter your SQL query here
 
+SELECT
+    ROUND(
+        ((q3_2022.total_trips::NUMERIC - q3_2021.total_trips::NUMERIC) 
+         / q3_2021.total_trips::NUMERIC) * 100, 
+        2
+    ) AS perc_change
+FROM
+    (SELECT COUNT(*) AS total_trips FROM indego.trips_2021_q3) q3_2021,
+    (SELECT COUNT(*) AS total_trips FROM indego.trips_2022_q3) q3_2022;
 
 
 /*
