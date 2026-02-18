@@ -11,12 +11,13 @@
 
 select
     round(
-        ((select count(*) from indego.trips_2022_q3)::numeric
-        - (select count(*) from indego.trips_2021_q3)::numeric)
+        (
+            (select count(*) from indego.trips_2022_q3)::numeric
+            - (select count(*) from indego.trips_2021_q3)::numeric
+        )
         / (select count(*) from indego.trips_2021_q3)::numeric
         * 100, 2
     ) as perc_change
-
 /*
     If you want to get fancier here, you can cast the result to a string and
     concatenate a '%' to the end. For example:

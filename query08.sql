@@ -25,7 +25,8 @@ from (
 ) as t
 inner join indego.station_statuses as s
     on t.start_station = s.id::text
-where extract(hour from t.start_time) >= 7
+where
+    extract(hour from t.start_time) >= 7
     and extract(hour from t.start_time) < 10
 group by s.id, s.geog
 order by num_trips desc
