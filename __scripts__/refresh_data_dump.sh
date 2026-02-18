@@ -8,11 +8,15 @@ PGDATADIR=${CURDIR}/../__pgdata__
 DATADIR=${CURDIR}/../__data__
 ENTRYPOINTS=${CURDIR}/../__entrypoints__
 
-DOCKER_POSTGRES_HOST=localhost
-DOCKER_POSTGRES_PORT=15432
-DOCKER_POSTGRES_USER=postgres
-DOCKER_POSTGRES_NAME=postgres
-DOCKER_POSTGRES_PASS=postgres
+CONTAINER_ENGINE=$(command -v podman || command -v docker)
+CONTAINER_POSTGRES_HOST=localhost
+CONTAINER_POSTGRES_PORT=15432
+CONTAINER_POSTGRES_USER=postgres
+CONTAINER_POSTGRES_NAME=postgres
+CONTAINER_POSTGRES_PASS=postgres
+
+# Make sure to use an image version that matches the version of pg_dump
+CONTAINER_POSTGRES_MAJOR_VERSION=$(pg_dump --version | grep --only-matching --extended-regexp '[0-9]+' | head -n1)
 
 # Start a PostGIS container (from postgis/postgis), mounting the ./pgdata/
 # directory as /var/lib/postgresql/data. Make expose port 5432 as 15432 on the
@@ -23,16 +27,16 @@ mkdir -p ${PGDATADIR}
 
 spinup_postgis_container() {
     echo >&2 "Starting PostGIS container..."
-    CONTAINERID=$(docker run \
+    CONTAINERID=$(${CONTAINER_ENGINE} run \
         --detach \
-        --publish ${DOCKER_POSTGRES_PORT}:5432 \
+        --publish ${CONTAINER_POSTGRES_PORT}:5432 \
         --volume ${PGDATADIR}:/var/lib/postgresql/data \
-        -e POSTGRES_PASSWORD=${DOCKER_POSTGRES_PASS} \
-        postgis/postgis)
+        -e POSTGRES_PASSWORD=${CONTAINER_POSTGRES_PASS} \
+        postgis/postgis:${CONTAINER_POSTGRES_MAJOR_VERSION}-master)
 
     # Poll pg_isready until the container is ready
     echo >&2 "Waiting for PostGIS container to start..."
-    until pg_isready -h ${DOCKER_POSTGRES_HOST} -p ${DOCKER_POSTGRES_PORT} >&2; do
+    until pg_isready -h ${CONTAINER_POSTGRES_HOST} -p ${CONTAINER_POSTGRES_PORT} >&2; do
         sleep 5
     done
 
@@ -41,10 +45,10 @@ spinup_postgis_container() {
 
 cleanup_postgis_container() {
     echo >&2 "Stopping PostGIS container..."
-    docker stop ${CONTAINERID}
+    ${CONTAINER_ENGINE} stop ${CONTAINERID}
 
     echo >&2 "Removing PostGIS container..."
-    docker rm ${CONTAINERID}
+    ${CONTAINER_ENGINE} rm ${CONTAINERID}
 
     echo >&2 "Removing ${PGDATADIR}..."
     rm -rf ${PGDATADIR}
@@ -56,11 +60,11 @@ CONTAINERID=$(spinup_postgis_container)
 # Run the bootstrap_data.sh script in the SCRIPTDIR, passing along the
 # POSTGRES_ environment variables.
 echo >&2 "Running bootstrap_data.sh script..."
-POSTGRES_HOST=${DOCKER_POSTGRES_HOST} \
-POSTGRES_PORT=${DOCKER_POSTGRES_PORT} \
-POSTGRES_USER=${DOCKER_POSTGRES_USER} \
-POSTGRES_NAME=${DOCKER_POSTGRES_NAME} \
-POSTGRES_PASS=${DOCKER_POSTGRES_PASS} \
+POSTGRES_HOST=${CONTAINER_POSTGRES_HOST} \
+POSTGRES_PORT=${CONTAINER_POSTGRES_PORT} \
+POSTGRES_USER=${CONTAINER_POSTGRES_USER} \
+POSTGRES_NAME=${CONTAINER_POSTGRES_NAME} \
+POSTGRES_PASS=${CONTAINER_POSTGRES_PASS} \
 ${SCRIPTDIR}/bootstrap_data.sh || {
     cleanup_postgis_container
     exit 1
@@ -68,11 +72,11 @@ ${SCRIPTDIR}/bootstrap_data.sh || {
 
 # Dump the database to a SQL file
 echo >&2 "Dumping database to SQL file..."
-PGPASSWORD=${DOCKER_POSTGRES_PASS} pg_dump \
-  -h ${DOCKER_POSTGRES_HOST} \
-  -p ${DOCKER_POSTGRES_PORT} \
-  -U ${DOCKER_POSTGRES_USER} \
-  -d ${DOCKER_POSTGRES_NAME} \
+PGPASSWORD=${CONTAINER_POSTGRES_PASS} pg_dump \
+  -h ${CONTAINER_POSTGRES_HOST} \
+  -p ${CONTAINER_POSTGRES_PORT} \
+  -U ${CONTAINER_POSTGRES_USER} \
+  -d ${CONTAINER_POSTGRES_NAME} \
   --clean \
   --if-exists \
   --no-owner \
