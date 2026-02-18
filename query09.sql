@@ -6,7 +6,9 @@
     two columns: `passholder_type` and `num_trips`.
 */
 
-select passholder_type, count(*) as num_trips
+select
+    passholder_type,
+    count(*) as num_trips
 from (
     select passholder_type from indego.trips_2021_q3
     union all

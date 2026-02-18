@@ -6,12 +6,18 @@
     the number of trips (named `num_trips`).
 */
 
-select 2021 as trip_year, 3 as trip_quarter, count(*) as num_trips
+select
+    2021 as trip_year,
+    3 as trip_quarter,
+    count(*) as num_trips
 from indego.trips_2021_q3
 where duration < 10
 
 union all
 
-select 2022 as trip_year, 3 as trip_quarter, count(*) as num_trips
+select
+    2022 as trip_year,
+    3 as trip_quarter,
+    count(*) as num_trips
 from indego.trips_2022_q3
 where duration < 10
