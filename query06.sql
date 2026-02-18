@@ -6,7 +6,7 @@
     the number of trips (named `num_trips`).
 */
 
-SELECT 
+SELECT
     2021 AS trip_year,
     3 AS trip_quarter,
     COUNT(*) AS num_trips
@@ -15,7 +15,7 @@ WHERE duration < 10
 
 UNION ALL
 
-SELECT 
+SELECT
     2022 AS trip_year,
     3 AS trip_quarter,
     COUNT(*) AS num_trips

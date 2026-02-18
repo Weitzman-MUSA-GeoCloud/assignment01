@@ -5,7 +5,7 @@
     trip_quarter, and one column named num_trips.
 */
 
-SELECT 
+SELECT
     2021 AS trip_year,
     3 AS trip_quarter,
     COUNT(*) AS num_trips
@@ -14,7 +14,7 @@ WHERE start_time::date != end_time::date
 
 UNION ALL
 
-SELECT 
+SELECT
     2022 AS trip_year,
     3 AS trip_quarter,
     COUNT(*) AS num_trips
