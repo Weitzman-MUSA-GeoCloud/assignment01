@@ -6,13 +6,12 @@
 */
 
 -- Enter your SQL query here
-SELECT
-  COUNT(*) AS num_stations
-FROM indego.station_statuses
-WHERE indego.ST_Distance(
-        geog,
-        indego.ST_SetSRID(
-          indego.ST_MakePoint(-75.192584, 39.952415),
-          4326
-        )::indego.geography
-      ) <= 1000;
+select count(*) as num_stations
+from indego.station_statuses
+where st_distance(
+    geog,
+    st_setsrid(
+        st_makepoint(-75.192584, 39.952415),
+        4326
+    )::geography
+) <= 1000;

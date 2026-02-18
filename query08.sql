@@ -10,20 +10,22 @@
 
 -- Enter your SQL query here
 
-SELECT 
+SELECT
     s.id AS station_id,
     s.geog AS station_geog,
     COUNT(*) AS num_trips
 FROM (
     SELECT start_station FROM indego.trips_2021_q3
-    WHERE EXTRACT(HOUR FROM start_time) >= 7 
-      AND EXTRACT(HOUR FROM start_time) < 10
+    WHERE
+        EXTRACT(HOUR FROM start_time) >= 7
+        AND EXTRACT(HOUR FROM start_time) < 10
     UNION ALL
     SELECT start_station FROM indego.trips_2022_q3
-    WHERE EXTRACT(HOUR FROM start_time) >= 7 
-      AND EXTRACT(HOUR FROM start_time) < 10
-) trips
-JOIN indego.station_statuses s ON CAST(trips.start_station AS INTEGER) = s.id
+    WHERE
+        EXTRACT(HOUR FROM start_time) >= 7
+        AND EXTRACT(HOUR FROM start_time) < 10
+) AS trips
+INNER JOIN indego.station_statuses AS s ON CAST(trips.start_station AS INTEGER) = s.id
 GROUP BY s.id, s.geog
 ORDER BY num_trips DESC
 LIMIT 5;

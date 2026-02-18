@@ -7,26 +7,29 @@
 
 -- Enter your SQL query here
 SELECT
-  extract(year from start_time)::int as trip_year,
-  extract(quarter from start_time)::int as trip_quarter,
-  count(*) as num_trips
+    extract(YEAR FROM start_time)::int AS trip_year,
+    extract(QUARTER FROM start_time)::int AS trip_quarter,
+    count(*) AS num_trips
 FROM (
-  select start_time, end_time
-  from indego.trips_2021_q3
+    SELECT
+        start_time,
+        end_time
+    FROM indego.trips_2021_q3
 
-UNION ALL
+    UNION ALL
 
-  select start_time, end_time
-  from indego.trips_2022_q3
-) t
-WHERE DATE(start_time) <> date(end_time)
+    SELECT
+        start_time,
+        end_time
+    FROM indego.trips_2022_q3
+) AS t
+WHERE date(start_time) <> date(end_time)
 GROUP BY
-  extract(year from start_time),
-  extract(quarter from start_time)
+    extract(YEAR FROM start_time),
+    extract(QUARTER FROM start_time)
 ORDER BY
-  trip_year,
-  trip_quarter;
-
+    trip_year,
+    trip_quarter;
 
 
 /*
