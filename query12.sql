@@ -6,3 +6,10 @@
 */
 
 -- Enter your SQL query here
+SELECT 
+    COUNT(*) AS num_stations
+FROM indego.stations
+WHERE public.ST_Distance(
+        geog,
+        public.ST_MakePoint(-75.192584, 39.952415)) 
+        < 1000;

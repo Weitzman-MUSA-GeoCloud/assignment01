@@ -5,3 +5,13 @@
 */
 
 -- Enter your SQL query here
+
+SELECT 
+    ROUND(
+        AVG(
+            public.ST_Distance(
+            geog,
+            public.ST_MakePoint(-75.192584, 39.952415)
+            )
+        ::numeric) / 1000, 0)
+AS avg_distance_km FROM indego.stations;
