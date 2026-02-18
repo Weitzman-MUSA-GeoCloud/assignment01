@@ -12,7 +12,7 @@
 /*
  SELECT
     ROUND(
-        ((SELECT COUNT(*) FROM indego.trips_2022_q3) - 
+        ((SELECT COUNT(*) FROM indego.trips_2022_q3) -
          (SELECT COUNT(*) FROM indego.trips_2021_q3))::numeric /
         (SELECT COUNT(*) FROM indego.trips_2021_q3) * 100,
         2
