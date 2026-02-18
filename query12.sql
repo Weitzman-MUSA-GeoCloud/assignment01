@@ -5,4 +5,10 @@
     of stations (num_stations).
 */
 
--- Enter your SQL query here
+select count(*) as num_stations
+from indego.station_statuses
+where st_dwithin(
+    geog,
+    st_makepoint(-75.192584, 39.952415)::geography,
+    1000
+)
