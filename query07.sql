@@ -18,7 +18,8 @@ SELECT
     'Q3' AS trip_quarter,
     COUNT(*) AS num_trips
 FROM indego.trips_2022_q3
-WHERE DATE(start_time) != DATE(end_time);
+WHERE DATE(start_time) != DATE(end_time)
+ORDER BY trip_year;
 
 
 /*
