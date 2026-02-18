@@ -12,7 +12,8 @@ WITH all_trips AS (
     UNION ALL
     SELECT passholder_type FROM indego.trips_2022_q3
 )
-SELECT 
+
+SELECT
     passholder_type,
     count(*) AS num_trips
 FROM all_trips

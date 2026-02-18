@@ -6,20 +6,20 @@
 */
 
 -- Enter your SQL query here
-SELECT 
-    2021 AS trip_year, 
-    3 AS trip_quarter, 
+SELECT
+    2021 AS trip_year,
+    3 AS trip_quarter,
     count(*) AS num_trips
-FROM indego.trips_2021_q3 
+FROM indego.trips_2021_q3
 WHERE start_time::date != end_time::date
 
 UNION ALL
 
-SELECT 
-    2022 AS trip_year, 
-    3 AS trip_quarter, 
+SELECT
+    2022 AS trip_year,
+    3 AS trip_quarter,
     count(*) AS num_trips
-FROM indego.trips_2022_q3 
+FROM indego.trips_2022_q3
 WHERE start_time::date != end_time::date;
 
 
