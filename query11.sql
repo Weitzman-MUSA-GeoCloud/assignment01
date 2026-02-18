@@ -14,5 +14,5 @@ SELECT
                 indego.ST_MAKEPOINT(-75.192584, 39.952415)::indego.GEOGRAPHY
             )
         ) / 1000)::NUMERIC, 0
-    ) AS distance
+    ) AS avg_distance_km
 FROM indego.station_statuses;
