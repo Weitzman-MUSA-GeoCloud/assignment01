@@ -1,0 +1,9 @@
+ogr2ogr \
+-f "PostgreSQL" \
+-nln "stations_geo" \
+-lco "SCHEMA=indego" \
+-lco "GEOM_TYPE=geography" \
+-lco "GEOMETRY_NAME=geog" \
+-lco "OVERWRITE=yes" \
+PG:"host=localhost port=5432 dbname=assignment1 user=postgres password='P123i,./g456'" \
+"/f/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/station_status.json"
