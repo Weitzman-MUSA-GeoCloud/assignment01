@@ -74,15 +74,19 @@ Write a query to answer each of the questions below.
     **Result:** 300,432
 
 2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
+    
     **Result:** 3.98
 
 3. [What is the average duration of a trip for 2021?](query03.sql)
+   
     **Result:** 18.86
 
 4. [What is the average duration of a trip for 2022?](query04.sql)
+   
     **Result:** 17.88
 
 5. [What is the longest duration trip across the two quarters?](query05.sql)
+   
     **Result:** 1440
 
     _Why are there so many trips of this duration?_
@@ -90,7 +94,9 @@ Write a query to answer each of the questions below.
     **Answer:** The maximum duration value (1440) appears 241 times, which suggests a system-imposed cutoff. Trips that remain active beyond a maximum allowed time are likely auto-closed by the system or truncated during data processing, causing many records to share the same capped duration rather than reflecting true ride lengths.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
+
     **Result:**
+
    | trip_year | trip_quarter | num_trips |
    |----------:|:------------:|----------:|
    | 2021      | Q3           | 124528    |
@@ -98,14 +104,18 @@ Write a query to answer each of the questions below.
 
 
 7. [How many trips started on one day and ended on a different day?](query07.sql)
+
     **Result:**
+
    | trip_year | trip_quarter | num_trips |
    |----------:|:------------:|----------:|
    | 2021      | Q3           | 2301      |
    | 2022      | Q3           | 2060      |
 
 8. [Give the five most popular starting stations across all years between 7am and 9:59am.](query08.sql)
+
     **Result:**
+
    | station_id |                      station_geog                    | num_trips |
    |-----------:|:----------------------------------------------------:|----------:|
    |  3032   	|  0101000020E6100000E8305F5E80CB52C0E9F17B9BFEF84340  |  1828     |
@@ -117,14 +127,18 @@ Write a query to answer each of the questions below.
     _Hint: Use the `EXTRACT` function to get the hour of the day from the timestamp._
 
 9. [List all the passholder types and number of trips for each across all years.](query09.sql)
+
     **Result:**
+
  | passholder_type | num_trips |
  |:----------------|----------:|
  | Indego30        | 441856    |
  | Indego365       | 109251    |
 
 10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
+
     **Result:**
+
  "station_id"	"station_geog"	"distance"
  3005	"0101000020E610000025E99AC937C952C08542041C42F94340"	4200
  3006	"0101000020E610000065DF15C1FFCC52C027A089B0E1F94340"	900
@@ -420,21 +434,27 @@ Write a query to answer each of the questions below.
  3449	"0101000020E61000002F51BD35B0C952C0F06DFAB31FF94340"	3600
 
 11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
+
     **Result:** 4km
 
 12. [How many stations are within 1km of Meyerson Hall?](query12.sql)
+
     **Result:** 18
 
 13. [Which station is furthest from Meyerson Hall?](query13.sql)
+
     **Result:**
+
  | station_id | station_name                          | distance |
- |----------:|:---------------------------------------|---------:|
- | 3432      | Manayunk & Conarroe, Fairview Park      | 9000     |
+ |-----------:|:--------------------------------------|---------:|
+ | 3432       | Manayunk & Conarroe, Fairview Park    | 9000     |
 
 
 14. [Which station is closest to Meyerson Hall?](query14.sql)
-    **Result:**
+
+    **Result:**  
+
  | station_id | station_name   | distance |
- |----------:|:---------------|---------:|
- | 3208      | 34th & Spruce  | 200      |
+ |-----------:|:---------------|---------:|
+ | 3208       | 34th & Spruce  | 200      |
 
