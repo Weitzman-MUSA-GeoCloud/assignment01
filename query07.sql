@@ -6,7 +6,20 @@
 */
 
 -- Enter your SQL query here
-
+SELECT
+    '2021' AS trip_year,
+    '3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE DATE(start_time) != DATE(end_time)
+UNION ALL
+SELECT
+    '2022' AS trip_year,
+    '3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE DATE(start_time) != DATE(end_time)
+ORDER BY trip_year;
 
 
 /*
