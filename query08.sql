@@ -31,3 +31,4 @@ LIMIT 5;
     Hint: Use the `EXTRACT` function to get the hour of the day from the
     timestamp.
 */
+

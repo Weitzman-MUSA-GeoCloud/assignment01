@@ -21,3 +21,4 @@ FROM indego.station_statuses
 ORDER BY station_id DESC;
 
 
+
