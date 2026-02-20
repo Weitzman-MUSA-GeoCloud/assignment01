@@ -6,3 +6,11 @@
 */
 
 -- Enter your SQL query here
+select count(*) as num_stations
+from indego.station_statuses
+where
+    geog is not null
+    and public.st_distance(
+        geog,
+        public.st_setsrid(public.st_makepoint(-75.192584, 39.952415), 4326)::public.geography
+    ) <= 1000;
