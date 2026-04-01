@@ -9,9 +9,6 @@
 SELECT
     ROUND(
         AVG(duration),
-        2
-    )
-    AS avg_duration
+        2)
+        AS avg_duration
 FROM indego.trips_2022_q3
-
-

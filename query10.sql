@@ -19,6 +19,3 @@ SELECT
     ) / 50) * 50 AS distance
 FROM indego.station_statuses
 ORDER BY station_id DESC;
-
-
-

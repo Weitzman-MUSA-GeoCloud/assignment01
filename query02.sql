@@ -10,15 +10,12 @@
 */
 
 -- Enter your SQL query here
-SELECT
-    ROUND(
-        (COUNT_2022 - COUNT_2021) * 100.0 / COUNT_2021,
-        2
-    ) AS perc_change
-FROM
-    (SELECT COUNT(*) AS COUNT_2021 FROM indego.trips_2021_q3) AS q1,
-    (SELECT COUNT(*) AS COUNT_2022 FROM indego.trips_2022_q3) AS q2;
-
+select round(
+    ((select count(*) from indego.trips_2022_q3)::numeric
+    - (select count(*) from indego.trips_2021_q3)::numeric)
+    / (select count(*) from indego.trips_2021_q3)::numeric
+    * 100, 2
+) as perc_change
 
 /*
     If you want to get fancier here, you can cast the result to a string and

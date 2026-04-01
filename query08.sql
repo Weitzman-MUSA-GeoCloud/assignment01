@@ -14,10 +14,14 @@ SELECT
     indego.station_statuses.geog AS station_geog,
     COUNT(*) AS num_trips
 FROM (
-    SELECT start_station, start_time
+    SELECT 
+        start_station, 
+        start_time
     FROM indego.trips_2021_q3
     UNION ALL
-    SELECT start_station, start_time
+    SELECT 
+        start_station, 
+        start_time
     FROM indego.trips_2022_q3
 ) AS all_trips
 INNER JOIN indego.station_statuses
@@ -31,4 +35,3 @@ LIMIT 5;
     Hint: Use the `EXTRACT` function to get the hour of the day from the
     timestamp.
 */
-
