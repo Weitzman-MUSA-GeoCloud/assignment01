@@ -21,4 +21,3 @@ SELECT
     count(*) AS num_trips
 FROM indego.trips_2022_q3
 WHERE duration < 10
-

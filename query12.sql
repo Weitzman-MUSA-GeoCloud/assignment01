@@ -15,4 +15,3 @@ WHERE
             4326
         )::geography
     ) <= 1000
-    
