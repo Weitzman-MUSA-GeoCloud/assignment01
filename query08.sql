@@ -8,15 +8,12 @@
     station (named `num_trips`).
 */
 
--- Enter your SQL query here
-
 WITH all_trips AS (
     SELECT
         start_time,
         start_station,
         CASE
             WHEN start_station ~ '^[0-9]+$' THEN start_station::int
-            ELSE NULL
         END AS start_station_id,
         lower(trim(start_station)) AS start_station_name
     FROM indego.trips_2021_q3
@@ -26,7 +23,6 @@ WITH all_trips AS (
         start_station,
         CASE
             WHEN start_station ~ '^[0-9]+$' THEN start_station::int
-            ELSE NULL
         END AS start_station_id,
         lower(trim(start_station)) AS start_station_name
     FROM indego.trips_2022_q3
@@ -39,15 +35,10 @@ SELECT
 FROM all_trips AS t
 INNER JOIN indego.station_statuses AS s
     ON (
-        (t.start_station_id IS NOT NULL AND s.id = t.start_station_id)
-        OR (t.start_station_id IS NULL AND lower(trim(s.name)) = t.start_station_name)
+        (t.start_station_id IS NOT NULL AND t.start_station_id = s.id)
+        OR (t.start_station_id IS NULL AND t.start_station_name = lower(trim(s."name")))
     )
 WHERE extract(HOUR FROM t.start_time) BETWEEN 7 AND 9
 GROUP BY s.id, s.geog
 ORDER BY num_trips DESC
 LIMIT 5
-
-/*
-    Hint: Use the `EXTRACT` function to get the hour of the day from the
-    timestamp.
-*/

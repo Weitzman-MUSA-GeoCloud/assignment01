@@ -22,6 +22,7 @@ SELECT
         2
     ) AS perc_change
 
+
 /*
     If you want to get fancier here, you can cast the result to a string and
     concatenate a '%' to the end. For example:
