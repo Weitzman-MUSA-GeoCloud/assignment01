@@ -33,6 +33,6 @@ CREATE TABLE indego.trips_2022_q3 (
 -- Station statuses (minimum required fields)
 CREATE TABLE indego.station_statuses (
     id INTEGER,
-    name TEXT,
+    "name" TEXT,
     geog GEOGRAPHY (POINT, 4326)
 );
