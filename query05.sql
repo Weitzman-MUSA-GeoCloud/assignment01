@@ -4,8 +4,7 @@
     Your result should have a single row with a single column named max_duration.
 */
 
-SELECT
-    max(duration) AS max_duration
+SELECT max(duration) AS max_duration
 FROM (
     SELECT duration FROM indego.trips_2021_q3
     UNION ALL

@@ -5,8 +5,7 @@
     of stations (num_stations).
 */
 
-SELECT
-    count(*) AS num_stations
+SELECT count(*) AS num_stations
 FROM indego.station_statuses
 WHERE
     st_distance(
