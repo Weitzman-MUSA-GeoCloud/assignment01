@@ -12,14 +12,15 @@
 -- Enter your SQL query here
 
 SELECT
-  ROUND(
-    (
-      (SELECT COUNT(*) FROM indego.trips_2022_q3)::numeric
-      - (SELECT COUNT(*) FROM indego.trips_2021_q3)::numeric
-    )
-    / NULLIF((SELECT COUNT(*) FROM indego.trips_2021_q3)::numeric, 0)
-    * 100
-  , 2) AS perc_change;
+    round(
+        (
+            (SELECT count(*) FROM indego.trips_2022_q3)::numeric
+            - (SELECT count(*) FROM indego.trips_2021_q3)::numeric
+        )
+        / nullif((SELECT count(*) FROM indego.trips_2021_q3)::numeric, 0)
+        * 100,
+        2
+    ) AS perc_change
 
 /*
     If you want to get fancier here, you can cast the result to a string and

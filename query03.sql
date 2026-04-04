@@ -8,5 +8,5 @@
 -- Enter your SQL query here
 
 SELECT
-round(AVG(duration)::numeric, 2) as avg_duration
-from indego.trips_2021_q3
+    round(avg(duration)::numeric, 2) AS avg_duration
+FROM indego.trips_2021_q3
