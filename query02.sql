@@ -11,14 +11,10 @@
 
 -- Enter your SQL query here
 
-
-
-/*
-    If you want to get fancier here, you can cast the result to a string and
-    concatenate a '%' to the end. For example:
-
-        (10 + 3.2)::text || '%' AS perc_change
-
-    This uses the type casting (number to string) and string concatenation
-    operator (`||`, double pipes) that's essentially a `+` for strings.
-*/
+SELECT ROUND(((trips_2022 - trips_2021) * 100.0 / trips_2021), 2) AS perc_change
+FROM
+    (
+        SELECT
+            (SELECT COUNT(*) FROM indego.trips_2021_q3) AS trips_2021,
+            (SELECT COUNT(*) FROM indego.trips_2022_q3) AS trips_2022
+    ) AS trip_counts;
