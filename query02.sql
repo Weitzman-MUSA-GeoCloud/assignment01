@@ -9,9 +9,16 @@
     Remember you can do calculations in the select clause.
 */
 
--- Enter your SQL query here
+/*
+ SELECT
+    ROUND(
+        ((SELECT COUNT(*) FROM indego.trips_2022_q3) -
+         (SELECT COUNT(*) FROM indego.trips_2021_q3))::numeric /
+        (SELECT COUNT(*) FROM indego.trips_2021_q3) * 100,
+        2
+    ) AS percent_change
 
-
+*/
 
 /*
     If you want to get fancier here, you can cast the result to a string and
@@ -22,3 +29,14 @@
     This uses the type casting (number to string) and string concatenation
     operator (`||`, double pipes) that's essentially a `+` for strings.
 */
+
+SELECT
+    ROUND(
+        (q3_2022 - q3_2021)::numeric / q3_2021 * 100,
+        2
+    )::text || '%' AS perc_change
+FROM (
+    SELECT
+        (SELECT COUNT(*) FROM indego.trips_2021_q3) AS q3_2021,
+        (SELECT COUNT(*) FROM indego.trips_2022_q3) AS q3_2022
+) AS counts;
