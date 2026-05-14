@@ -10,6 +10,17 @@
 */
 
 -- Enter your SQL query here
+select
+  round(
+    (
+      (select count(*)::numeric from indego.trips_2022_q3)
+      -
+      (select count(*)::numeric from indego.trips_2021_q3)
+    )
+    / nullif((select count(*)::numeric from indego.trips_2021_q3), 0)
+    * 100
+  , 2) as percent_change;
+
 
 
 
