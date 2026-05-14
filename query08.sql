@@ -10,6 +10,22 @@
 
 -- Enter your SQL query here
 
+SELECT 
+    start_station AS station_id,
+    ST_SetSRID(ST_MakePoint(start_lon, start_lat), 4326)::geography AS station_geog,
+    COUNT(*) AS num_trips
+FROM (
+    SELECT start_station, start_lat, start_lon, start_time FROM indego.trips_2021_q3
+    WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
+
+    UNION ALL
+
+    SELECT start_station, start_lat, start_lon, start_time FROM indego.trips_2022_q3
+    WHERE EXTRACT(HOUR FROM start_time) BETWEEN 7 AND 9
+) AS morning_trips
+GROUP BY start_station, start_lat, start_lon
+ORDER BY num_trips DESC
+LIMIT 5;
 
 /*
     Hint: Use the `EXTRACT` function to get the hour of the day from the
