@@ -6,7 +6,18 @@
 */
 
 -- Enter your SQL query here
+WITH all_trips AS (
+    SELECT * FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT * FROM indego.trips_2022_q3
+)
 
+SELECT
+    EXTRACT(YEAR FROM start_time)::INTEGER AS trip_year,
+    EXTRACT(QUARTER FROM start_time)::INTEGER AS trip_quarter,
+    SUM(CASE WHEN EXTRACT(DAY FROM start_time) != EXTRACT(DAY FROM end_time) THEN 1 ELSE 0 END)::INTEGER AS num_trips
+FROM all_trips
+GROUP BY trip_year, trip_quarter;
 
 
 /*
