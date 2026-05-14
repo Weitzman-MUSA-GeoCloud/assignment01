@@ -1,3 +1,4 @@
+-- Active: 1770507353299@@localhost@5432@assignment1
 create schema if not exists indego;
 
 drop table if exists indego.trips_2021_q3;
@@ -20,6 +21,12 @@ create table indego.trips_2021_q3 (
     bike_type text
 );
 
+set DateStyle = 'MDY';
+copy indego.trips_2021_q3
+from 'F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/indego-trips-2021-q3.csv'
+with (format csv, header true);
+
+
 drop table if exists indego.trips_2022_q3;
 
 create table indego.trips_2022_q3 (
@@ -39,5 +46,10 @@ create table indego.trips_2022_q3 (
     passholder_type text,
     bike_type text
 );
+
+set DateStyle = 'MDY';
+copy indego.trips_2022_q3
+from 'F:/Graduate School Stuff/Semester 4/Deep Learning/assignment01/__data__/indego-trips-2022-q3.csv'
+with (format csv, header true);
 
 create extension if not exists postgis;

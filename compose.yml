@@ -2,14 +2,14 @@
 services:
   db:
     image: postgis/postgis
+    ports:
+      - "5432:5432"
     environment:
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: P123i,./g456
+      POSTGRES_DB: assignment1
     healthcheck:
       # test: ["CMD-SHELL", "pg_isready -U postgres"]
-      test: [
-          "CMD-SHELL",
-          'psql -U postgres -d postgres -c "SELECT ST_Buffer( ST_SetSRID(''POINT(0 0)''::GEOMETRY, 4326), 1) AS geom ;"',
-        ]
+      test: [ "CMD-SHELL", 'psql -U postgres -d postgres -c "SELECT ST_Buffer( ST_SetSRID(''POINT(0 0)''::GEOMETRY, 4326), 1) AS geom ;"' ]
       interval: 5s
       timeout: 5s
       retries: 5
@@ -18,10 +18,7 @@ services:
     image: ghcr.io/weitzman-musa-geocloud/assignment01:main
     volumes:
       - .:/assignment01
-    command: [
-      "bash", "-c",
-      "cd /assignment01 && __entrypoints__/run_linter.sh -- ."
-    ]
+    command: [ "bash", "-c", "cd /assignment01 && __entrypoints__/run_linter.sh -- ." ]
 
   run-tests:
     image: ghcr.io/weitzman-musa-geocloud/assignment01:main
@@ -36,7 +33,4 @@ services:
       POSTGRES_NAME: postgres
     volumes:
       - .:/assignment01
-    command: [
-      "bash", "-c",
-      "cd /assignment01 && npm install > /dev/null && __entrypoints__/run_tests.sh -- --rootDir /assignment01"
-    ]
+    command: [ "bash", "-c", "cd /assignment01 && npm install > /dev/null && __entrypoints__/run_tests.sh -- --rootDir /assignment01" ]

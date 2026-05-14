@@ -4,7 +4,7 @@ set -e
 set -x
 
 SCRIPTDIR=$(readlink -f $(dirname $0))
-DATADIR=$(readlink -f $(dirname $0)/../__data__)
+DATADIR=$(readlink -f $(dirname $0)/__data__)
 mkdir -p ${DATADIR}
 
 # Download and unzip data (if not already downloaded)
