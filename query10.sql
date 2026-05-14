@@ -7,4 +7,9 @@
     distance. Round to the nearest fifty meters.
 */
 
--- Enter your SQL query here
+select 
+    id as station_id,
+    geog as station_geog,
+    round(st_distance(geog, st_point(-75.192584, 39.952415)::geography)::numeric / 50) * 50 as distance
+from indego.station_statuses
+order by distance

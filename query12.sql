@@ -5,4 +5,7 @@
     of stations (num_stations).
 */
 
--- Enter your SQL query here
+select 
+    count(*) as num_stations
+from indego.station_statuses
+where public.st_distance(geog, public.st_point(-75.192584, 39.952415)::public.geography) <= 1000

@@ -1,3 +1,4 @@
+-- Active: 1769627926095@@127.0.0.1@5432@Assignment1
 /*
     Example: How many bike trips in Q3 2021. Name the resulting column
     num_trips.
