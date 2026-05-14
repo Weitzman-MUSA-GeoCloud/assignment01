@@ -10,8 +10,14 @@
 */
 
 -- Enter your SQL query here
-
-
+WITH counts AS (
+    SELECT 
+        (SELECT COUNT(*) FROM indego.trips_2021_q3) AS c2021,
+        (SELECT COUNT(*) FROM indego.trips_2022_q3) AS c2022
+)
+SELECT
+    ROUND((c2022 - c2021) * 100.0 / NULLIF(c2021, 0), 2) AS perc_change
+FROM counts;
 
 /*
     If you want to get fancier here, you can cast the result to a string and

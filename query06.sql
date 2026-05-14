@@ -5,5 +5,27 @@
     (named `trip_year`), one for the quarter (named `trip_quarter`), and one for
     the number of trips (named `num_trips`).
 */
+SELECT
+    trip_year,
+    trip_quarter,
+    COUNT(*) AS num_trips
+FROM (
+    SELECT
+        2021 AS trip_year,
+        'Q3' AS trip_quarter,
+        duration
+    FROM indego.trips_2021_q3
+
+    UNION 
+
+    SELECT
+        2022 AS trip_year,
+        'Q3' AS trip_quarter,
+        duration
+    FROM indego.trips_2022_q3
+) t
+WHERE duration < 10
+GROUP BY trip_year, trip_quarter
+ORDER BY trip_year;
 
 -- Enter your SQL query here

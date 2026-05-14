@@ -7,3 +7,13 @@
 */
 
 -- Enter your SQL query here
+SELECT
+  passholder_type,
+  COUNT(*)::int AS num_trips
+FROM (
+  SELECT passholder_type FROM trips_2021_q3
+  UNION ALL
+  SELECT passholder_type FROM trips_2022_q3
+) AS all_trips
+GROUP BY passholder_type
+ORDER BY num_trips DESC;

@@ -7,3 +7,21 @@
 */
 
 -- Enter your SQL query here
+SET search_path TO indego, public;
+
+SELECT
+  id AS station_id,
+  name AS station_name,
+  ROUND(
+    ST_Distance(
+      ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)::geography,
+      ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+    ) / 50.0
+  ) * 50 AS distance
+FROM indego_station_status
+ORDER BY
+  ST_Distance(
+    ST_SetSRID(ST_MakePoint(longitude, latitude), 4326)::geography,
+    ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography
+  ) DESC
+LIMIT 1;
