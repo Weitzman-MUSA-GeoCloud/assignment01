@@ -5,3 +5,12 @@
 */
 
 -- Enter your SQL query here
+WITH origin AS (
+  SELECT ST_SetSRID(ST_MakePoint(-75.192584, 39.952415), 4326)::geography AS g
+)
+SELECT
+  ROUND(AVG(ST_Distance(s.geog, o.g)) / 1000.0)::int AS avg_distance_km
+FROM indego.station_statuses s
+CROSS JOIN origin o;
+
+

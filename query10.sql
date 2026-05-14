@@ -8,3 +8,19 @@
 */
 
 -- Enter your SQL query here
+WITH origin AS (
+  SELECT
+    ST_SetSRID(
+      ST_MakePoint(-75.192584, 39.952415),
+      4326
+    )::geography AS g
+)
+SELECT
+  s.id AS station_id,
+  s.geog AS station_geog,
+  (ROUND(ST_Distance(s.geog, o.g) / 50.0) * 50)::int AS distance
+FROM indego.station_statuses AS s
+CROSS JOIN origin AS o
+ORDER BY distance, station_id;
+
+
