@@ -6,3 +6,9 @@
 */
 
 -- Enter your SQL query here
+SELECT
+    ROUND(
+        AVG(duration),
+        2
+    ) AS avg_duration
+FROM indego.trips_2021_q3;

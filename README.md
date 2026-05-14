@@ -75,32 +75,227 @@ Write a query to answer each of the questions below.
 
 2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
 
+    ```SQL
+    SELECT 
+    ROUND(
+        (COUNT_2022 - COUNT_2021) * 100.0 / COUNT_2021, 
+        2
+    ) AS perc_change
+FROM 
+    (SELECT COUNT(*) AS COUNT_2021 FROM indego.trips_2021_q3) AS q1,
+    (SELECT COUNT(*) AS COUNT_2022 FROM indego.trips_2022_q3) AS q2;
+    ```
+
+    **Result:** 3.98%
+
 3. [What is the average duration of a trip for 2021?](query03.sql)
+
+    ```SQL
+    SELECT 
+    ROUND(
+        AVG(duration), 
+        2
+    ) AS avg_duration
+FROM indego.trips_2021_q3;
+    ```
+
+    **Result:** 18.86 min
 
 4. [What is the average duration of a trip for 2022?](query04.sql)
 
+    ```SQL
+    SELECT
+    ROUND(
+        AVG(duration), 
+        2
+    )
+FROM indego.trips_2022_q3
+    ```
+
+    **Result:** 17.88 min
+
 5. [What is the longest duration trip across the two quarters?](query05.sql)
 
-    _Why are there so many trips of this duration?_
+    ```SQL
+    SELECT
+    MAX(duration) AS max_duration
+FROM(
+    SELECT duration FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT duration FROM indego.trips_2022_q3
+) AS all_trips
+    ```
 
-    **Answer:**
+    **Answer:** 1440
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
+    ```SQL
+    SELECT 
+    '2021' AS trip_year,   
+    'Q3' AS trip_quarter, 
+    COUNT(*) AS num_trips 
+FROM indego.trips_2021_q3
+WHERE duration < 10
+UNION ALL
+SELECT 
+    '2022' AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE duration < 10;
+    ```
+
+    **Result:** 124,528 in 2021 Q3; 137,372 in 2022 Q3
+
 7. [How many trips started on one day and ended on a different day?](query07.sql)
+
+    ```SQL
+    SELECT 
+    '2021' AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE DATE(start_time) != DATE(end_time)
+UNION ALL
+SELECT 
+    '2022' AS trip_year,
+    'Q3' AS trip_quarter,
+    COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE DATE(start_time) != DATE(end_time);
+    ```
+
+    **Result:** 2,301 in 2021 Q3; 2,060 in 2022 Q3
 
 8. [Give the five most popular starting stations across all years between 7am and 9:59am.](query08.sql)
 
-    _Hint: Use the `EXTRACT` function to get the hour of the day from the timestamp._
+    ```SQL
+    SELECT 
+    indego.station_statuses.id AS station_id,
+    indego.station_statuses.geog AS station_geog,
+    COUNT(*) AS num_trips
+FROM (
+    SELECT start_station, start_time 
+    FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT start_station, start_time 
+    FROM indego.trips_2022_q3
+) AS all_trips
+INNER JOIN indego.station_statuses 
+    ON all_trips.start_station::integer = indego.station_statuses.id
+WHERE EXTRACT(HOUR FROM all_trips.start_time) BETWEEN 7 AND 9
+GROUP BY indego.station_statuses.id, indego.station_statuses.geog
+ORDER BY num_trips DESC
+LIMIT 5;
+    ```
+
+    **Result:** 3032, 3102, 3012, 3066, 3007
 
 9. [List all the passholder types and number of trips for each across all years.](query09.sql)
 
+    ```SQL
+    SELECT 
+    passholder_type,
+    COUNT(*) AS num_trips
+FROM (
+    SELECT passholder_type 
+    FROM indego.trips_2021_q3
+    UNION ALL
+    SELECT passholder_type 
+    FROM indego.trips_2022_q3
+) AS all_trips
+GROUP BY passholder_type
+ORDER BY num_trips DESC;
+    ```
+
+    **Result:** Indego30-441,856; Indego365-109,251; Day Pass-61,659; NULL-43; Walk-up-2
+
 10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
+
+    ```SQL
+    SELECT
+    indego.station_statuses.id AS station_id,
+    indego.station_statuses.geog AS station_geog,
+    ROUND(ST_DISTANCE(
+        station_statuses.geog,
+        ST_SETSRID(
+            ST_MAKEPOINT(-75.192584, 39.952415), 4326
+        )::geography
+    ) / 50) * 50 AS distance
+FROM indego.station_statuses
+ORDER BY station_id DESC;
+    ```
 
 11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
 
+    ```SQL
+    SELECT
+    ROUND(AVG(
+        ST_DISTANCE(
+            indego.station_statuses.geog,
+            ST_SETSRID(
+                ST_MAKEPOINT(-75.192584, 39.952415), 4326
+            )::geography
+        ) / 1000
+    )) AS avg_distance_km
+FROM indego.station_statuses;
+    ```
+
+    **Result:** 4
+
 12. [How many stations are within 1km of Meyerson Hall?](query12.sql)
+
+    ```SQL
+    SELECT COUNT(*) AS num_stations
+FROM indego.station_statuses
+WHERE ST_DISTANCE(
+    station_statuses.geog,
+    ST_SETSRID(
+        ST_MAKEPOINT(-75.192584, 39.952415), 4326
+    )::geography
+) <= 1000;
+    ```
+
+    **Result:** 18
+
 
 13. [Which station is furthest from Meyerson Hall?](query13.sql)
 
+    ```SQL
+    SELECT
+    station_statuses.id AS station_id,
+    station_statuses.name AS station_name,
+    ROUND(ST_DISTANCE(
+        station_statuses.geog,
+        ST_SETSRID(
+            ST_MAKEPOINT(-75.192584, 39.952415), 4326
+        )::geography
+    ) / 50) * 50 AS distance
+FROM indego.station_statuses
+ORDER BY distance DESC
+LIMIT 1;
+    ```
+
+    **Result:** 3432
+
+
 14. [Which station is closest to Meyerson Hall?](query14.sql)
+
+    ```SQL
+    SELECT
+    station_statuses.id AS station_id,
+    station_statuses.name AS station_name,
+    ROUND(ST_DISTANCE(
+        station_statuses.geog,
+        ST_SETSRID(
+            ST_MAKEPOINT(-75.192584, 39.952415), 4326
+        )::geography
+    ) / 50) * 50 AS distance
+FROM indego.station_statuses
+ORDER BY distance
+LIMIT 1;
+    ```
+
+    **Result:** 3208
+
