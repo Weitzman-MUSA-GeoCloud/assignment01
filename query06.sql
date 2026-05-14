@@ -7,3 +7,13 @@
 */
 
 -- Enter your SQL query here
+
+--FIX THIS USE ONLY ONE SELECT STATEMENT
+
+SELECT trip_year, trip_quarter, num_trips
+FROM (
+    SELECT trip_year, trip_quarter, num_trips FROM count21
+    UNION ALL
+    SELECT trip_year, trip_quarter, num_trips FROM count22
+) AS combined;
+

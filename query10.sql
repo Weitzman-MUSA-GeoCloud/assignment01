@@ -8,3 +8,9 @@
 */
 
 -- Enter your SQL query here
+SELECT id as station_id, geog as station_geog, 
+ROUND(st_distance(geog, ST_SetSRID(ST_MakePoint(-75.192584, 39.952415),4326)
+::geography)/50.0)*50.0 AS distance
+FROM indego.station_statuses
+ORDER BY distance;
+

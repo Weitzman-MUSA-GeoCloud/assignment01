@@ -11,6 +11,15 @@
 
 -- Enter your SQL query here
 
+    SELECT ROUND(
+  (c22 - c21) * 100.0 / c21,
+  2
+) AS perc_change
+FROM (
+  SELECT
+    (SELECT COUNT(*) FROM indego.trips_2022_q3) AS c22,
+    (SELECT COUNT(*) FROM indego.trips_2021_q3) AS c21
+) t;
 
 
 /*

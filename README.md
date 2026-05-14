@@ -83,7 +83,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** 1440 minutes is one full day, so 24 hours may be the maximum rental time allowed.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
