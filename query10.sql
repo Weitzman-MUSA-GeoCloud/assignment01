@@ -1,3 +1,5 @@
+-- Active: 1770215654968@@127.0.0.1@5433@assignment1
+-- Active: 1770215654968@@127.0.0.1@5433@assignment1@indego
 /*
     Using the station status dataset, find the distance in meters of each
     station from Meyerson Hall. Use latitude 39.952415 and longitude -75.192584
@@ -8,3 +10,14 @@
 */
 
 -- Enter your SQL query here
+SELECT 
+    id AS station_id,
+    geog AS station_geog,
+    (
+    ROUND((
+        public.ST_Distance(
+            geog,
+            public.ST_MakePoint(-75.192584, 39.952415)
+            )
+        ::numeric) /50 ) *50) AS distance
+FROM indego.stations;

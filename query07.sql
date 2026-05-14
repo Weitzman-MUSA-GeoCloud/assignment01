@@ -7,7 +7,17 @@
 
 -- Enter your SQL query here
 
+SELECT trip_year, trip_quarter, COUNT(*) AS num_trips
+FROM indego.trips_2021_q3
+WHERE EXTRACT(DAY FROM start_time) != EXTRACT(DAY FROM end_time)
+GROUP BY trip_year, trip_quarter
 
+UNION ALL
+
+SELECT trip_year, trip_quarter, COUNT(*) AS num_trips
+FROM indego.trips_2022_q3
+WHERE EXTRACT(DAY FROM start_time) != EXTRACT(DAY FROM end_time)
+GROUP BY trip_year, trip_quarter;
 
 /*
 
