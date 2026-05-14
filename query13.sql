@@ -7,3 +7,11 @@
 */
 
 -- Enter your SQL query here
+
+SELECT 
+    id AS station_id, 
+    name AS station_name, 
+    ROUND(ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography) / 50) * 50 AS distance
+FROM stations_status
+ORDER BY distance DESC
+LIMIT 1;

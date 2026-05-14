@@ -6,3 +6,9 @@
 */
 
 -- Enter your SQL query here
+
+SELECT 
+    COUNT(*) AS num_stations
+FROM stations_status
+WHERE ST_Distance(geog, ST_MakePoint(-75.192584, 39.952415)::geography) <= 1000;
+

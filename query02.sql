@@ -1,3 +1,4 @@
+-- Active: 1769627356538@@172.31.112.109@5432@postgres@indego
 /*
     What is the percent change in trips in Q3 2022 as compared to Q3 2021?
 
@@ -10,9 +11,13 @@
 */
 
 -- Enter your SQL query here
+SELECT
+ROUND((trip_2022 - trip_2021) * 100.0 / trip_2021, 2)::text || '%' AS perc_change
+FROM
+(SELECT COUNT (*) AS trip_2021 FROM trips_2021_q3),
+(SELECT COUNT (*) AS trip_2022 FROM trips_2022_q3);
 
-
-
+-- Result: 3.98%
 /*
     If you want to get fancier here, you can cast the result to a string and
     concatenate a '%' to the end. For example:
