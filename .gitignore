@@ -2,3 +2,5 @@ node_modules/
 __data__/
 __pgdata__/
 .env
+/indego-trips-2021-q3
+/indego-trips-2022-q3
