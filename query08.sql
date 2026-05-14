@@ -9,9 +9,33 @@
 */
 
 -- Enter your SQL query here
+WITH morning_starts AS (
+    SELECT
+        start_station,
+        start_time
+    FROM indego.trips_2021_q3
 
+    UNION ALL
 
-/*
-    Hint: Use the `EXTRACT` function to get the hour of the day from the
-    timestamp.
-*/
+    SELECT
+        start_station,
+        start_time
+    FROM indego.trips_2022_q3
+)
+
+SELECT
+    s.id AS station_id,
+    s.geog AS station_geog,
+    COUNT(*) AS num_trips
+FROM morning_starts AS t
+INNER JOIN indego.station_statuses AS s
+    ON t.start_station = s.id::TEXT
+WHERE
+    EXTRACT(HOUR FROM t.start_time) >= 7
+    AND EXTRACT(HOUR FROM t.start_time) < 10
+GROUP BY
+    s.id,
+    s.geog
+ORDER BY
+    num_trips DESC
+LIMIT 5;
