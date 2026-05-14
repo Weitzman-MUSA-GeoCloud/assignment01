@@ -75,32 +75,64 @@ Write a query to answer each of the questions below.
 
 2. [What is the percent change in trips in Q3 2022 as compared to Q3 2021?](query02.sql)
 
+**Result:** 3.98
+
 3. [What is the average duration of a trip for 2021?](query03.sql)
 
-4. [What is the average duration of a trip for 2022?](query04.sql)
+**Result:** 18.86
+
+4. [What is the average duration of a trip for  2022?](query04.sql)
+
+**Result:** 17.88
 
 5. [What is the longest duration trip across the two quarters?](query05.sql)
 
+**Result:** 1440
+
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** Could be bikes that were never properly docked, trips that were abandoned or stolen, or rides that exceeded the billing limit.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
+**Result:** 124528 in 2021 and 137372 in 2022
+
 7. [How many trips started on one day and ended on a different day?](query07.sql)
+
+**Result:** 2301 in 2021 and 2060 in 2022
 
 8. [Give the five most popular starting stations across all years between 7am and 9:59am.](query08.sql)
 
     _Hint: Use the `EXTRACT` function to get the hour of the day from the timestamp._
 
+**Result:** 1. 3032 2. 3102 3. 3012 4. 3066 5. 3007
+
 9. [List all the passholder types and number of trips for each across all years.](query09.sql)
+
+**Result:** Indego30: 441856
+Indego365: 109251
+Day Pass: 61659
+NULL: 43
+Walk-up: 2
+
 
 10. [Using the station status dataset, find the distance in meters of each station from Meyerson Hall.](query10.sql)
 
+
+
 11. [What is the average distance (in meters) of all stations from Meyerson Hall?](query11.sql)
+
+**Result:** 4
 
 12. [How many stations are within 1km of Meyerson Hall?](query12.sql)
 
+**Result:** 18
+
 13. [Which station is furthest from Meyerson Hall?](query13.sql)
 
+**Result:** Manayunk & Conarroe, Fairview Park
+
 14. [Which station is closest to Meyerson Hall?](query14.sql)
+
+**Result:** 34th & Spruce
+
