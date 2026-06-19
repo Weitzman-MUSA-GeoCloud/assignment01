@@ -24,7 +24,7 @@ Load all three datasets into a PostgreSQL database schema named `indego` (the na
 
 > This structure is important -- particularly the **table names** and the **lowercase field names**; if your queries are not built to work with this structure then _your assignment will fail the tests_.
 
-* **Table**: `indego.trips_2021_q3`  
+* **Table**: `indego.trips_2021_q3`
   **Fields**:
     * `trip_id TEXT`
     * `duration INTEGER`
@@ -42,10 +42,10 @@ Load all three datasets into a PostgreSQL database schema named `indego` (the na
     * `passholder_type TEXT`
     * `bike_type TEXT`
 
-* **Table**: `indego.trips_2022_q3`  
+* **Table**: `indego.trips_2022_q3`
   **Fields**: (same as above)
 
-* **Table**: `indego.station_statuses`  
+* **Table**: `indego.station_statuses`
   **Fields** (at a minimum -- there may be many more):
     * `id INTEGER`
     * `name TEXT` (or `CHARACTER VARYING`)
@@ -83,7 +83,7 @@ Write a query to answer each of the questions below.
 
     _Why are there so many trips of this duration?_
 
-    **Answer:**
+    **Answer:** The longest duration trip is 1440 minutes, which corresponds to exactly 24 hours. There are multiple trips with this duration likely because the Indego system enforces a maximum trip length of 24 hours (1440 minutes). If a bike is not returned within this period, the trip might be automatically closed or capped at this duration by the system, or it reflects the maximum charge duration.
 
 6. [How many trips in each quarter were shorter than 10 minutes?](query06.sql)
 
